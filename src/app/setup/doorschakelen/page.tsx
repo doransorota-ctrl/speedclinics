@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { Suspense } from "react";
+import { Logo } from "@/components/ui/Logo";
 
 function SetupContent() {
   const searchParams = useSearchParams();
@@ -88,12 +89,7 @@ function SetupContent() {
       <div className="max-w-sm mx-auto px-6 py-12">
         {/* Logo */}
         <div className="flex items-center gap-2 mb-10">
-          <div className="w-9 h-9 rounded-xl bg-brand-500 flex items-center justify-center">
-            <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-            </svg>
-          </div>
-          <span className="text-lg font-bold text-surface-900">Speed Clinics</span>
+          <Logo size="sm" />
         </div>
 
         {/* Heading */}

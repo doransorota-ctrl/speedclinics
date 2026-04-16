@@ -5,6 +5,7 @@ import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 import { AuthLayout } from "@/components/layout/AuthLayout";
 import { SocialProofPanel } from "@/components/layout/SocialProofPanel";
+import { Logo } from "@/components/ui/Logo";
 
 export default function AanmeldenPage() {
   const [email, setEmail] = useState("");
@@ -114,12 +115,7 @@ export default function AanmeldenPage() {
 
       {/* Logo */}
       <div className="flex items-center gap-2 mb-8">
-        <div className="w-10 h-10 rounded-xl bg-brand-500 flex items-center justify-center">
-          <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-          </svg>
-        </div>
-        <span className="text-xl font-bold text-surface-900">Speed Clinics</span>
+        <Logo size="sm" />
       </div>
 
       {/* Heading */}

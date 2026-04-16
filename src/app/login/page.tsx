@@ -6,6 +6,7 @@ import { useSearchParams } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { AuthLayout } from "@/components/layout/AuthLayout";
 import { SocialProofPanel } from "@/components/layout/SocialProofPanel";
+import { Logo } from "@/components/ui/Logo";
 
 type LoginMethod = "email" | "phone";
 type Step = "input" | "otp-sent" | "link-sent";
@@ -116,13 +117,8 @@ function LoginContent() {
 
         {/* Logo */}
         <div className="flex items-center gap-2 mb-8">
-          <Link href="/" className="inline-flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-brand-500 flex items-center justify-center">
-              <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
-            </div>
-            <span className="text-lg font-bold text-surface-900">Speed Clinics</span>
+          <Link href="/">
+            <Logo size="sm" />
           </Link>
         </div>
 

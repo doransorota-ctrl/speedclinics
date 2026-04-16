@@ -2,6 +2,7 @@
 
 import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
+import { Logo } from "@/components/ui/Logo";
 
 function BetalenPageInner() {
   const searchParams = useSearchParams();
@@ -22,12 +23,7 @@ function BetalenPageInner() {
       <div className="max-w-sm w-full text-center">
         {/* Logo */}
         <div className="flex items-center justify-center gap-2 mb-8">
-          <div className="w-10 h-10 rounded-xl bg-brand-500 flex items-center justify-center">
-            <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-            </svg>
-          </div>
-          <span className="text-xl font-bold text-surface-900">Speed Clinics</span>
+          <Logo size="sm" />
         </div>
 
         {/* Error / Expired */}

@@ -99,7 +99,7 @@ export default function UpgradePage() {
 
         <div className="bg-white rounded-2xl border border-surface-200 shadow-sm p-4 sm:p-6 max-h-[600px] overflow-y-auto">
           <Cal
-            calLink="speedleads-crbikd/15min"
+            calLink="clyniq/15min"
             calOrigin="https://cal.com"
             style={{ width: "100%", height: "100%", overflow: "auto" }}
             config={{ layout: "month_view", theme: "light" }}

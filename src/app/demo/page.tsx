@@ -64,7 +64,7 @@ function DemoPageInner() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
         <div className="bg-white rounded-2xl border border-surface-100 shadow-sm shadow-black/5 p-4 sm:p-6 overflow-hidden">
           <Cal
-            calLink="speedleads-crbikd/15min"
+            calLink="clyniq/15min"
             calOrigin="https://cal.com"
             style={{ width: "100%", height: "100%", overflow: "auto", minHeight: 500 }}
             config={{ layout: "month_view", theme: "light" }}

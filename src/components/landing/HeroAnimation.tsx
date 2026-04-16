@@ -117,24 +117,24 @@ export function HeroAnimation() {
   return (
     <div className="pt-2">
       {/* iPhone 17 Pro frame with live chat content */}
-      <div className="relative mx-auto w-[260px] sm:w-[280px]">
-        {/* SVG phone frame — sits on top */}
+      <div className="relative mx-auto w-full" style={{ aspectRatio: "200 / 400" }}>
+        {/* SVG phone frame — sits on top, scales with container */}
         <Iphone17Pro
-          width={280}
-          height={560}
-          className="absolute inset-0 w-full h-full z-10 pointer-events-none text-surface-50"
+          width={200}
+          height={400}
+          className="absolute inset-0 w-full h-full z-10 pointer-events-none"
         />
 
-        {/* Live content positioned inside the frame */}
-        <div className="relative" style={{ width: 280, height: 560 }}>
+        {/* Live content positioned inside the frame using percentages */}
+        <div className="absolute inset-0">
           <div
             className="absolute overflow-hidden flex flex-col"
             style={{
-              left: 20,
-              top: 18,
-              width: 240,
-              height: 524,
-              borderRadius: 34,
+              left: "7%",
+              top: "3.2%",
+              width: "86%",
+              height: "93.6%",
+              borderRadius: "12.3%",
             }}
           >
             {/* Status bar */}

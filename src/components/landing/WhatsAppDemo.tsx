@@ -102,23 +102,23 @@ export function WhatsAppDemo() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* WhatsApp conversation — iPhone 17 Pro mockup */}
           <div className="flex justify-center">
-            <div className="relative" style={{ width: 280, height: 560 }}>
+            <div className="relative w-full max-w-[280px]" style={{ aspectRatio: "200 / 400" }}>
               {/* SVG phone frame */}
               <Iphone17Pro
-                width={280}
-                height={560}
-                className="absolute inset-0 w-full h-full z-10 pointer-events-none text-surface-50"
+                width={200}
+                height={400}
+                className="absolute inset-0 w-full h-full z-10 pointer-events-none"
               />
 
               {/* Live content inside frame */}
               <div
                 className="absolute overflow-hidden flex flex-col"
                 style={{
-                  left: 20,
-                  top: 18,
-                  width: 240,
-                  height: 524,
-                  borderRadius: 34,
+                  left: "7%",
+                  top: "3.2%",
+                  width: "86%",
+                  height: "93.6%",
+                  borderRadius: "12.3%",
                 }}
               >
                 {/* Status bar */}

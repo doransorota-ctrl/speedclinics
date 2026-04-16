@@ -128,7 +128,7 @@ export function HeroAnimation() {
         {/* Live content positioned inside the frame */}
         <div className="relative" style={{ width: 280, height: 560 }}>
           <div
-            className="absolute overflow-hidden"
+            className="absolute overflow-hidden flex flex-col"
             style={{
               left: 20,
               top: 18,
@@ -138,7 +138,7 @@ export function HeroAnimation() {
             }}
           >
             {/* Status bar */}
-            <div className="relative bg-surface-50 px-5 pt-2.5 pb-0">
+            <div className="relative bg-surface-50 px-5 pt-2.5 pb-0 shrink-0">
               <div className="h-[26px]" /> {/* space for dynamic island */}
               <div className="flex items-center justify-between pb-1.5">
                 <span className="text-surface-900 text-[10px] font-semibold">09:41</span>
@@ -164,7 +164,7 @@ export function HeroAnimation() {
             </div>
 
             {/* Chat header */}
-            <div className="bg-surface-50 px-3 pb-2.5 flex items-center gap-2.5 border-b border-surface-200">
+            <div className="bg-surface-50 px-3 pb-2.5 flex items-center gap-2.5 border-b border-surface-200 shrink-0">
               <svg className="w-4 h-4 text-surface-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
               </svg>
@@ -180,8 +180,7 @@ export function HeroAnimation() {
             {/* Chat messages */}
             <div
               ref={chatRef}
-              className="bg-[#F5F5F0] flex-1 px-2.5 py-2.5 flex flex-col justify-end overflow-hidden"
-              style={{ height: "calc(100% - 120px)" }}
+              className="bg-[#F5F5F0] flex-1 min-h-0 px-2.5 py-2.5 flex flex-col justify-end overflow-hidden"
             >
               <div className="space-y-1.5">
                 {currentStep.messages.slice(0, visibleMessages).map((msg, i) => (
@@ -204,7 +203,7 @@ export function HeroAnimation() {
             </div>
 
             {/* Input bar */}
-            <div className="bg-[#F5F5F0] px-2.5 pb-2 pt-1">
+            <div className="bg-[#F5F5F0] px-2.5 pb-2 pt-1 shrink-0">
               <div className="flex items-center gap-1.5">
                 <div className="flex-1 bg-white rounded-full px-3 py-1.5 flex items-center border border-surface-200">
                   <span className="text-[11px] text-surface-400 flex-1">Bericht</span>
@@ -218,7 +217,7 @@ export function HeroAnimation() {
             </div>
 
             {/* Home indicator */}
-            <div className="bg-[#F5F5F0] pb-1.5 flex justify-center">
+            <div className="bg-[#F5F5F0] pb-1.5 flex justify-center shrink-0">
               <div className="w-[80px] h-[3px] bg-surface-900/15 rounded-full" />
             </div>
           </div>

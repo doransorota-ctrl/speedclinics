@@ -1,6 +1,6 @@
-# Speed Leads
+# Speed Clinics
 
-Speed Leads is een AI-systeem dat gemiste oproepen automatisch opvangt via WhatsApp voor Nederlandse vakmensen (ZZP loodgieters, elektriciens, dakdekkers, etc.). Wanneer een klant belt en de vakman niet opneemt, stuurt het systeem binnen 5 seconden een WhatsApp, voert een gesprek, en plant een afspraak in Google Agenda. Verdienmodel: €79/maand per klant, 14 dagen gratis trial.
+Speed Clinics is een AI-receptie voor cosmetische klinieken in Nederland. Wanneer een patiënt buiten openingstijden contact opneemt, beantwoordt het systeem automatisch vragen over behandelingen via WhatsApp, adviseert de patiënt en plant consulten in. Op maat ingericht per kliniek.
 
 ## Tech Stack
 
@@ -71,7 +71,7 @@ Portal: /portal/* (Supabase auth)
 - Altijd `###INFO###` JSON na elk bericht
 
 ### Nederlandse UI
-- Altijd jij/je, nooit u
+- Altijd u/uw in UI-copy (formeel, premium kliniek-toon)
 - Prijzen altijd excl. BTW
 - Data format: dag + tijd ("maandag om 14:00"), nooit ISO timestamps
 

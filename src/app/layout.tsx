@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
     default: nl.meta.title,
-    template: "%s — Speed Leads",
+    template: "%s — Speed Clinics",
   },
   description: nl.meta.description,
   openGraph: {
@@ -19,13 +19,13 @@ export const metadata: Metadata = {
     type: "website",
     locale: "nl_NL",
     url: BASE_URL,
-    siteName: "Speed Leads",
+    siteName: "Speed Clinics",
     images: [
       {
         url: "https://speedleads.nl/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "Speed Leads — Meer klanten, minder gedoe",
+        alt: "Speed Clinics — AI-receptie voor klinieken",
       },
     ],
   },
@@ -36,15 +36,14 @@ export const metadata: Metadata = {
   },
   robots: { index: true, follow: true },
   keywords: [
-    "leadopvolging",
-    "WhatsApp automatisering",
-    "website laten maken",
-    "loodgieter website",
-    "elektricien website",
-    "vakmensen",
-    "leads genereren",
-    "automatische afspraken",
-    "Speed Leads",
+    "cosmetische kliniek software",
+    "kliniek leadgeneratie",
+    "WhatsApp automatisering klinieken",
+    "patiëntopvolging",
+    "automatische afspraken kliniek",
+    "Speed Clinics",
+    "cosmetische behandelingen",
+    "kliniek receptie AI",
     "Nederland",
   ],
 };

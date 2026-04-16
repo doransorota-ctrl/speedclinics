@@ -1,15 +1,15 @@
 export const nl = {
   meta: {
-    title: "Speed Leads — AI-receptie voor klinieken | Nooit meer een gemiste patiënt",
+    title: "Speed Clinics — AI-receptie voor klinieken | Nooit meer een gemiste patiënt",
     description:
-      "Uw kliniek is dicht, maar de aanvragen stoppen niet. Speed Leads beantwoordt vragen, adviseert over behandelingen en plant afspraken in via WhatsApp — 24/7.",
-    ogTitle: "Speed Leads — AI-receptie voor klinieken",
+      "Uw kliniek is dicht, maar de aanvragen stoppen niet. Speed Clinics beantwoordt vragen, adviseert over behandelingen en plant afspraken in via WhatsApp — 24/7.",
+    ogTitle: "Speed Clinics — AI-receptie voor klinieken",
     ogDescription:
       "Automatische opvolging van aanvragen buiten openingstijden via WhatsApp. Op maat voor uw kliniek.",
   },
 
   nav: {
-    logo: "Speed Leads",
+    logo: "Speed Clinics",
     cta: "Boek een demo",
     links: {
       howItWorks: "Hoe het werkt",
@@ -24,7 +24,7 @@ export const nl = {
     headline: "Verlies geen patiënten meer",
     headlineAccent: "na sluitingstijd.",
     subheadline:
-      "Wanneer uw kliniek dicht is, komen de aanvragen nog steeds binnen. Speed Leads beantwoordt vragen, adviseert over behandelingen en plant afspraken in — via WhatsApp, 24/7.",
+      "Wij verzorgen uw complete online aanwezigheid — van professionele website tot AI-chatbot die aanvragen buiten openingstijden opvangt, consulten inplant en reviews verzamelt. Alles op maat voor uw kliniek.",
     ctaPrimary: "Boek een demo",
     ctaPrimaryMicro: "Gratis demo · Geen verplichtingen",
     ctaSecondary: "Bekijk hoe het werkt",
@@ -63,31 +63,23 @@ export const nl = {
   },
 
   choose: {
-    headline: "Wat Speed Leads voor uw kliniek doet",
-    noWebsite: {
-      label: "",
-      title: "",
-      offer: "",
-      features: [],
-      cta: "",
-      ctaMicro: "",
-    },
+    headline: "Uw complete online aanwezigheid",
     hasWebsite: {
-      label: "Voor klinieken",
-      title: "Automatische patiëntopvolging",
-      offer: "Op maat ingericht voor uw kliniek",
+      label: "Alles in één",
+      title: "Meer patiënten, minder gemiste aanvragen",
+      offer: "Volledig op maat voor uw kliniek",
       features: [
-        "Aanvragen buiten openingstijden automatisch opvangen",
-        "Vragen over behandelingen direct beantwoorden",
-        "Patiënten adviseren en doorverwijzen",
-        "Afspraken inplannen in uw agenda",
-        "Volledig aangepast aan uw behandelaanbod",
-        "WhatsApp — het kanaal dat patiënten vertrouwen",
+        "AI-chatbot die aanvragen 24/7 opvangt via WhatsApp",
+        "Professionele website die vertrouwen wekt",
+        "Vragen over behandelingen direct beantwoord",
+        "Consulten automatisch ingepland in uw agenda",
+        "Herinneringen die no-shows voorkomen",
+        "Automatische review-verzoeken na behandelingen",
+        "Volledig aangepast aan uw behandelaanbod en huisstijl",
       ],
       cta: "Boek een demo",
       ctaMicro: "Gratis demo · Geen verplichtingen",
     },
-    compleetLink: "",
   },
 
   flow: {
@@ -99,7 +91,7 @@ export const nl = {
           "Via uw website, telefoon of WhatsApp — ook buiten openingstijden.",
       },
       {
-        title: "Speed Leads reageert direct",
+        title: "Speed Clinics reageert direct",
         description:
           "Binnen 10 seconden ontvangt de patiënt een persoonlijk WhatsApp-bericht namens uw kliniek.",
       },
@@ -126,7 +118,7 @@ export const nl = {
     ],
     exampleLabel: "Echt scenario — cosmetische kliniek Amsterdam, gisteren:",
     example:
-      "20:47 — een patiënt vroeg via WhatsApp naar lip fillers. De kliniek was dicht. Speed Leads beantwoordde haar vragen, adviseerde over de behandeling en plande een consult in voor de volgende ochtend. De kliniekeigenaar hoefde niets te doen.",
+      "20:47 — een patiënt vroeg via WhatsApp naar lip fillers. De kliniek was dicht. Speed Clinics beantwoordde haar vragen, adviseerde over de behandeling en plande een consult in voor de volgende ochtend. De kliniekeigenaar hoefde niets te doen.",
   },
 
   websitePackage: {
@@ -137,8 +129,8 @@ export const nl = {
     monthlyPrice: "",
     monthlyNote: "",
     monthlyIncludes: "",
-    included: [],
-    notIncluded: [],
+    included: [] as string[],
+    notIncluded: [] as string[],
     extraNote: "",
     whatWeNeed: "",
     timeline: "",
@@ -148,7 +140,7 @@ export const nl = {
 
   whatsappDemo: {
     sectionLabel: "Zie het in actie",
-    headline: "Zo reageert Speed Leads buiten openingstijden",
+    headline: "Zo reageert Speed Clinics buiten openingstijden",
     subheadline:
       "Een patiënt stuurt een bericht om 20:30. Uw kliniek is dicht. Dit gebeurt er.",
     messages: [
@@ -212,7 +204,7 @@ export const nl = {
   },
 
   midCta: {
-    headline: "Ontdek wat Speed Leads voor uw kliniek kan betekenen.",
+    headline: "Ontdek wat wij voor uw kliniek kunnen betekenen.",
     cta: "Boek een demo",
     ctaMicro: "Gratis demo · Geen verplichtingen",
     trust: "Geen contract · Volledig op maat · Direct resultaat",
@@ -249,7 +241,7 @@ export const nl = {
         text: "Veneers en bleaching zijn impulsaankopen. Als iemand 's avonds belt en niemand neemt op, zijn ze de volgende dag alweer vergeten. Nu worden ze meteen geholpen.",
       },
     ],
-    note: "Ervaringen van klinieken die Speed Leads gebruiken.",
+    note: "Ervaringen van klinieken die Speed Clinics gebruiken.",
   },
 
   pricing: {
@@ -257,11 +249,11 @@ export const nl = {
     subheadline: "",
     software: {
       label: "",
-      name: "Speed Leads",
+      name: "Speed Clinics",
       price: "",
       priceLabel: "",
       description: "",
-      features: [],
+      features: [] as string[],
       cta: "Boek een demo",
       href: "/demo",
     },
@@ -272,7 +264,7 @@ export const nl = {
       monthlyPrice: "",
       priceLabel: "",
       description: "",
-      features: [],
+      features: [] as string[],
       cta: "Boek een demo",
       href: "/demo",
     },
@@ -287,22 +279,22 @@ export const nl = {
     headline: "Veelgestelde vragen",
     groups: [
       {
-        label: "Over Speed Leads",
+        label: "Over Speed Clinics",
         items: [
           {
-            question: "Hoe werkt Speed Leads precies?",
+            question: "Hoe werkt Speed Clinics precies?",
             answer:
-              "Wanneer een patiënt contact opneemt buiten openingstijden — via telefoon, WhatsApp of uw website — reageert Speed Leads automatisch via WhatsApp. Het beantwoordt vragen over behandelingen, adviseert de patiënt en plant indien gewenst een consult in.",
+              "Wanneer een patiënt contact opneemt buiten openingstijden — via telefoon, WhatsApp of uw website — reageert Speed Clinics automatisch via WhatsApp. Het beantwoordt vragen over behandelingen, adviseert de patiënt en plant indien gewenst een consult in.",
           },
           {
             question: "Wordt het aangepast aan onze kliniek?",
             answer:
-              "Ja. Speed Leads wordt volledig op maat ingericht: uw behandelaanbod, prijsindicaties, openingstijden en tone-of-voice. Patiënten ervaren het als een verlengstuk van uw kliniek.",
+              "Ja. Speed Clinics wordt volledig op maat ingericht: uw behandelaanbod, prijsindicaties, openingstijden en tone-of-voice. Patiënten ervaren het als een verlengstuk van uw kliniek.",
           },
           {
             question: "Merken patiënten dat het een AI is?",
             answer:
-              "Speed Leads communiceert professioneel en persoonlijk in uw kliniek-stijl. Patiënten ervaren een snelle, behulpzame reactie — precies wat ze verwachten van een premium kliniek.",
+              "Speed Clinics communiceert professioneel en persoonlijk in uw kliniek-stijl. Patiënten ervaren een snelle, behulpzame reactie — precies wat ze verwachten van een premium kliniek.",
           },
           {
             question: "Hoe snel is de reactietijd?",
@@ -317,7 +309,7 @@ export const nl = {
           {
             question: "Kan het afspraken inplannen in onze agenda?",
             answer:
-              "Ja. Speed Leads koppelt met Google Calendar en plant consulten direct in op beschikbare momenten. U ontvangt een melding met alle patiëntdetails.",
+              "Ja. Speed Clinics koppelt met Google Calendar en plant consulten direct in op beschikbare momenten. U ontvangt een melding met alle patiëntdetails.",
           },
           {
             question: "Zit ik vast aan een contract?",
@@ -336,12 +328,12 @@ export const nl = {
           {
             question: "Hoe zit het met de privacy van patiëntgegevens?",
             answer:
-              "Speed Leads verwerkt alleen contactgegevens en behandelinteresse — geen medische dossiers. Alle data wordt verwerkt conform de AVG en wij tekenen een verwerkersovereenkomst.",
+              "Speed Clinics verwerkt alleen contactgegevens en behandelinteresse — geen medische dossiers. Alle data wordt verwerkt conform de AVG en wij tekenen een verwerkersovereenkomst.",
           },
           {
             question: "Wordt er medisch advies gegeven?",
             answer:
-              "Nee. Speed Leads geeft algemene informatie over behandelingen en plant consulten in. Het stelt geen diagnoses en vervangt geen medisch advies. De arts blijft altijd de specialist.",
+              "Nee. Speed Clinics geeft algemene informatie over behandelingen en plant consulten in. Het stelt geen diagnoses en vervangt geen medisch advies. De arts blijft altijd de specialist.",
           },
         ],
       },
@@ -366,7 +358,7 @@ export const nl = {
   finalCta: {
     headline: "Stop met patiënten verliezen.",
     subheadline:
-      "Ontdek hoe Speed Leads aanvragen buiten openingstijden omzet in consulten.",
+      "Ontdek hoe wij aanvragen buiten openingstijden omzetten in consulten.",
     ctaPrimary: "Boek een demo",
     ctaPrimaryMicro: "Gratis demo · Geen verplichtingen",
     ctaSecondary: "Bekijk hoe het werkt",
@@ -388,13 +380,13 @@ export const nl = {
       dpa: "Verwerkersovereenkomst",
       contact: "Contact",
     },
-    copyright: `© ${new Date().getFullYear()} Speed Leads. Alle rechten voorbehouden.`,
+    copyright: `© ${new Date().getFullYear()} Speed Clinics. Alle rechten voorbehouden.`,
   },
 
   // ── Form pages ────────────────────────────
 
   signup: {
-    headline: "Start met Speed Leads",
+    headline: "Start met Speed Clinics",
     subheadline:
       "Vul uw gegevens in en wij nemen contact op om alles in te richten.",
     fields: {
@@ -471,22 +463,22 @@ export const nl = {
       "Persoonlijke onboarding",
     ],
     planStep: {
-      label: "Kies pakket",
+      label: "Uw gegevens",
       options: [
         {
           value: "speed-leads",
-          label: "Speed Leads",
+          label: "Speed Clinics",
           price: "Op aanvraag",
           detail: "Prijs op maat — afhankelijk van uw kliniek",
-          description: "AI-receptie en automatische patiëntopvolging via WhatsApp",
+          description: "Uw complete online aanwezigheid: AI-chatbot, website en automatische reviews",
         },
       ],
     },
     headlines: {
-      default: "Start met Speed Leads",
-      "speed-leads": "Start met Speed Leads",
-      website: "Start met Speed Leads",
-      compleet: "Start met Speed Leads",
+      default: "Start met Speed Clinics",
+      "speed-leads": "Start met Speed Clinics",
+      website: "Start met Speed Clinics",
+      compleet: "Start met Speed Clinics",
     },
     subheadlines: {
       default: "Vul uw gegevens in en wij nemen contact op om alles in te richten.",
@@ -527,7 +519,7 @@ export const nl = {
   demo: {
     headline: "Boek een demo",
     subheadline:
-      "Laat uw gegevens achter. Wij nemen via WhatsApp contact op en laten zien hoe Speed Leads werkt voor uw kliniek.",
+      "Laat uw gegevens achter. Wij nemen via WhatsApp contact op en laten zien wat wij voor uw kliniek kunnen betekenen.",
     step1Label: "Stap 1",
     step1Title: "Uw gegevens",
     step2Label: "Stap 2",
@@ -571,9 +563,9 @@ export const nl = {
         expandTitle: "Hoe werkt doorschakelen?",
         expandContent: {
           iphone:
-            "Ga naar Instellingen → Telefoon → Doorschakelen → Schakel 'Bij geen gehoor' in en vul het Speed Leads nummer in.",
+            "Ga naar Instellingen → Telefoon → Doorschakelen → Schakel 'Bij geen gehoor' in en vul het Speed Clinics nummer in.",
           android:
-            "Open de Telefoon-app → ⋮ Menu → Instellingen → Oproepen → Doorschakelen → Bij geen gehoor → Vul het Speed Leads nummer in.",
+            "Open de Telefoon-app → ⋮ Menu → Instellingen → Oproepen → Doorschakelen → Bij geen gehoor → Vul het Speed Clinics nummer in.",
           note: "U ontvangt het doorschakelnummer van ons via WhatsApp.",
         },
       },
@@ -581,7 +573,7 @@ export const nl = {
         icon: "calendar",
         title: "Systeem wordt ingericht",
         description:
-          "Wij configureren Speed Leads op maat voor uw kliniek — behandelaanbod, prijzen en tone-of-voice.",
+          "Wij configureren Speed Clinics op maat voor uw kliniek — behandelaanbod, prijzen en tone-of-voice.",
         done: false,
         calendarTrust: [
           "Alleen toegang tot agenda — niet tot overige data",
@@ -589,13 +581,13 @@ export const nl = {
           "Later los te koppelen",
         ],
         calendarFallback:
-          "Zonder koppeling werkt Speed Leads als lead-opvang. U plant dan zelf de consulten.",
+          "Zonder koppeling werkt Speed Clinics als lead-opvang. U plant dan zelf de consulten.",
       },
       {
         icon: "rocket",
         title: "Uw kliniek is live",
         description:
-          "Speed Leads vangt aanvragen op en plant consulten in. U ontvangt een melding bij elke nieuwe patiënt.",
+          "Speed Clinics vangt aanvragen op en plant consulten in. U ontvangt een melding bij elke nieuwe patiënt.",
         done: false,
       },
     ],

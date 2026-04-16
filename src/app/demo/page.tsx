@@ -10,7 +10,7 @@ function DemoPageInner() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const ref = searchParams.get("ref");
-  const backHref = ref === "probeer" ? "/probeer" : ref === "calculator" ? "/calculator" : ref === "website" ? "/website" : "/";
+  const backHref = ref === "probeer" ? "/probeer" : ref === "gids" ? "/gids" : "/";
 
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
@@ -21,8 +21,8 @@ function DemoPageInner() {
     e.preventDefault();
     setError("");
 
-    if (!name.trim()) { setError("Vul je naam in"); return; }
-    if (!phone.trim()) { setError("Vul je telefoonnummer in"); return; }
+    if (!name.trim()) { setError("Vul uw naam in"); return; }
+    if (!phone.trim()) { setError("Vul uw telefoonnummer in"); return; }
 
     setSubmitting(true);
     try {
@@ -61,34 +61,32 @@ function DemoPageInner() {
             Terug
           </Link>
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-xl bg-brand-500 flex items-center justify-center">
-              <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
+            <div className="w-8 h-8 rounded-lg bg-surface-900 flex items-center justify-center">
+              <span className="text-white text-[9px] font-bold tracking-tight">SC</span>
             </div>
-            <span className="text-base font-bold text-surface-900">Speed Leads</span>
+            <span className="text-base font-semibold text-surface-900 tracking-tight">Speed Clinics</span>
           </div>
         </div>
 
         {/* Title */}
         <div className="text-center mb-8">
           <h1 className="text-2xl sm:text-3xl font-bold text-surface-900">
-            Gratis laten instellen
+            Boek een demo
           </h1>
           <p className="mt-2 text-surface-500 text-sm">
-            Laat je gegevens achter. We nemen via WhatsApp contact op en stellen alles voor je in. Duurt 10 minuten.
+            Laat uw gegevens achter. Wij nemen via WhatsApp contact op en laten zien wat wij voor uw kliniek kunnen betekenen.
           </p>
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="bg-white rounded-2xl border border-surface-200 shadow-sm p-6 space-y-4">
+        <form onSubmit={handleSubmit} className="bg-white rounded-2xl border border-surface-100 shadow-sm shadow-black/5 p-6 space-y-4">
           <div>
             <label className="text-sm font-semibold text-surface-900 block mb-1.5">Naam</label>
             <input
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              placeholder="Bijv. Jan de Vries"
+              placeholder="Dr. Lisa van der Berg"
               className="input-field"
               autoFocus
             />
@@ -100,7 +98,7 @@ function DemoPageInner() {
               type="tel"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
-              placeholder="06 12345678"
+              placeholder="+31 20 1234567"
               className="input-field"
             />
           </div>
@@ -112,21 +110,21 @@ function DemoPageInner() {
           <button
             type="submit"
             disabled={submitting}
-            className="w-full bg-brand-500 hover:bg-brand-600 active:bg-brand-700 text-white font-bold text-base py-3.5 rounded-xl shadow-lg shadow-brand-500/25 hover:shadow-xl transition-all disabled:opacity-50"
+            className="btn-primary w-full py-3.5 disabled:opacity-50"
           >
-            {submitting ? "Versturen..." : "Stuur me een WhatsApp"}
+            {submitting ? "Versturen..." : "Boek een demo"}
           </button>
 
           <p className="text-[11px] text-surface-400 text-center">
-            We appen je binnen een paar uur. Geen spam, geen verplichtingen.
+            Wij nemen binnen een werkdag contact op via WhatsApp. Geen verplichtingen.
           </p>
         </form>
 
         {/* Trust */}
         <div className="mt-6 flex flex-col items-center gap-2">
-          {["14 dagen gratis proberen", "Instellen duurt 10 minuten", "Geen contract, opzeggen kan altijd"].map((t) => (
+          {["Persoonlijke demo voor uw kliniek", "Volledig op maat ingericht", "Geen verplichtingen"].map((t) => (
             <span key={t} className="inline-flex items-center gap-1.5 text-xs text-surface-500">
-              <svg className="w-3.5 h-3.5 text-brand-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-3.5 h-3.5 text-accent-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
               </svg>
               {t}

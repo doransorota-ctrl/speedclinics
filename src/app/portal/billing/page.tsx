@@ -15,15 +15,15 @@ type Invoice = {
 };
 
 const PLAN_NAMES: Record<string, string> = {
-  "speed-leads": "Speed Leads",
-  website: "Website Pakket",
-  compleet: "Compleet Pakket",
+  "speed-leads": "Speed Clinics",
+  website: "Speed Clinics",
+  compleet: "Speed Clinics",
 };
 
 const PLAN_PRICES: Record<string, string> = {
-  "speed-leads": "€79",
-  website: "€39",
-  compleet: "€118",
+  "speed-leads": "Op maat",
+  website: "Op maat",
+  compleet: "Op maat",
 };
 
 export default function BillingPage() {
@@ -120,7 +120,7 @@ function BillingContent() {
     <div>
       <h1 className="text-2xl font-bold text-surface-900">Facturatie</h1>
       <p className="text-surface-500 mt-1">
-        Beheer je abonnement en bekijk facturen.
+        Beheer uw abonnement en bekijk facturen.
       </p>
 
       {error && (
@@ -134,7 +134,7 @@ function BillingContent() {
           <svg className="w-4 h-4 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
           </svg>
-          <p className="text-sm font-medium text-brand-700">Abonnement geactiveerd! Bedankt voor je vertrouwen.</p>
+          <p className="text-sm font-medium text-brand-700">Abonnement geactiveerd! Bedankt voor uw vertrouwen.</p>
         </div>
       )}
 
@@ -170,7 +170,7 @@ function BillingContent() {
             {business?.status === "trialing" && daysLeft > 0 && (
               <div className="mt-5 p-4 bg-blue-50 border border-blue-200 rounded-xl">
                 <div className="flex items-center justify-between mb-2">
-                  <p className="text-sm font-medium text-blue-800">14 dagen gratis proefperiode</p>
+                  <p className="text-sm font-medium text-blue-800">Proefperiode</p>
                   <p className="text-sm font-semibold text-blue-900">
                     {daysLeft} {daysLeft === 1 ? "dag" : "dagen"} resterend
                   </p>
@@ -182,7 +182,7 @@ function BillingContent() {
                   />
                 </div>
                 <p className="text-xs text-blue-700 mt-2">
-                  Je proefperiode loopt tot{" "}
+                  Uw proefperiode loopt tot{" "}
                   {business.subscription_ends_at
                     ? new Date(business.subscription_ends_at).toLocaleDateString("nl-NL", {
                         day: "numeric",
@@ -197,9 +197,9 @@ function BillingContent() {
             )}
             {business?.status === "trialing" && daysLeft === 0 && (
               <div className="mt-5 p-4 bg-amber-50 border border-amber-200 rounded-xl">
-                <p className="text-sm font-medium text-amber-800">Je proefperiode is verlopen.</p>
+                <p className="text-sm font-medium text-amber-800">Uw proefperiode is verlopen.</p>
                 <p className="text-xs text-amber-700 mt-1">
-                  Activeer je abonnement om Speed Leads te blijven gebruiken.
+                  Activeer uw abonnement om Speed Clinics te blijven gebruiken.
                 </p>
               </div>
             )}
@@ -213,7 +213,7 @@ function BillingContent() {
                 <div>
                   <p className="text-sm font-medium text-red-800">Betaling mislukt</p>
                   <p className="text-xs text-red-700 mt-0.5">
-                    Werk je betaalmethode bij om je abonnement actief te houden.
+                    Werk uw betaalmethode bij om uw abonnement actief te houden.
                   </p>
                 </div>
               </div>

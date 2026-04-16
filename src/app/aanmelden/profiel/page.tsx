@@ -284,12 +284,12 @@ export default function ProfilePage() {
   if (step === "identity") {
     return (
       <AuthLayout rightPanel={<SocialProofPanel step="identity" />} progressPercent={25}>
-        <p className="text-xs text-surface-400 uppercase tracking-wide mb-2">STAP 1 VAN 4</p>
+        <p className="text-xs text-surface-400 uppercase tracking-wide mb-2">STAP 1 VAN 3</p>
         <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-50 text-brand-600 text-xs font-medium mb-4">
-          Bijna klaar — nog 3 stappen
+          Bijna klaar — nog een paar stappen
         </span>
         <h1 className="text-2xl font-bold text-surface-900">Welkom, {firstName}!</h1>
-        <p className="text-surface-500 mb-6">Vertel ons over je bedrijf</p>
+        <p className="text-surface-500 mb-6">Vertel ons over uw kliniek</p>
 
         <div className="bg-white rounded-2xl border border-surface-200 p-6">
           <div className="space-y-5">
@@ -413,12 +413,12 @@ export default function ProfilePage() {
   if (step === "phone") {
     return (
       <AuthLayout rightPanel={<SocialProofPanel step="phone" />} progressPercent={50}>
-        <p className="text-xs text-surface-400 uppercase tracking-wide mb-2">STAP 2 VAN 4</p>
+        <p className="text-xs text-surface-400 uppercase tracking-wide mb-2">STAP 2 VAN 3</p>
         <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50 text-amber-700 text-xs font-medium mb-4">
-          Laatste stap voor je proefperiode
+          Nog één stap
         </span>
-        <h1 className="text-2xl font-bold text-surface-900">Verifieer je telefoonnummer</h1>
-        <p className="text-surface-500 mb-6">Dit wordt het nummer dat je klanten bellen. We sturen een SMS-code.</p>
+        <h1 className="text-2xl font-bold text-surface-900">Verifieer uw telefoonnummer</h1>
+        <p className="text-surface-500 mb-6">Dit wordt het nummer waarop patiënten u bereiken. We sturen een SMS-code.</p>
 
         <div className="bg-white rounded-2xl border border-surface-200 p-6">
           <div className="space-y-4">
@@ -505,17 +505,39 @@ export default function ProfilePage() {
     );
   }
 
-  // ═══ Step 3: Package ═══
+  // ═══ Step 3: Billing Address + Start ═══
   if (step === "package") {
     return (
       <>
         <ProgressBar percent={75} />
-        <div className="max-w-3xl mx-auto px-4 py-8">
-          <p className="text-xs text-surface-400 uppercase tracking-wide mb-2">STAP 3 VAN 4</p>
-          <h1 className="text-2xl font-bold text-surface-900 mb-4">Kies je pakket</h1>
+        <div className="max-w-xl mx-auto px-4 py-8">
+          <p className="text-xs text-surface-400 uppercase tracking-wide mb-2">STAP 3 VAN 3</p>
+          <h1 className="text-2xl font-bold text-surface-900 mb-2">Bijna klaar</h1>
+          <p className="text-surface-500 mb-6">Vul uw factuuradres in om te starten.</p>
 
-          {/* Factuuradres — must be filled before selecting a package */}
-          <div className="mb-8">
+          {/* What you get */}
+          <div className="bg-white rounded-2xl border border-surface-100 shadow-sm shadow-black/5 p-6 mb-6">
+            <h3 className="text-sm font-semibold text-surface-900 mb-4">Wat u krijgt met Speed Clinics</h3>
+            <ul className="space-y-2.5">
+              {[
+                "AI-chatbot die aanvragen 24/7 opvangt via WhatsApp",
+                "Professionele website op maat voor uw kliniek",
+                "Consulten automatisch ingepland in uw agenda",
+                "Herinneringen die no-shows voorkomen",
+                "Automatische review-verzoeken na behandelingen",
+                "Volledig aangepast aan uw behandelaanbod",
+              ].map((f) => (
+                <li key={f} className="flex items-start gap-2.5 text-sm text-surface-600">
+                  {FEATURE_CHECK}
+                  {f}
+                </li>
+              ))}
+            </ul>
+            <p className="mt-4 text-xs text-surface-400">Prijs op maat — wij bespreken dit tijdens de demo.</p>
+          </div>
+
+          {/* Billing address */}
+          <div className="bg-white rounded-2xl border border-surface-100 shadow-sm shadow-black/5 p-6">
             <h3 className="text-sm font-semibold text-surface-700 mb-3">Factuuradres</h3>
             <div className="space-y-3">
               <div>
@@ -566,104 +588,19 @@ export default function ProfilePage() {
                 </select>
               </div>
             </div>
-          </div>
 
-          {/* Anchoring banner */}
-          <div className="bg-surface-900 text-white rounded-xl p-4 mb-6 text-center text-sm">
-            Elke gemiste oproep is een potenti&euml;le klant die de concurrent belt. Speed Leads vangt ze automatisch op — vanaf <strong>&euro;79/maand</strong>.
-          </div>
-
-          {!(data.addressLine1.trim() && data.postalCode.trim() && data.city.trim()) && (
-            <p className="text-xs text-amber-600 text-center mb-4">Vul je factuuradres in om een pakket te kiezen.</p>
-          )}
-
-          {/* Package cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {/* Website */}
-            <div className="bg-white rounded-2xl border border-surface-200 p-6 flex flex-col">
-              <h3 className="text-lg font-bold text-surface-900">Website Pakket</h3>
-              <div className="mt-2">
-                <span className="text-3xl font-bold text-surface-900">&euro;500</span>
-                <span className="text-surface-500"> + &euro;39/m</span>
-              </div>
-              <p className="text-xs text-surface-400 mt-0.5">excl. BTW &middot; eenmalig + maandelijks</p>
-              <ul className="mt-4 space-y-2 flex-1">
-                {["Professionele website in 5 dagen", "Hosting + SSL + domein", "Responsive design", "SEO-geoptimaliseerd", "Technisch onderhoud"].map((f) => (
-                  <li key={f} className="flex items-start gap-2 text-sm text-surface-600">
-                    {FEATURE_CHECK}
-                    {f}
-                  </li>
-                ))}
-              </ul>
-              <button
-                onClick={() => handleSubmit("website")}
-                disabled={submitting || !(data.addressLine1.trim() && data.postalCode.trim() && data.city.trim())}
-                className="w-full mt-5 py-2.5 rounded-xl border-2 border-surface-300 text-surface-700 font-semibold hover:border-surface-400 hover:bg-surface-50 transition-colors disabled:opacity-40"
-              >
-                Plan een demo
-              </button>
-            </div>
-
-            {/* Speed Leads — center position */}
-            <div className="relative bg-white rounded-2xl border-2 border-brand-500 shadow-lg p-6 flex flex-col">
-              <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand-500 text-white text-xs font-bold px-3 py-1 rounded-full">
-                Populair
-              </span>
-              <h3 className="text-lg font-bold text-surface-900 mt-2">Speed Leads</h3>
-              <div className="mt-2">
-                <span className="text-3xl font-bold text-surface-900">&euro;79</span>
-                <span className="text-surface-500">/maand</span>
-              </div>
-              <p className="text-xs text-surface-400 mt-0.5">excl. BTW &middot; 14 dagen gratis</p>
-              <ul className="mt-4 space-y-2 flex-1">
-                {["Gemiste oproepen \u2192 WhatsApp", "AI plant afspraken in", "Google Agenda-koppeling", "Herinneringen voor klanten", "Automatische review-verzoeken"].map((f) => (
-                  <li key={f} className="flex items-start gap-2 text-sm text-surface-600">
-                    {FEATURE_CHECK}
-                    {f}
-                  </li>
-                ))}
-              </ul>
-              <button
-                onClick={() => handleSubmit("speed-leads")}
-                disabled={submitting || !(data.addressLine1.trim() && data.postalCode.trim() && data.city.trim())}
-                className="btn-primary w-full mt-5 disabled:opacity-40"
-              >
-                {submitting && data.plan === "speed-leads" ? "Bezig..." : "Start gratis proefperiode"}
-              </button>
-            </div>
-
-            {/* Compleet */}
-            <div className="relative bg-white rounded-2xl border border-surface-200 p-6 flex flex-col">
-              <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-surface-800 text-white text-xs font-bold px-3 py-1 rounded-full">
-                Beste waarde
-              </span>
-              <h3 className="text-lg font-bold text-surface-900 mt-2">Compleet Pakket</h3>
-              <div className="mt-2">
-                <span className="text-3xl font-bold text-surface-900">&euro;500</span>
-                <span className="text-surface-500"> + &euro;118/m</span>
-              </div>
-              <p className="text-xs text-surface-400 mt-0.5">excl. BTW &middot; 14 dagen gratis (Speed Leads)</p>
-              <ul className="mt-4 space-y-2 flex-1">
-                {["Alles van Speed Leads", "Alles van Website Pakket", "Website + leadopvolging in \u00e9\u00e9n", "E\u00e9n factuur, geen gedoe"].map((f) => (
-                  <li key={f} className="flex items-start gap-2 text-sm text-surface-600">
-                    {FEATURE_CHECK}
-                    {f}
-                  </li>
-                ))}
-              </ul>
-              <button
-                onClick={() => handleSubmit("compleet")}
-                disabled={submitting || !(data.addressLine1.trim() && data.postalCode.trim() && data.city.trim())}
-                className="w-full mt-5 py-2.5 rounded-xl border-2 border-surface-300 text-surface-700 font-semibold hover:border-surface-400 hover:bg-surface-50 transition-colors disabled:opacity-40"
-              >
-                Plan een demo
-              </button>
-            </div>
+            <button
+              onClick={() => handleSubmit("speed-leads")}
+              disabled={submitting || !(data.addressLine1.trim() && data.postalCode.trim() && data.city.trim())}
+              className="btn-primary w-full mt-6 disabled:opacity-40"
+            >
+              {submitting ? "Bezig..." : "Start met Speed Clinics"}
+            </button>
           </div>
 
           {/* Consent */}
           <p className="text-xs text-surface-400 text-center mt-4">
-            Door te starten ga je akkoord met ons{" "}
+            Door te starten gaat u akkoord met ons{" "}
             <Link href="/privacy" className="text-brand-600 hover:text-brand-700 underline">privacybeleid</Link>{" "}
             en{" "}
             <Link href="/voorwaarden" className="text-brand-600 hover:text-brand-700 underline">voorwaarden</Link>.

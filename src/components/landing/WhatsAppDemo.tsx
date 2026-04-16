@@ -48,15 +48,13 @@ function OwnerNotification() {
         {whatsappDemo.ownerHeadline}
       </h3>
 
-      <div className="bg-white border border-surface-200 rounded-lg overflow-hidden">
-        <div className="bg-brand-50 border-b border-brand-100 px-4 py-2.5 flex items-center gap-2">
-          <div className="w-6 h-6 rounded-full bg-brand-500 flex items-center justify-center">
-            <svg className="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-            </svg>
+      <div className="bg-white border border-surface-100 shadow-sm shadow-black/5 rounded-2xl overflow-hidden">
+        <div className="bg-accent-50 border-b border-accent-100 px-4 py-2.5 flex items-center gap-2">
+          <div className="w-6 h-6 rounded-full bg-surface-900 flex items-center justify-center">
+            <span className="text-white text-[8px] font-bold">SC</span>
           </div>
-          <span className="text-sm font-semibold text-brand-800">
-            Nieuwe lead via Speed Leads
+          <span className="text-sm font-semibold text-accent-800">
+            Nieuwe patiënt via Speed Clinics
           </span>
         </div>
 
@@ -75,10 +73,9 @@ function OwnerNotification() {
       </div>
 
       <p className="mt-3 text-xs text-surface-500">
-        Je krijgt dit als WhatsApp-melding op je telefoon.
+        U ontvangt dit als WhatsApp-melding op uw telefoon.
       </p>
 
-      {/* Speed Leads CTA */}
       <div className="mt-5">
         <Link
           href="/demo"
@@ -88,7 +85,7 @@ function OwnerNotification() {
           Boek een demo
         </Link>
       </div>
-      <p className="mt-2 text-xs text-surface-500">
+      <p className="mt-2 text-xs text-surface-400">
         {whatsappDemo.ctaMicro}
       </p>
     </div>
@@ -105,13 +102,10 @@ export function WhatsAppDemo() {
           {/* WhatsApp conversation — phone mockup */}
           <div className="flex justify-center">
             <div className="w-[270px] sm:w-[300px]">
-              {/* Outer phone shell */}
               <div className="bg-[#1a1a1a] rounded-[3rem] p-[10px] shadow-2xl shadow-black/30">
-                {/* Inner screen */}
                 <div className="bg-black rounded-[2.2rem] overflow-hidden relative">
                   {/* Status bar */}
                   <div className="relative bg-[#075e54] px-5 pt-3 pb-0">
-                    {/* Dynamic Island */}
                     <div className="absolute top-2 left-1/2 -translate-x-1/2 w-[90px] h-[25px] bg-black rounded-full z-10" />
                     <div className="flex items-center justify-between pt-0.5 pb-2">
                       <span className="text-white/90 text-[11px] font-semibold">09:41</span>
@@ -142,10 +136,10 @@ export function WhatsAppDemo() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                     </svg>
                     <div className="w-9 h-9 rounded-full bg-[#128c7e] flex items-center justify-center flex-shrink-0">
-                      <span className="text-white text-xs font-bold">JL</span>
+                      <span className="text-white text-xs font-bold">KE</span>
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="text-white text-[13px] font-medium leading-tight truncate">Jansen Loodgieters</p>
+                      <p className="text-white text-[13px] font-medium leading-tight truncate">Kliniek Esthétique</p>
                       <p className="text-white/60 text-[10px] leading-tight">online</p>
                     </div>
                     <div className="flex items-center gap-3.5">
@@ -209,7 +203,7 @@ export function WhatsAppDemo() {
             </div>
           </div>
 
-          {/* Right column: headline + owner notification */}
+          {/* Right column */}
           <div>
             <p className="text-sm font-semibold text-brand-600 uppercase tracking-wide mb-2">
               {whatsappDemo.sectionLabel}
@@ -217,7 +211,7 @@ export function WhatsAppDemo() {
             <h2 className="text-3xl sm:text-4xl font-bold text-surface-900 mb-3">
               {whatsappDemo.headline}
             </h2>
-            <p className="text-lg text-surface-600 mb-8">
+            <p className="text-lg text-surface-500 mb-8">
               {whatsappDemo.subheadline}
             </p>
             <OwnerNotification />

@@ -18,7 +18,7 @@ export function StickyCTA() {
   if (!visible) return null;
 
   return (
-    <div className="fixed bottom-0 inset-x-0 z-50 p-3 bg-white border-t border-surface-200 md:hidden">
+    <div className="fixed bottom-0 inset-x-0 z-50 p-3 bg-surface-50/80 backdrop-blur-sm border-t border-surface-100/60 md:hidden">
       <a
         href="/demo"
         onClick={() => events.stickyCta()}

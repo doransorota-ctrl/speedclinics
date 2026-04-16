@@ -25,7 +25,7 @@ export function trialReminderHtml(data: TrialReminderData): string {
 <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 560px; margin: 0 auto; padding: 24px; color: #1e293b;">
   <div style="text-align: center; margin-bottom: 32px;">
     <div style="display: inline-block; background: #25a867; color: white; font-weight: bold; padding: 8px 16px; border-radius: 8px; font-size: 18px;">
-      ⚡ Speed Leads
+      ⚡ Speed Clinics
     </div>
   </div>
 
@@ -36,8 +36,8 @@ export function trialReminderHtml(data: TrialReminderData): string {
   <p style="font-size: 16px; color: #475569; line-height: 1.6;">
     Hoi ${firstName}, je proefperiode loopt bijna af.
     ${data.leadsCount > 0
-      ? `Speed Leads heeft <strong>${data.leadsCount} leads</strong> voor je opgevangen.`
-      : "Zodra je doorschakelen instelt, vangt Speed Leads je gemiste oproepen op."
+      ? `Speed Clinics heeft <strong>${data.leadsCount} leads</strong> voor je opgevangen.`
+      : "Zodra je doorschakelen instelt, vangt Speed Clinics je gemiste oproepen op."
     }
   </p>
 

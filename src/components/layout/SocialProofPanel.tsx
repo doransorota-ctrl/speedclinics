@@ -18,43 +18,43 @@ interface TestimonialData {
 const testimonials: Record<Exclude<Step, "package">, TestimonialData> = {
   auth: {
     stat: "10 sec",
-    statSubtitle: "reactietijd op een gemiste oproep",
+    statSubtitle: "reactietijd op een aanvraag buiten openingstijden",
     quote:
-      "Als ik onder een kruipruimte lig kan ik niet opnemen. Maar die klant belt gewoon de volgende loodgieter. Nu krijgen ze meteen een WhatsApp en staan er al afspraken.",
-    authorName: "Richard de Groot",
-    authorDetail: "Loodgieter, Amsterdam",
-    resultBadge: "+3 klussen per week",
+      "Veel patiënten oriënteren zich 's avonds op behandelingen. Voorheen misten we die aanvragen. Nu krijgen ze direct antwoord en staan er de volgende ochtend al consulten in de agenda.",
+    authorName: "Dr. Lisa van der Berg",
+    authorDetail: "Cosmetisch arts, Amsterdam",
+    resultBadge: "+8 consulten per week",
   },
   identity: {
     stat: "100%",
-    statSubtitle: "van gemiste bellers krijgt direct een WhatsApp",
+    statSubtitle: "van aanvragen buiten openingstijden wordt direct beantwoord",
     quote:
-      "Klanten zeggen steeds: jullie waren de enige die meteen reageerde. De rest belt pas uren later terug.",
-    authorName: "Youssef El Amrani",
-    authorDetail: "Elektricien, Rotterdam",
+      "Patiënten zeggen steeds: jullie waren de enige kliniek die meteen reageerde. De rest belt pas de volgende ochtend terug.",
+    authorName: "Mark de Vries",
+    authorDetail: "LaserCenter, Rotterdam",
     resultBadge: "Altijd als eerste",
   },
   phone: {
     stat: "0 min",
     statSubtitle: "eigen tijd kwijt aan nabellen",
     quote:
-      "Ik zat elke avond nog een uur mensen terug te bellen. Nu regelt het zichzelf. Als ik klaar ben staan de afspraken er gewoon.",
-    authorName: "Henk Vermeer",
-    authorDetail: "Ongediertebestrijder, Utrecht",
+      "Ik zat elke avond nog een uur patiënten terug te bellen. Nu regelt het zichzelf. Als ik klaar ben staan de consulten er gewoon.",
+    authorName: "Dr. Sarah Hendriks",
+    authorDetail: "Cosmetische tandarts, Utrecht",
     resultBadge: "Nooit meer nabellen",
   },
 };
 
 const trustBadges = [
-  "Werkt met je huidige nummer",
-  "Live in 10 minuten",
+  "Werkt met uw huidige nummer",
+  "Live binnen een week",
   "Maandelijks opzegbaar",
 ];
 
 function CheckIcon() {
   return (
     <svg
-      className="w-4 h-4 text-green-500 flex-shrink-0"
+      className="w-4 h-4 text-accent-500 flex-shrink-0"
       fill="none"
       viewBox="0 0 24 24"
       stroke="currentColor"
@@ -80,7 +80,7 @@ function TrustBadges() {
 
 function TestimonialCard({ data }: { data: TestimonialData }) {
   return (
-    <div className="bg-white rounded-2xl p-6 shadow-sm">
+    <div className="bg-white rounded-2xl p-6 shadow-sm shadow-black/5 border border-surface-100">
       <p className="text-base text-surface-700 leading-relaxed italic">
         &ldquo;{data.quote}&rdquo;
       </p>
@@ -100,7 +100,7 @@ function TestimonialCard({ data }: { data: TestimonialData }) {
 function StatBlock({ stat, subtitle }: { stat: string; subtitle: string }) {
   return (
     <div className="mb-6">
-      <p className="text-5xl font-extrabold text-surface-900">{stat}</p>
+      <p className="text-5xl font-bold text-surface-900">{stat}</p>
       <p className="text-sm text-surface-500 mt-1">{subtitle}</p>
     </div>
   );
@@ -111,11 +111,10 @@ export function SocialProofPanel({ step }: SocialProofPanelProps) {
     return (
       <div>
         <div className="mb-6">
-          <h3 className="text-lg font-semibold text-surface-900">Jouw gegevens</h3>
+          <h3 className="text-lg font-semibold text-surface-900">Uw gegevens</h3>
         </div>
-        <div className="bg-white rounded-2xl p-6 shadow-sm">
-          {/* Summary content will be passed as children or via props in a future iteration */}
-          <p className="text-sm text-surface-500">Je gegevens worden hier samengevat.</p>
+        <div className="bg-white rounded-2xl p-6 shadow-sm shadow-black/5 border border-surface-100">
+          <p className="text-sm text-surface-500">Uw gegevens worden hier samengevat.</p>
         </div>
         <TrustBadges />
       </div>

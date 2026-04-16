@@ -116,7 +116,7 @@ export default function PortalLayout({
   return (
     <div className="min-h-screen bg-surface-50">
       {/* Top bar */}
-      <header className="fixed top-0 inset-x-0 z-40 bg-white border-b border-surface-200 h-14">
+      <header className="fixed top-0 inset-x-0 z-40 bg-white border-b border-surface-100 h-14">
         <div className="flex items-center justify-between h-full px-4 lg:pl-64">
           {/* Mobile menu button */}
           <button
@@ -130,12 +130,10 @@ export default function PortalLayout({
 
           {/* Logo (mobile) */}
           <Link href="/portal/dashboard" className="lg:hidden flex items-center gap-2">
-            <div className="w-6 h-6 rounded bg-brand-500 flex items-center justify-center">
-              <svg className="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
+            <div className="w-6 h-6 rounded-md bg-surface-900 flex items-center justify-center">
+              <span className="text-white text-[8px] font-bold tracking-tight">SC</span>
             </div>
-            <span className="text-sm font-bold text-surface-900">Speed Leads</span>
+            <span className="text-sm font-semibold text-surface-900 tracking-tight">Speed Clinics</span>
           </Link>
 
           {/* Right side */}
@@ -166,16 +164,14 @@ export default function PortalLayout({
       </header>
 
       {/* Desktop sidebar */}
-      <aside className="hidden lg:flex flex-col fixed top-0 left-0 bottom-0 w-60 bg-white border-r border-surface-200 z-50">
+      <aside className="hidden lg:flex flex-col fixed top-0 left-0 bottom-0 w-60 bg-white border-r border-surface-100 z-50">
         {/* Sidebar logo */}
-        <div className="h-14 flex items-center px-5 border-b border-surface-200">
-          <Link href="/portal/dashboard" className="flex items-center gap-2">
-            <div className="w-7 h-7 rounded bg-brand-500 flex items-center justify-center">
-              <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
+        <div className="h-14 flex items-center px-5 border-b border-surface-100">
+          <Link href="/portal/dashboard" className="flex items-center gap-2.5">
+            <div className="w-8 h-8 rounded-lg bg-surface-900 flex items-center justify-center">
+              <span className="text-white text-xs font-bold tracking-tight">SC</span>
             </div>
-            <span className="text-base font-bold text-surface-900">Speed Leads</span>
+            <span className="text-base font-semibold text-surface-900 tracking-tight">Speed Clinics</span>
           </Link>
         </div>
 
@@ -247,7 +243,7 @@ export default function PortalLayout({
           />
           <aside className="lg:hidden fixed top-0 left-0 bottom-0 w-64 bg-white z-50 shadow-xl">
             <div className="h-14 flex items-center justify-between px-4 border-b border-surface-200">
-              <span className="text-base font-bold text-surface-900">Speed Leads</span>
+              <span className="text-base font-semibold text-surface-900 tracking-tight">Speed Clinics</span>
               <button onClick={() => setMobileMenuOpen(false)} className="p-2 text-surface-500">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />

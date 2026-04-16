@@ -9,61 +9,49 @@ export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 inset-x-0 z-50 bg-white border-b border-surface-200">
+    <header className="fixed top-0 inset-x-0 z-50 bg-surface-50/80 backdrop-blur-lg border-b border-surface-100/60">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-14">
+        <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
-            <div className="w-7 h-7 rounded bg-brand-500 flex items-center justify-center">
-              <svg
-                className="w-4 h-4 text-white"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2.5}
-                  d="M13 10V3L4 14h7v7l9-11h-7z"
-                />
-              </svg>
+          <Link href="/" className="flex items-center gap-2.5">
+            <div className="w-8 h-8 rounded-lg bg-surface-900 flex items-center justify-center">
+              <span className="text-white text-xs font-bold tracking-tight">SC</span>
             </div>
-            <span className="text-base font-bold text-surface-900">
+            <span className="text-base font-semibold text-surface-900 tracking-tight">
               {nl.nav.logo}
             </span>
           </Link>
 
           {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-6">
+          <nav className="hidden md:flex items-center gap-8">
             <a
               href="#hoe-het-werkt"
-              className="text-sm text-surface-600 hover:text-surface-900 transition-colors"
+              className="text-sm text-surface-500 hover:text-surface-900 transition-colors"
             >
               {nl.nav.links.howItWorks}
             </a>
             <a
               href="#hoe-het-werkt"
-              className="text-sm text-surface-600 hover:text-surface-900 transition-colors"
+              className="text-sm text-surface-500 hover:text-surface-900 transition-colors"
             >
               {nl.nav.links.pricing}
             </a>
             <Link
               href="/demo"
-              className="text-sm text-surface-600 hover:text-surface-900 transition-colors"
+              className="text-sm text-surface-500 hover:text-surface-900 transition-colors"
             >
               {nl.nav.links.demo}
             </Link>
             <Link
               href="/login"
-              className="text-sm text-surface-600 hover:text-surface-900 transition-colors"
+              className="text-sm text-surface-500 hover:text-surface-900 transition-colors"
             >
               Inloggen
             </Link>
             <Link
               href="/demo"
               onClick={() => events.ctaClick("header", "primary")}
-              className="btn-primary text-sm px-4 py-2"
+              className="btn-primary text-sm px-5 py-2"
             >
               {nl.nav.cta}
             </Link>
@@ -89,32 +77,32 @@ export function Header() {
 
         {/* Mobile menu */}
         {menuOpen && (
-          <div className="md:hidden py-3 border-t border-surface-200">
+          <div className="md:hidden py-3 border-t border-surface-100">
             <div className="flex flex-col gap-3">
               <a
                 href="#hoe-het-werkt"
-                className="text-surface-600 hover:text-surface-900 text-sm py-1"
+                className="text-surface-500 hover:text-surface-900 text-sm py-1"
                 onClick={() => setMenuOpen(false)}
               >
                 {nl.nav.links.howItWorks}
               </a>
               <a
                 href="#hoe-het-werkt"
-                className="text-surface-600 hover:text-surface-900 text-sm py-1"
+                className="text-surface-500 hover:text-surface-900 text-sm py-1"
                 onClick={() => setMenuOpen(false)}
               >
                 {nl.nav.links.pricing}
               </a>
               <Link
                 href="/demo"
-                className="text-surface-600 hover:text-surface-900 text-sm py-1"
+                className="text-surface-500 hover:text-surface-900 text-sm py-1"
                 onClick={() => setMenuOpen(false)}
               >
                 {nl.nav.links.demo}
               </Link>
               <Link
                 href="/login"
-                className="text-surface-600 hover:text-surface-900 text-sm py-1"
+                className="text-surface-500 hover:text-surface-900 text-sm py-1"
                 onClick={() => setMenuOpen(false)}
               >
                 Inloggen

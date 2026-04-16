@@ -9,60 +9,60 @@ const STEPS = [
     messages: [],
   },
   {
-    label: "WhatsApp binnen 5 sec",
+    label: "WhatsApp binnen 10 sec",
     icon: "whatsapp",
     messages: [
       {
         sender: "ai",
-        text: "Hoi! Je belde net met Bakker Loodgieters. We zijn even op een klus. Waarmee kan ik je helpen?",
+        text: "Goedenavond! U heeft contact opgenomen met Kliniek Esthétique. Waarmee kan ik u helpen?",
       },
     ],
   },
   {
-    label: "AI kwalificeert de lead",
+    label: "AI beantwoordt vragen",
     icon: "chat",
     messages: [
       {
         sender: "ai",
-        text: "Hoi! Je belde net met Bakker Loodgieters. We zijn even op een klus. Waarmee kan ik je helpen?",
+        text: "Goedenavond! U heeft contact opgenomen met Kliniek Esthétique. Waarmee kan ik u helpen?",
       },
       {
         sender: "customer",
-        text: "Lekkage in de badkamer, best dringend",
+        text: "Ik ben geïnteresseerd in lip fillers",
       },
       {
         sender: "ai",
-        text: "Vervelend! Wat is je adres? Dan kijken we wanneer we langs kunnen komen.",
+        text: "Bij ons kunt u terecht voor lip fillers met hyaluronzuur. Wilt u een consult inplannen?",
       },
       {
         sender: "customer",
-        text: "Kerkstraat 12, Amsterdam",
+        text: "Ja graag, wat zijn de kosten?",
       },
     ],
   },
   {
-    label: "Afspraak ingepland",
+    label: "Consult ingepland",
     icon: "calendar",
     messages: [
       {
         sender: "ai",
-        text: "Hoi! Je belde net met Bakker Loodgieters. We zijn even op een klus. Waarmee kan ik je helpen?",
+        text: "Goedenavond! U heeft contact opgenomen met Kliniek Esthétique. Waarmee kan ik u helpen?",
       },
       {
         sender: "customer",
-        text: "Lekkage in de badkamer, best dringend",
+        text: "Ik ben geïnteresseerd in lip fillers",
       },
       {
         sender: "ai",
-        text: "Vervelend! Wat is je adres? Dan kijken we wanneer we langs kunnen komen.",
+        text: "Bij ons kunt u terecht voor lip fillers met hyaluronzuur. Wilt u een consult inplannen?",
       },
       {
         sender: "customer",
-        text: "Kerkstraat 12, Amsterdam",
+        text: "Ja graag, wat zijn de kosten?",
       },
       {
         sender: "ai",
-        text: "Top! Ik heb morgen 10:00 beschikbaar. Past dat?",
+        text: "Vanaf €250. Donderdag 10:00 is beschikbaar. Past dat?",
       },
       {
         sender: "customer",
@@ -70,7 +70,7 @@ const STEPS = [
       },
       {
         sender: "ai",
-        text: "Afspraak ingepland! Morgen 10:00 — Kerkstraat 12. Tot dan! ✅",
+        text: "Uw consult is ingepland voor donderdag 10:00. Tot dan!",
       },
     ],
   },
@@ -80,11 +80,11 @@ const STEPS = [
     messages: [
       {
         sender: "ai",
-        text: "Goedenavond! Even een herinnering: morgen om 10:00 komt Bakker Loodgieters langs op Kerkstraat 12. Tot morgen! 🔔",
+        text: "Goedenavond! Even een herinnering: morgen om 10:00 heeft u een consult bij Kliniek Esthétique. Tot morgen!",
       },
       {
         sender: "customer",
-        text: "Dankjewel, ik ben er klaar voor!",
+        text: "Bedankt, ik ben er klaar voor!",
       },
     ],
   },
@@ -94,15 +94,15 @@ const STEPS = [
     messages: [
       {
         sender: "ai",
-        text: "Bedankt voor je vertrouwen in Bakker Loodgieters! Was je tevreden over de service? Een review helpt ons enorm 🙏",
+        text: "Bedankt voor uw bezoek aan Kliniek Esthétique! Hoe heeft u de behandeling ervaren? Een review helpt ons enorm.",
       },
       {
         sender: "customer",
-        text: "Ja, super snel en netjes! ⭐⭐⭐⭐⭐",
+        text: "Heel tevreden, prachtig resultaat!",
       },
       {
         sender: "ai",
-        text: "Top! Klik hier om je review achter te laten: g.co/r/bakker 🎉 Bedankt!",
+        text: "Wat fijn om te horen! U kunt hier uw review achterlaten: g.co/r/esthetique. Bedankt!",
       },
     ],
   },
@@ -202,7 +202,7 @@ export function HeroAnimation() {
     <div className="pt-2">
       {/* Phone mockup */}
       <div className="relative mx-auto w-[270px] sm:w-[300px]">
-        {/* Outer phone shell — sleek dark frame */}
+        {/* Outer phone shell */}
         <div className="bg-[#1a1a1a] rounded-[3rem] p-[10px] shadow-2xl shadow-black/30">
           {/* Inner screen */}
           <div className="bg-black rounded-[2.2rem] overflow-hidden relative">
@@ -214,20 +214,17 @@ export function HeroAnimation() {
               <div className="flex items-center justify-between pt-0.5 pb-2">
                 <span className="text-white/90 text-[11px] font-semibold">09:41</span>
                 <div className="flex items-center gap-1">
-                  {/* Signal bars */}
                   <svg className="w-[15px] h-[11px]" viewBox="0 0 17 12" fill="white" fillOpacity="0.9">
                     <rect x="0" y="9" width="3" height="3" rx="0.5" />
                     <rect x="4.5" y="6" width="3" height="6" rx="0.5" />
                     <rect x="9" y="3" width="3" height="9" rx="0.5" />
                     <rect x="13.5" y="0" width="3" height="12" rx="0.5" />
                   </svg>
-                  {/* WiFi */}
                   <svg className="w-[15px] h-[11px]" viewBox="0 0 16 12" fill="none" stroke="white" strokeOpacity="0.9" strokeWidth="1.5">
                     <path d="M1 4.5C3.5 1.5 12.5 1.5 15 4.5" strokeLinecap="round" />
                     <path d="M3.5 7C5.5 5 10.5 5 12.5 7" strokeLinecap="round" />
                     <circle cx="8" cy="10" r="1" fill="white" fillOpacity="0.9" stroke="none" />
                   </svg>
-                  {/* Battery */}
                   <svg className="w-[22px] h-[11px]" viewBox="0 0 27 13" fill="none">
                     <rect x="0.5" y="0.5" width="22" height="12" rx="3" stroke="white" strokeOpacity="0.5" />
                     <rect x="2" y="2" width="17" height="9" rx="1.5" fill="white" fillOpacity="0.9" />
@@ -239,19 +236,16 @@ export function HeroAnimation() {
 
             {/* WhatsApp header */}
             <div className="bg-[#075e54] px-3 pb-2.5 flex items-center gap-2.5">
-              {/* Back arrow */}
               <svg className="w-5 h-5 text-white/90 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
-              {/* Profile pic */}
               <div className="w-9 h-9 rounded-full bg-[#128c7e] flex items-center justify-center flex-shrink-0">
-                <span className="text-white text-xs font-bold">BL</span>
+                <span className="text-white text-xs font-bold">KE</span>
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-white text-[13px] font-medium leading-tight truncate">Bakker Loodgieters</p>
+                <p className="text-white text-[13px] font-medium leading-tight truncate">Kliniek Esthétique</p>
                 <p className="text-white/60 text-[10px] leading-tight">online</p>
               </div>
-              {/* Action icons */}
               <div className="flex items-center gap-3.5">
                 <svg className="w-[18px] h-[18px] text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
@@ -279,7 +273,7 @@ export function HeroAnimation() {
                     </svg>
                   </div>
                   <p className="text-sm font-semibold text-red-600">Gemiste oproep</p>
-                  <p className="text-xs text-surface-500 mt-0.5">+31 6 12 34 56 78</p>
+                  <p className="text-xs text-surface-500 mt-0.5">+31 20 123 4567</p>
                 </div>
               )}
 
@@ -300,7 +294,7 @@ export function HeroAnimation() {
                       >
                         {msg.text}
                         <span className="text-[9px] text-surface-400 ml-2 float-right mt-1 flex items-center gap-0.5">
-                          {msg.sender === "customer" ? "09:42" : "09:41"}
+                          {msg.sender === "customer" ? "20:32" : "20:31"}
                           {msg.sender === "customer" && (
                             <svg className="w-3 h-3 text-[#53bdeb] inline-block" viewBox="0 0 16 11" fill="currentColor">
                               <path d="M11.071.653a.457.457 0 0 0-.304-.102.493.493 0 0 0-.381.178l-6.19 7.636-2.011-2.095a.46.46 0 0 0-.327-.147.458.458 0 0 0-.33.15.52.52 0 0 0-.146.374c0 .136.05.263.14.36l2.36 2.46a.458.458 0 0 0 .312.152.478.478 0 0 0 .367-.163l6.54-8.076a.477.477 0 0 0 .107-.253.508.508 0 0 0-.137-.474z" />
@@ -319,22 +313,18 @@ export function HeroAnimation() {
             <div className="bg-[#efeae2] px-2 pb-2 pt-0.5">
               <div className="flex items-center gap-1.5">
                 <div className="flex-1 bg-white rounded-full px-3 py-1.5 flex items-center gap-2">
-                  {/* Emoji icon */}
                   <svg className="w-5 h-5 text-surface-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                   <span className="text-[13px] text-surface-400 flex-1">Bericht</span>
-                  {/* Attachment */}
                   <svg className="w-5 h-5 text-surface-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
                   </svg>
-                  {/* Camera */}
                   <svg className="w-5 h-5 text-surface-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
                 </div>
-                {/* Mic button */}
                 <div className="w-9 h-9 rounded-full bg-[#00a884] flex items-center justify-center flex-shrink-0">
                   <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm-1-9c0-.55.45-1 1-1s1 .45 1 1v6c0 .55-.45 1-1 1s-1-.45-1-1V5z" />
@@ -352,7 +342,7 @@ export function HeroAnimation() {
         </div>
       </div>
 
-      {/* Step indicators — dots + active label */}
+      {/* Step indicators */}
       <div className="mt-5 flex flex-col items-center gap-2">
         <div className="flex items-center gap-2">
           {STEPS.map((_, i) => (

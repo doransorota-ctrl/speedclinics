@@ -23,15 +23,15 @@ export function FAQ() {
           {faq.headline}
         </h2>
 
-        <div className="mt-10 space-y-8">
+        <div className="mt-12 space-y-10">
           {faq.groups.map((group) => (
             <div key={group.label}>
               {/* Group label */}
-              <h3 className="text-sm font-semibold text-surface-500 uppercase tracking-wide mb-3">
+              <h3 className="text-sm font-semibold text-accent-600 uppercase tracking-wide mb-4">
                 {group.label}
               </h3>
 
-              <div className="divide-y divide-surface-200 border-t border-b border-surface-200">
+              <div className="divide-y divide-surface-100 border-t border-b border-surface-100">
                 {group.items.map((item, i) => {
                   const key = `${group.label}-${i}`;
                   return (
@@ -62,7 +62,7 @@ export function FAQ() {
                       </button>
                       {openIndex === key && (
                         <div className="pb-4">
-                          <p className="text-sm text-surface-600 leading-relaxed">
+                          <p className="text-sm text-surface-500 leading-relaxed">
                             {item.answer}
                           </p>
                         </div>

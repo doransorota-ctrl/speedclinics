@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap");
 
 @layer base {
   html {
@@ -11,41 +11,43 @@
   }
 
   body {
-    @apply bg-white text-surface-900 font-sans;
+    @apply bg-surface-50 text-surface-900 font-sans;
   }
 }
 
 @layer components {
   .btn-primary {
     @apply inline-flex items-center justify-center gap-2 px-6 py-3
-           bg-brand-500 hover:bg-brand-600 active:bg-brand-700
-           text-white font-semibold rounded-lg
-           transition-colors duration-150
-           focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2
+           bg-brand-600 hover:bg-brand-700 active:bg-brand-800
+           text-white font-semibold rounded-full
+           transition-all duration-200
+           hover:shadow-md hover:shadow-brand-500/15
+           focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400/50
            text-base;
   }
 
   .btn-secondary {
     @apply inline-flex items-center justify-center gap-2 px-6 py-3
            bg-white hover:bg-surface-50 active:bg-surface-100
-           text-surface-800 font-semibold rounded-lg
-           border border-surface-300
-           transition-colors duration-150
-           focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2
+           text-surface-800 font-semibold rounded-full
+           border border-surface-200
+           transition-all duration-200
+           hover:shadow-sm
+           focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400/50
            text-base;
   }
 
   .btn-whatsapp {
     @apply inline-flex items-center justify-center gap-2 px-6 py-3
            bg-whatsapp-green hover:bg-emerald-500 active:bg-emerald-600
-           text-white font-semibold rounded-lg
-           transition-colors duration-150
-           focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2
+           text-white font-semibold rounded-full
+           transition-all duration-200
+           focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/50
            text-base;
   }
 
   .section {
-    @apply px-4 sm:px-6 lg:px-8 py-10 sm:py-20;
+    @apply px-6 sm:px-8 lg:px-12 py-16 sm:py-28;
   }
 
   .section-inner {
@@ -53,17 +55,17 @@
   }
 
   .input-field {
-    @apply w-full px-4 py-3 rounded-lg border border-surface-300
+    @apply w-full px-4 py-3 rounded-xl border border-surface-200
            bg-white text-surface-900 placeholder:text-surface-400
-           focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500
+           focus:outline-none focus:ring-2 focus:ring-brand-400 focus:border-brand-400
            transition-colors duration-150
            text-base;
   }
 
   .input-field-compact {
-    @apply w-full px-3 py-2.5 rounded-lg border border-surface-300
+    @apply w-full px-3 py-2.5 rounded-xl border border-surface-200
            bg-white text-surface-900 placeholder:text-surface-400
-           focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500
+           focus:outline-none focus:ring-2 focus:ring-brand-400 focus:border-brand-400
            transition-colors duration-150
            text-sm;
   }
@@ -77,6 +79,6 @@
   }
 
   .card {
-    @apply bg-white rounded-xl border border-surface-200 p-6;
+    @apply bg-white rounded-2xl shadow-sm shadow-black/5 border border-surface-100 p-6;
   }
 }

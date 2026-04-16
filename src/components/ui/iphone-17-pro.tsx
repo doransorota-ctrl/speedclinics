@@ -31,7 +31,7 @@ export function Iphone17Pro({
       />
 
       <rect
-        fill="currentColor"
+        fill="transparent"
         x="14.08"
         y="12.81"
         width="171.98"

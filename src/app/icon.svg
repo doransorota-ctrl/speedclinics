@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
   <rect width="32" height="32" rx="8" fill="#C9998A"/>
-  <g transform="translate(16, 16) scale(0.11)">
+  <g transform="translate(16, 16) scale(0.075)">
     <path
       d="M 100, 30 L -30, 30 L -30, 90 L 100, 90 L 100, 150 L -100, 150 L -100, -30 L 100, -30"
       stroke="white"
-      stroke-width="18"
+      stroke-width="24"
       stroke-linecap="round"
       stroke-linejoin="round"
       fill="none"

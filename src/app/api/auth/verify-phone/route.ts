@@ -74,7 +74,7 @@ export async function POST(request: Request) {
         ...(TWILIO_MESSAGING_SERVICE_SID
           ? { messagingServiceSid: TWILIO_MESSAGING_SERVICE_SID }
           : { from: TWILIO_FROM }),
-        body: `Je Speed Leads verificatiecode is ${otp}`,
+        body: `Je Speed Clinics verificatiecode is ${otp}`,
       });
 
       return Response.json({ ok: true, phone: normalized });

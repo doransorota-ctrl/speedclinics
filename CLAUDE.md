@@ -130,6 +130,6 @@ Zie `.env.example` voor alle variabelen. Minimaal nodig voor development:
 
 Het systeem heeft twee modes (`business.prompt_mode`):
 - **service** — voor eindklanten van vakmensen (gemiste oproepen opvangen)
-- **sales** — voor Doran's eigen outreach (Speed Leads verkopen aan vakmensen)
+- **sales** — voor Doran's eigen outreach (Speed Clinics verkopen aan vakmensen)
 
 Sales mode heeft extra features: outreach pagina, bulk WhatsApp, lead flagging, handmatige gesprekken.

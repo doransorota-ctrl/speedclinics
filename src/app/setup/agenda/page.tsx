@@ -33,7 +33,7 @@ function AgendaPageInner() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
             </svg>
           </div>
-          <span className="text-xl font-bold text-surface-900">Speed Leads</span>
+          <span className="text-xl font-bold text-surface-900">Speed Clinics</span>
         </div>
 
         {/* Success state */}
@@ -61,7 +61,7 @@ function AgendaPageInner() {
         {(status === "error" || status === "expired") && (
           <div>
             <h1 className="text-2xl font-bold text-surface-900">Link verlopen</h1>
-            <p className="text-surface-500 mt-2">Deze link is niet meer geldig. Vraag een nieuwe link aan bij Speed Leads.</p>
+            <p className="text-surface-500 mt-2">Deze link is niet meer geldig. Vraag een nieuwe link aan bij Speed Clinics.</p>
           </div>
         )}
 
@@ -91,7 +91,7 @@ function AgendaPageInner() {
             </div>
             <h1 className="text-2xl font-bold text-surface-900">Koppel je Google Agenda</h1>
             <p className="text-surface-500 mt-2 mb-6">
-              Hiermee kan Speed Leads afspraken automatisch inplannen in jouw agenda.
+              Hiermee kan Speed Clinics afspraken automatisch inplannen in jouw agenda.
             </p>
             <a
               href={`/api/setup/calendar/connect?t=${token}`}

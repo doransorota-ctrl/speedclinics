@@ -181,7 +181,7 @@ export default function AgendaPage() {
       source: "lead" as const,
     }));
 
-    // Add Google Calendar events — skip Speed Leads events (they're already in appointments)
+    // Add Google Calendar events — skip Speed Clinics events (they're already in appointments)
     const leadGoogleIds = new Set(
       appointments
         .map((a) => (a as Appointment & { google_event_id?: string }).google_event_id)
@@ -190,9 +190,9 @@ export default function AgendaPage() {
 
     for (const ev of calendarEvents) {
       if (!ev.start || !ev.end) continue;
-      // Skip events created by Speed Leads (matched by google_event_id or description)
+      // Skip events created by Speed Clinics (matched by google_event_id or description)
       if (leadGoogleIds.has(ev.id)) continue;
-      if (ev.description?.includes("Aangemaakt door Speed Leads")) continue;
+      if (ev.description?.includes("Aangemaakt door Speed Clinics")) continue;
 
       items.push({
         id: `gcal_${ev.id}`,

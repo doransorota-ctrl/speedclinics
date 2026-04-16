@@ -27,7 +27,7 @@ export async function POST() {
       return Response.json({ ok: true, phone: business.twilio_number });
     }
 
-    const number = await assignOrBuyNumber(business.id, business.name || "Speed Leads");
+    const number = await assignOrBuyNumber(business.id, business.name || "Speed Clinics");
     if (!number) {
       return Response.json(
         { error: "Geen nummers beschikbaar. Probeer het later opnieuw." },

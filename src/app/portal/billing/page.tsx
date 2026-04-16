@@ -111,7 +111,7 @@ function BillingContent() {
     );
   }
 
-  const planName = PLAN_NAMES[business?.plan || "speed-leads"] || "Speed Leads";
+  const planName = PLAN_NAMES[business?.plan || "speed-leads"] || "Speed Clinics";
   const planPrice = PLAN_PRICES[business?.plan || "speed-leads"] || "€79";
   const daysLeft = trialDaysLeft();
   const progress = trialProgress();

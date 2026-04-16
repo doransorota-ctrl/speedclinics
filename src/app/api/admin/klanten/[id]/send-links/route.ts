@@ -50,7 +50,7 @@ export async function POST(
       } else {
         await sendWhatsApp(
           business.phone,
-          `Hey, hier is je betaallink voor Speed Leads. 14 dagen gratis, daarna €79/maand. Opzeggen kan altijd.\n\n${url}`
+          `Hey, hier is je betaallink voor Speed Clinics. 14 dagen gratis, daarna €79/maand. Opzeggen kan altijd.\n\n${url}`
         );
       }
       sent.push("checkout");

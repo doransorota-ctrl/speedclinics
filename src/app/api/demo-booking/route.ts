@@ -74,7 +74,7 @@ export async function POST(request: Request) {
             ${data.calculator_loss_yearly ? `<tr><td style="padding:4px 12px 4px 0;font-weight:bold;">Berekend verlies</td><td>&euro;${data.calculator_loss_yearly.toLocaleString("nl-NL")}/jaar (&euro;${(data.calculator_loss_monthly ?? 0).toLocaleString("nl-NL")}/maand)</td></tr>` : ""}
             ${data.calculator_missed_calls ? `<tr><td style="padding:4px 12px 4px 0;font-weight:bold;">Calculator invoer</td><td>${data.calculator_missed_calls} gemist/week, &euro;${data.calculator_hourly_rate}/uur, ${data.calculator_job_hours} uur/klus</td></tr>` : ""}
           </table>
-          <p style="margin-top:16px;">App deze persoon om Speed Leads in te stellen.</p>
+          <p style="margin-top:16px;">App deze persoon om Speed Clinics in te stellen.</p>
         `,
       }).catch((err) => {
         console.error("[Notification] Admin email failed:", err);
@@ -85,7 +85,7 @@ export async function POST(request: Request) {
     const ADMIN_PHONE = process.env.ADMIN_PHONE;
     if (ADMIN_PHONE) {
       const { sendWhatsApp } = await import("@/lib/twilio/whatsapp");
-      sendWhatsApp(ADMIN_PHONE, `Nieuwe aanvraag!\n\nNaam: ${data.name}\nTelefoon: ${data.phone}\n${data.trade ? `Vak: ${data.trade}\n` : ""}${data.calculator_loss_yearly ? `Berekend verlies: \u20AC${data.calculator_loss_yearly.toLocaleString("nl-NL")}/jaar\n` : ""}App deze persoon om Speed Leads in te stellen.`).catch(() => {});
+      sendWhatsApp(ADMIN_PHONE, `Nieuwe aanvraag!\n\nNaam: ${data.name}\nTelefoon: ${data.phone}\n${data.trade ? `Vak: ${data.trade}\n` : ""}${data.calculator_loss_yearly ? `Berekend verlies: \u20AC${data.calculator_loss_yearly.toLocaleString("nl-NL")}/jaar\n` : ""}App deze persoon om Speed Clinics in te stellen.`).catch(() => {});
     }
 
     console.log("[Demo] New demo booking:", {

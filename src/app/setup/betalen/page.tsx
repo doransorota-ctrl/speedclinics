@@ -27,7 +27,7 @@ function BetalenPageInner() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
             </svg>
           </div>
-          <span className="text-xl font-bold text-surface-900">Speed Leads</span>
+          <span className="text-xl font-bold text-surface-900">Speed Clinics</span>
         </div>
 
         {/* Error / Expired */}
@@ -38,7 +38,7 @@ function BetalenPageInner() {
             </h1>
             <p className="text-surface-500 mt-2">
               {status === "expired"
-                ? "Deze link is niet meer geldig. Vraag een nieuwe link aan bij Speed Leads."
+                ? "Deze link is niet meer geldig. Vraag een nieuwe link aan bij Speed Clinics."
                 : "Er ging iets mis bij het laden van de betaallink. Probeer het opnieuw of neem contact op."}
             </p>
           </div>
@@ -57,7 +57,7 @@ function BetalenPageInner() {
         {!token && !status && (
           <div>
             <h1 className="text-2xl font-bold text-surface-900">Ongeldige link</h1>
-            <p className="text-surface-500 mt-2">Deze link is niet geldig. Neem contact op met Speed Leads.</p>
+            <p className="text-surface-500 mt-2">Deze link is niet geldig. Neem contact op met Speed Clinics.</p>
           </div>
         )}
 

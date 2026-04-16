@@ -290,7 +290,7 @@ export default function KlantDetailPage() {
         </div>
         <div className="flex items-center gap-3">
           <label className="flex items-center gap-2 text-sm">
-            <span className="text-surface-500">Speed Leads</span>
+            <span className="text-surface-500">Speed Clinics</span>
             <button
               onClick={() => handleToggle("speed_leads_active")}
               className={`relative w-10 h-5 rounded-full transition-colors ${customer.speed_leads_active ? "bg-green-500" : "bg-surface-300"}`}
@@ -364,7 +364,7 @@ export default function KlantDetailPage() {
                     <div>
                       <label className="input-label">Plan</label>
                       <select value={editForm.plan} onChange={(e) => setEditForm({ ...editForm, plan: e.target.value })} className="input-field">
-                        <option value="speed-leads">Speed Leads</option>
+                        <option value="speed-leads">Speed Clinics</option>
                         <option value="website">Website</option>
                         <option value="compleet">Compleet</option>
                       </select>

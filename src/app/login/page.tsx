@@ -122,7 +122,7 @@ function LoginContent() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
               </svg>
             </div>
-            <span className="text-lg font-bold text-surface-900">Speed Leads</span>
+            <span className="text-lg font-bold text-surface-900">Speed Clinics</span>
           </Link>
         </div>
 

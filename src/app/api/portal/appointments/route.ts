@@ -56,7 +56,7 @@ export async function GET(request: Request) {
   const weekEnd = new Date(weekStart);
   weekEnd.setDate(weekEnd.getDate() + 7);
 
-  // Fetch Speed Leads appointments from database
+  // Fetch Speed Clinics appointments from database
   const { data: appointments, error: apptError } = await supabase
     .from("leads")
     .select(

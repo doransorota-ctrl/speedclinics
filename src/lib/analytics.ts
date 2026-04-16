@@ -1,5 +1,5 @@
 /**
- * Speed Leads — Analytics & Tracking
+ * Speed Clinics — Analytics & Tracking
  *
  * Event naming convention: snake_case
  * Format: {category}_{action}_{target}

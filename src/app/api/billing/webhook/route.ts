@@ -334,7 +334,7 @@ async function handleRegularSignup(
   // 2b. Assign a number from pool or buy a new one
   if (business) {
     const { assignOrBuyNumber } = await import("@/lib/twilio/pool");
-    await assignOrBuyNumber(business.id, metadata.businessName || "Speed Leads").catch((err) => {
+    await assignOrBuyNumber(business.id, metadata.businessName || "Speed Clinics").catch((err) => {
       console.error("[Webhook] assignOrBuyNumber failed:", err);
     });
   }
@@ -342,7 +342,7 @@ async function handleRegularSignup(
   // 3. Send welcome email (user logs in via /login with Supabase magic link)
   await sendEmail({
     to: email,
-    subject: `Welkom bij Speed Leads, ${metadata.firstName}!`,
+    subject: `Welkom bij Speed Clinics, ${metadata.firstName}!`,
     html: welcomeEmailHtml({
       firstName: metadata.firstName,
       businessName: metadata.businessName,
@@ -451,7 +451,7 @@ async function handleGoogleSignupComplete(
       .single();
     if (googleBiz && !googleBiz.twilio_number) {
       const { assignOrBuyNumber } = await import("@/lib/twilio/pool");
-      await assignOrBuyNumber(businessId, googleBiz.name || "Speed Leads").catch((err) => {
+      await assignOrBuyNumber(businessId, googleBiz.name || "Speed Clinics").catch((err) => {
         console.error("[Webhook] assignOrBuyNumber (Google) failed:", err);
       });
     }
@@ -460,7 +460,7 @@ async function handleGoogleSignupComplete(
   // Send welcome email (Google users log in via /login)
   await sendEmail({
     to: email,
-    subject: `Welkom bij Speed Leads${firstName !== "daar" ? `, ${firstName}` : ""}!`,
+    subject: `Welkom bij Speed Clinics${firstName !== "daar" ? `, ${firstName}` : ""}!`,
     html: welcomeEmailHtml({
       firstName,
       businessName,
@@ -529,7 +529,7 @@ async function handleAdminSignupComplete(
   try {
     await sendEmail({
       to: business.email,
-      subject: "Welkom bij Speed Leads!",
+      subject: "Welkom bij Speed Clinics!",
       html: welcomeEmailHtml({
         firstName: metadata.firstName || business.name,
         businessName: business.name,

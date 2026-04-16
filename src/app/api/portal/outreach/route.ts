@@ -5,7 +5,7 @@ import { formatDutchPhone } from "@/lib/phone";
 
 const SALES_TEMPLATE = process.env.TEMPLATE_SALES_GREETING;
 const GREETING_TEXT = process.env.SALES_GREETING_TEXT ||
-  "Hoi, ik ben Doran van Speed Leads. Ik had je gebeld. Als jij niet opneemt stuurt m'n systeem de beller een appje en plant een afspraak in. Scheelt je gemiste klussen. 5 minuutjes bellen?";
+  "Hoi, ik ben Doran van Speed Clinics. Ik had je gebeld. Als jij niet opneemt stuurt m'n systeem de beller een appje en plant een afspraak in. Scheelt je gemiste klussen. 5 minuutjes bellen?";
 
 /** POST — Bulk send WhatsApp outreach templates and create leads. */
 export async function POST(request: Request) {

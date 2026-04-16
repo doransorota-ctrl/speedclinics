@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Privacybeleid — Speed Leads",
+  title: "Privacybeleid — Speed Clinics",
 };
 
 export default function PrivacyPage() {
@@ -27,10 +27,10 @@ export default function PrivacyPage() {
           <section>
             <h2 className="text-lg font-semibold text-surface-900 mt-8 mb-3">1. Wie zijn wij?</h2>
             <p>
-              Speed Leads (&ldquo;wij&rdquo;, &ldquo;ons&rdquo;) is een dienst die vakmensen helpt om gemiste oproepen automatisch op te vangen via WhatsApp. Wij zijn verantwoordelijk voor de verwerking van persoonsgegevens zoals beschreven in dit privacybeleid.
+              Speed Clinics (&ldquo;wij&rdquo;, &ldquo;ons&rdquo;) is een dienst die vakmensen helpt om gemiste oproepen automatisch op te vangen via WhatsApp. Wij zijn verantwoordelijk voor de verwerking van persoonsgegevens zoals beschreven in dit privacybeleid.
             </p>
             <p>
-              Speed Leads is een handelsnaam van Fryno.<br />
+              Speed Clinics is een handelsnaam van Fryno.<br />
               E-mail: info@speedleads.nl<br />
               KvK-nummer: 98018272
             </p>
@@ -107,7 +107,7 @@ export default function PrivacyPage() {
               <li>Een klacht in te dienen bij de Autoriteit Persoonsgegevens</li>
             </ul>
             <p>Neem contact met ons op via info@speedleads.nl voor verzoeken.</p>
-            <p>Eindgebruikers (bellers/leads) die geen Speed Leads account hebben, kunnen ook een verzoek tot verwijdering indienen via info@speedleads.nl of door &ldquo;STOP&rdquo; te sturen via WhatsApp.</p>
+            <p>Eindgebruikers (bellers/leads) die geen Speed Clinics account hebben, kunnen ook een verzoek tot verwijdering indienen via info@speedleads.nl of door &ldquo;STOP&rdquo; te sturen via WhatsApp.</p>
           </section>
 
           <section>

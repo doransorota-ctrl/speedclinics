@@ -75,8 +75,8 @@ function SetupContent() {
           </h1>
           <p className="text-sm text-surface-500">
             {error === "expired"
-              ? "Deze link is verlopen. Open de Speed Leads app en stuur een nieuwe link."
-              : "Deze link is niet geldig. Open de Speed Leads app en stuur een nieuwe link."}
+              ? "Deze link is verlopen. Open de Speed Clinics app en stuur een nieuwe link."
+              : "Deze link is niet geldig. Open de Speed Clinics app en stuur een nieuwe link."}
           </p>
         </div>
       </div>
@@ -93,7 +93,7 @@ function SetupContent() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
             </svg>
           </div>
-          <span className="text-lg font-bold text-surface-900">Speed Leads</span>
+          <span className="text-lg font-bold text-surface-900">Speed Clinics</span>
         </div>
 
         {/* Heading */}

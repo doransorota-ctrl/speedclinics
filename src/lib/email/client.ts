@@ -9,7 +9,7 @@ function getResend(): Resend {
   return _resend;
 }
 
-const EMAIL_FROM = process.env.EMAIL_FROM || "Clŷniq <noreply@speedleads.nl>";
+const EMAIL_FROM = process.env.EMAIL_FROM || "Clŷniq <noreply@clyniq.nl>";
 
 interface SendEmailOptions {
   to: string;

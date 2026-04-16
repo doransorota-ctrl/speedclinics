@@ -3,7 +3,7 @@ export function OrganizationJsonLd() {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     name: "Clŷniq",
-    url: "https://speedleads.nl",
+    url: "https://clyniq.nl",
     description:
       "AI-receptie voor cosmetische klinieken. Automatische patiëntopvolging via WhatsApp, 24/7.",
     applicationCategory: "BusinessApplication",
@@ -20,8 +20,8 @@ export function OrganizationJsonLd() {
     provider: {
       "@type": "Organization",
       name: "Clŷniq",
-      url: "https://speedleads.nl",
-      logo: "https://speedleads.nl/opengraph-image",
+      url: "https://clyniq.nl",
+      logo: "https://clyniq.nl/opengraph-image",
       contactPoint: {
         "@type": "ContactPoint",
         contactType: "sales",

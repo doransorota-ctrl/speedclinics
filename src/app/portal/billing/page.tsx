@@ -112,7 +112,7 @@ function BillingContent() {
   }
 
   const planName = PLAN_NAMES[business?.plan || "speed-leads"] || "Clŷniq";
-  const planPrice = PLAN_PRICES[business?.plan || "speed-leads"] || "€79";
+  const planPrice = PLAN_PRICES[business?.plan || "speed-leads"] || "Op maat";
   const daysLeft = trialDaysLeft();
   const progress = trialProgress();
 

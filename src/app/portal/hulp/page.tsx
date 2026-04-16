@@ -72,7 +72,7 @@ const sections = [
     items: [
       {
         q: "Wat kost Clŷniq?",
-        a: "€79/maand excl. BTW. De eerste 14 dagen zijn gratis. Opzeggen kan altijd, zonder opzegtermijn.",
+        a: "Prijs op maat. Opzeggen kan altijd, zonder opzegtermijn.",
       },
       {
         q: "Hoe zeg ik op?",

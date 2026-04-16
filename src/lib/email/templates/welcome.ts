@@ -26,7 +26,7 @@ export function welcomeEmailHtml(data: WelcomeEmailData): string {
 <head><meta charset="utf-8"></head>
 <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 560px; margin: 0 auto; padding: 24px; color: #1e293b;">
   <div style="text-align: center; margin-bottom: 32px;">
-    <div style="display: inline-block; background: #25a867; color: white; font-weight: bold; padding: 8px 16px; border-radius: 8px; font-size: 18px;">
+    <div style="display: inline-block; background: #C9998A; color: white; font-weight: bold; padding: 8px 16px; border-radius: 8px; font-size: 18px;">
       ⚡ Clŷniq
     </div>
   </div>
@@ -51,7 +51,7 @@ export function welcomeEmailHtml(data: WelcomeEmailData): string {
   ` : ""}
 
   <div style="text-align: center; margin: 32px 0;">
-    <a href="${portalUrl}" style="display: inline-block; background: #25a867; color: white; text-decoration: none; padding: 14px 32px; border-radius: 8px; font-weight: 600; font-size: 16px;">
+    <a href="${portalUrl}" style="display: inline-block; background: #C9998A; color: white; text-decoration: none; padding: 14px 32px; border-radius: 8px; font-weight: 600; font-size: 16px;">
       Ga naar mijn dashboard
     </a>
   </div>

@@ -16,7 +16,7 @@ export default function VoorwaardenPage() {
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
-          Terug naar speedleads.nl
+          Terug naar clyniq.nl
         </Link>
 
         <h1 className="text-3xl font-bold text-surface-900 mb-8">Algemene Voorwaarden</h1>
@@ -29,7 +29,7 @@ export default function VoorwaardenPage() {
             <p>
               Clŷniq is een handelsnaam van Fryno<br />
               KVK-nummer: 98018272<br />
-              E-mail: info@speedleads.nl
+              E-mail: info@clyniq.nl
             </p>
           </section>
 
@@ -37,8 +37,8 @@ export default function VoorwaardenPage() {
             <h2 className="text-lg font-semibold text-surface-900 mt-8 mb-3">1. Definities</h2>
             <ul className="list-disc pl-5 space-y-1">
               <li><strong>Clŷniq:</strong> de dienstverlener, aanbieder van het Clŷniq platform</li>
-              <li><strong>Klant:</strong> de ondernemer/vakman die gebruik maakt van Clŷniq</li>
-              <li><strong>Dienst:</strong> het automatisch opvangen van gemiste oproepen via WhatsApp, leadkwalificatie, en agenda-integratie</li>
+              <li><strong>Klant:</strong> de kliniek die gebruik maakt van Clŷniq</li>
+              <li><strong>Dienst:</strong> het automatisch opvangen van patiëntaanvragen via WhatsApp, patiëntopvolging, en agenda-integratie</li>
               <li><strong>Lead:</strong> een potentiële klant die contact opneemt via telefoon of WhatsApp</li>
             </ul>
           </section>
@@ -55,18 +55,13 @@ export default function VoorwaardenPage() {
 
           <section>
             <h2 className="text-lg font-semibold text-surface-900 mt-8 mb-3">3. Dienstverlening</h2>
-            <p>Clŷniq biedt de volgende diensten aan:</p>
-            <ul className="list-disc pl-5 space-y-1">
-              <li><strong>Clŷniq (€79/maand excl. BTW):</strong> automatische leadopvolging via WhatsApp bij gemiste oproepen, leadkwalificatie, en optionele agenda-integratie</li>
-              <li><strong>Website Pakket (€500 eenmalig + €39/maand excl. BTW):</strong> professionele website inclusief hosting en beheer</li>
-              <li><strong>Compleet Pakket (€500 eenmalig + €118/maand excl. BTW):</strong> website + Clŷniq gecombineerd</li>
-            </ul>
+            <p>Clŷniq biedt een op maat ingericht servicepakket voor cosmetische klinieken. Prijzen worden in overleg bepaald.</p>
           </section>
 
           <section>
             <h2 className="text-lg font-semibold text-surface-900 mt-8 mb-3">4. Proefperiode</h2>
             <p>
-              Het Clŷniq en Compleet pakket bevatten een gratis proefperiode van 14 dagen. Na afloop wordt het abonnement automatisch verlengd tegen het geldende tarief, tenzij je voor het einde van de proefperiode opzegt.
+              Indien van toepassing kan Clŷniq een proefperiode aanbieden. De voorwaarden hiervan worden bij aanvang schriftelijk overeengekomen.
             </p>
           </section>
 
@@ -131,7 +126,7 @@ export default function VoorwaardenPage() {
           <section>
             <h2 className="text-lg font-semibold text-surface-900 mt-8 mb-3">12. WhatsApp Business Beleid</h2>
             <p>
-              Clŷniq verstuurt namens jouw bedrijf automatische WhatsApp-berichten naar bellers. Als klant ben je verantwoordelijk voor het informeren van je eigen klanten dat zij geautomatiseerde berichten kunnen ontvangen na een gemiste oproep. Je dient te voldoen aan het WhatsApp Business Beleid van Meta. Bellers kunnen zich uitschrijven door &ldquo;STOP&rdquo; te sturen.
+              Clŷniq verstuurt namens jouw bedrijf automatische WhatsApp-berichten naar patiënten. Als klant ben je verantwoordelijk voor het informeren van je eigen patiënten dat zij geautomatiseerde berichten kunnen ontvangen na een patiëntaanvraag. Je dient te voldoen aan het WhatsApp Business Beleid van Meta. Bellers kunnen zich uitschrijven door &ldquo;STOP&rdquo; te sturen.
             </p>
           </section>
 

@@ -85,7 +85,7 @@ export async function GET(req: Request) {
 
     const SALES_FOLLOWUP_TEMPLATE = process.env.TEMPLATE_SALES_FOLLOWUP;
     const followupMsg = isSales
-      ? "Hoi, had je mijn berichtje nog gezien? M'n systeem kost €79/m (geen contract). 1 gemiste klus terugpakken en het is al terugverdiend. Zal ik je morgen 5 min bellen of komt later beter uit?"
+      ? "Hoi, had je mijn berichtje nog gezien? Zal ik je morgen 5 min bellen om te laten zien hoe het werkt, of komt later beter uit?"
       : `Hoi, we zagen dat je had gebeld. Stuur gerust een berichtje als we je ergens mee kunnen helpen.`;
 
     try {

@@ -129,7 +129,7 @@ export default function AanmeldenPage() {
       {/* Social proof line */}
       <div className="flex items-center gap-2 mt-3 mb-8">
         <span className="w-2 h-2 rounded-full bg-brand-500" />
-        <span className="text-sm text-surface-500">Sluit je aan bij 100+ vakmensen</span>
+        <span className="text-sm text-surface-500">Vertrouwd door klinieken in Nederland</span>
       </div>
 
       {/* Google signup */}
@@ -165,7 +165,7 @@ export default function AanmeldenPage() {
             type="email"
             required
             className="input-field"
-            placeholder="jan@jansenloodgieters.nl"
+            placeholder="info@kliniekesthetique.nl"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             autoComplete="email"

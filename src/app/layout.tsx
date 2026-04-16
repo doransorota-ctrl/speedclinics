@@ -4,7 +4,7 @@ import { OrganizationJsonLd, ServiceJsonLd, HowToJsonLd } from "@/components/seo
 import { CookieConsent } from "@/components/ui/CookieConsent";
 import "./globals.css";
 
-const BASE_URL = "https://speedleads.nl";
+const BASE_URL = "https://clyniq.nl";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     siteName: "Clŷniq",
     images: [
       {
-        url: "https://speedleads.nl/opengraph-image",
+        url: "https://clyniq.nl/opengraph-image",
         width: 1200,
         height: 630,
         alt: "Clŷniq — AI-receptie voor klinieken",

@@ -5,9 +5,9 @@ import Link from "next/link";
 import { useBusiness } from "@/lib/hooks/useBusiness";
 
 const PLAN_PRICES: Record<string, string> = {
-  website: "€39",
-  "speed-leads": "€79",
-  compleet: "€118",
+  website: "Op maat",
+  "speed-leads": "Op maat",
+  compleet: "Op maat",
 };
 
 export default function DashboardPage() {
@@ -334,7 +334,7 @@ export default function DashboardPage() {
                 Proefperiode — nog {daysLeft} {daysLeft === 1 ? "dag" : "dagen"}
               </p>
               <p className="text-xs text-brand-700">
-                Na je proefperiode betaal je {PLAN_PRICES[business.plan] || "€79"}/maand excl. BTW. Opzeggen kan altijd.
+                Na uw proefperiode wordt uw abonnement automatisch verlengd. Opzeggen kan altijd.
               </p>
             </div>
           </div>

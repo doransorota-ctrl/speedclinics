@@ -8,7 +8,7 @@ const VOICE = "Polly.Laura-Neural";
 /** Play a short message and hang up. Used when the owner didn't answer. */
 export function missedCallTwiml(businessName: string): string {
   // Phonetic spelling so Dutch TTS pronounces English names correctly
-  const name = (businessName || "Wij").replace(/Clŷniq/gi, "Spied Liedz");
+  const name = (businessName || "Wij").replace(/Clŷniq/gi, "Klieniek");
   return `<?xml version="1.0" encoding="UTF-8"?>
 <Response>
   <Say voice="${VOICE}">${escapeXml(name)} is even niet bereikbaar. Je krijgt zo een WhatsApp-bericht.</Say>
@@ -20,7 +20,7 @@ export function missedCallTwiml(businessName: string): string {
 export function testCallTwiml(): string {
   return `<?xml version="1.0" encoding="UTF-8"?>
 <Response>
-  <Say voice="${VOICE}">Dit is een testoproep van Spied Liedz. Je doorschakeling werkt.</Say>
+  <Say voice="${VOICE}">Dit is een testoproep van Klieniek. Je doorschakeling werkt.</Say>
   <Hangup/>
 </Response>`;
 }

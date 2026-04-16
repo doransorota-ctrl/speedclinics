@@ -240,7 +240,7 @@ export default function UpgradePage() {
             )}
           </div>
           <p className="text-xs text-surface-400 mt-0.5">
-            excl. BTW {isSpeedLeads ? "· eenmalig + maandelijks" : "· vervangt je huidige €39/m"}
+            excl. BTW {isSpeedLeads ? "· eenmalig + maandelijks" : "· op maat"}
           </p>
           <ul className="mt-4 space-y-2 flex-1">
             {["Alles van Clŷniq", "Alles van Website Pakket", "Website + leadopvolging in \u00e9\u00e9n", "E\u00e9n factuur, geen gedoe"].map((f) => (

@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { sendEmail } from "@/lib/email/client";
 import { isRateLimited, getClientIp } from "@/lib/rate-limit";
 
-const ADMIN_EMAIL = process.env.ADMIN_EMAIL || "info@speedleads.nl";
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL || "info@clyniq.nl";
 
 export async function POST(request: Request) {
   // Rate limit: 3 contact form submissions per hour

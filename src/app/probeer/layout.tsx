@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     title: "Klant belt. Jij bent bezig. Wij pakken het op.",
     description: "Bekijk de demo of probeer het zelf — bel het nummer en kijk wat er gebeurt.",
     type: "website",
-    url: "https://speedleads.nl/probeer",
+    url: "https://clyniq.nl/probeer",
   },
   robots: { index: true, follow: true },
 };

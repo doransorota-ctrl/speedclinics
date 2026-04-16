@@ -59,7 +59,7 @@ Clŷniq handles the rest.`,
     channel: "whatsapp",
     nl: `Hoi {{name}}, snelle vraag: wist je dat je deze week waarschijnlijk al een paar klanten bent misgelopen?
 
-De gemiddelde vakman mist 62% van zijn oproepen. Elke gemiste oproep = een klant die je concurrent belt.
+De gemiddelde kliniek mist 40% van aanvragen buiten openingstijden. Elke gemiste aanvraag = een patiënt die bij de concurrent boekt.
 
 Is Clŷniq al actief bij je? Zo niet, laat het me weten — dan zetten we het vandaag nog aan.`,
     en: `Hi {{name}}, quick question: did you know you probably already missed a few customers this week?
@@ -121,14 +121,14 @@ But remember: every day without Clŷniq is a day where you miss customers your c
 
 Hoe bevalt het? Ik zie dat Clŷniq {{leads_count}} leads voor je heeft opgepakt in de afgelopen 2 weken.
 
-Doorgaan? Kies je plan op speedleads.nl/prijzen.
+Doorgaan? Kies je plan op clyniq.nl/prijzen.
 
 Vragen? Stuur me een berichtje — ik help je graag.`,
     en: `Hi {{name}}, your trial ended today.
 
 How was it? I can see Clŷniq picked up {{leads_count}} leads for you over the past 2 weeks.
 
-Want to continue? Choose your plan at speedleads.nl/pricing.
+Want to continue? Choose your plan at clyniq.nl/pricing.
 
 Questions? Message me — happy to help.`,
   },

@@ -7,10 +7,10 @@ const SALES_TEMPLATE = process.env.TEMPLATE_SALES_GREETING;
 const WEBSITE_TEMPLATE = process.env.TEMPLATE_WEBSITE_OUTREACH;
 
 function greetingText(businessName: string) {
-  return `Hey, Doran hier. Zag ${businessName} online. Ik heb een WhatsApp-tooltje gebouwd dat je gemiste bellers direct opvangt en inplant als jij op de klus staat. Scheelt je 's avonds weer onbetaald nabellen. Zal ik de demo-video (1 min) even appen?`;
+  return `Hey, Doran hier. Zag ${businessName} online. Ik heb een WhatsApp-systeem gebouwd dat patiëntaanvragen automatisch opvangt en inplant — ook buiten openingstijden. Scheelt je team flink wat nabellen. Zal ik de demo-video (1 min) even appen?`;
 }
 function websiteGreetingText(businessName: string) {
-  return `Hey, ik zag ${businessName} op Google maar je hebt nog geen website. Klanten die je Googelen en geen site vinden bellen vaak de concurrent. Ik maak websites speciaal voor vakmensen — in 5 dagen klaar. Zal ik een voorbeeld sturen?`;
+  return `Hey, ik zag ${businessName} op Google maar je hebt nog geen website. Patiënten die je Googelen en geen site vinden boeken vaak bij de concurrent. Ik maak websites speciaal voor klinieken — in 5 dagen klaar. Zal ik een voorbeeld sturen?`;
 }
 
 /** POST — Send one outreach message: create lead + send template. */

@@ -8,7 +8,7 @@ import { randomBytes } from "crypto";
 export async function GET(request: Request) {
   const url = new URL(request.url);
   const token = url.searchParams.get("t");
-  const origin = process.env.NEXT_PUBLIC_APP_URL || "https://speedleads.nl";
+  const origin = process.env.NEXT_PUBLIC_APP_URL || "https://clyniq.nl";
 
   if (!token) {
     return NextResponse.redirect(`${origin}/setup/agenda?status=error`);

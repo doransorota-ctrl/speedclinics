@@ -2,8 +2,8 @@ import { createServiceRoleClient } from "@/lib/supabase/server";
 import { setWhatsAppProfile } from "@/lib/twilio/whatsapp";
 import { twilioClient } from "./client";
 
-const APP_URL = process.env.NEXT_PUBLIC_APP_URL || process.env.APP_URL || "https://speedleads.nl";
-const SPEED_LEADS_DEFAULT_ABOUT = "Clŷniq — WhatsApp leadopvolging";
+const APP_URL = process.env.NEXT_PUBLIC_APP_URL || process.env.APP_URL || "https://clyniq.nl";
+const CLYNIQ_DEFAULT_ABOUT = "Clŷniq — AI-receptie voor klinieken";
 
 /**
  * Assign an available pool number to a business, or buy a new one if the pool is empty.
@@ -136,7 +136,7 @@ export async function releasePoolNumber(businessId: string): Promise<void> {
   // Reset WhatsApp profile to generic defaults
   if (poolRow.meta_phone_number_id) {
     await setWhatsAppProfile(poolRow.meta_phone_number_id, {
-      about: SPEED_LEADS_DEFAULT_ABOUT,
+      about: CLYNIQ_DEFAULT_ABOUT,
     }).catch((err) => {
       console.error("[Pool] setWhatsAppProfile reset failed (non-fatal):", err);
     });

@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/portal/", "/api/", "/login/", "/aanmelden/profiel/"],
       },
     ],
-    sitemap: "https://speedleads.nl/sitemap.xml",
+    sitemap: "https://clyniq.nl/sitemap.xml",
   };
 }

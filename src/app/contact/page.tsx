@@ -133,8 +133,8 @@ export default function ContactPage() {
         <div className="mt-6">
           <p className="text-xs text-surface-400">
             Of mail ons direct op{" "}
-            <a href="mailto:info@speedleads.nl" className="text-brand-600 hover:text-brand-700 font-medium">
-              info@speedleads.nl
+            <a href="mailto:info@clyniq.nl" className="text-brand-600 hover:text-brand-700 font-medium">
+              info@clyniq.nl
             </a>
           </p>
         </div>

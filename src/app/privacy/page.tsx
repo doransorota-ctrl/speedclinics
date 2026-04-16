@@ -16,7 +16,7 @@ export default function PrivacyPage() {
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
-          Terug naar speedleads.nl
+          Terug naar clyniq.nl
         </Link>
 
         <h1 className="text-3xl font-bold text-surface-900 mb-8">Privacybeleid</h1>
@@ -27,11 +27,11 @@ export default function PrivacyPage() {
           <section>
             <h2 className="text-lg font-semibold text-surface-900 mt-8 mb-3">1. Wie zijn wij?</h2>
             <p>
-              Clŷniq (&ldquo;wij&rdquo;, &ldquo;ons&rdquo;) is een dienst die vakmensen helpt om gemiste oproepen automatisch op te vangen via WhatsApp. Wij zijn verantwoordelijk voor de verwerking van persoonsgegevens zoals beschreven in dit privacybeleid.
+              Clŷniq (&ldquo;wij&rdquo;, &ldquo;ons&rdquo;) is een dienst die cosmetische klinieken helpt met patiëntopvolging, afspraakplanning en het versterken van hun online reputatie. Wij zijn verantwoordelijk voor de verwerking van persoonsgegevens zoals beschreven in dit privacybeleid.
             </p>
             <p>
               Clŷniq is een handelsnaam van Fryno.<br />
-              E-mail: info@speedleads.nl<br />
+              E-mail: info@clyniq.nl<br />
               KvK-nummer: 98018272
             </p>
           </section>
@@ -106,8 +106,8 @@ export default function PrivacyPage() {
               <li>Je toestemming in te trekken</li>
               <li>Een klacht in te dienen bij de Autoriteit Persoonsgegevens</li>
             </ul>
-            <p>Neem contact met ons op via info@speedleads.nl voor verzoeken.</p>
-            <p>Eindgebruikers (bellers/leads) die geen Clŷniq account hebben, kunnen ook een verzoek tot verwijdering indienen via info@speedleads.nl of door &ldquo;STOP&rdquo; te sturen via WhatsApp.</p>
+            <p>Neem contact met ons op via info@clyniq.nl voor verzoeken.</p>
+            <p>Eindgebruikers (bellers/leads) die geen Clŷniq account hebben, kunnen ook een verzoek tot verwijdering indienen via info@clyniq.nl of door &ldquo;STOP&rdquo; te sturen via WhatsApp.</p>
           </section>
 
           <section>
@@ -133,7 +133,7 @@ export default function PrivacyPage() {
             <p>
               In het geval van een datalek dat waarschijnlijk een risico inhoudt voor je rechten en vrijheden, melden wij dit binnen 72 uur aan de Autoriteit Persoonsgegevens. Als het lek een hoog risico inhoudt voor jou als betrokkene, informeren wij je daar ook over zonder onredelijke vertraging.
             </p>
-            <p>Vermoed je een beveiligingsincident? Meld het aan info@speedleads.nl.</p>
+            <p>Vermoed je een beveiligingsincident? Meld het aan info@clyniq.nl.</p>
           </section>
 
           <section>

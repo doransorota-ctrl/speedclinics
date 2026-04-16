@@ -4,7 +4,7 @@ import { sendWhatsApp, sendNamedTemplate, TEMPLATES } from "@/lib/twilio/whatsap
 import { createSetupToken } from "@/lib/setup-token";
 
 const ADMIN_USER_ID = process.env.ADMIN_USER_ID;
-const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "https://speedleads.nl";
+const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "https://clyniq.nl";
 
 /** POST — Send setup links via WhatsApp */
 export async function POST(

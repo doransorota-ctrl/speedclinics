@@ -7,7 +7,7 @@ import { createSetupToken } from "@/lib/setup-token";
 import { stripe } from "@/lib/stripe/client";
 
 const ADMIN_USER_ID = process.env.ADMIN_USER_ID;
-const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "https://speedleads.nl";
+const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "https://clyniq.nl";
 
 async function isAdmin(supabase: ReturnType<typeof createServerSupabaseClient>): Promise<boolean> {
   const { data: { user } } = await supabase.auth.getUser();

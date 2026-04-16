@@ -80,7 +80,7 @@ function OwnerNotification() {
       <div className="mt-5">
         <Link
           href="/demo"
-          onClick={() => events.ctaClick("speed-leads-demo", "primary")}
+          onClick={() => events.ctaClick("clyniq-demo", "primary")}
           className="btn-primary text-sm text-center block w-full sm:w-auto sm:inline-block"
         >
           Boek een demo
@@ -97,7 +97,7 @@ export function WhatsAppDemo() {
   const { whatsappDemo } = nl;
 
   return (
-    <section id="speed-leads" className="section">
+    <section id="demo" className="section">
       <div className="section-inner">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* WhatsApp conversation — iPhone 17 Pro mockup */}

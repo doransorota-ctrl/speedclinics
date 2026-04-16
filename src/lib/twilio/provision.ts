@@ -1,6 +1,6 @@
 import { twilioClient } from "./client";
 
-const APP_URL = process.env.NEXT_PUBLIC_APP_URL || process.env.APP_URL || "https://speedleads.nl";
+const APP_URL = process.env.NEXT_PUBLIC_APP_URL || process.env.APP_URL || "https://clyniq.nl";
 const VOICE_NUMBER = process.env.TWILIO_VOICE_NUMBER;
 const ADDRESS_SID = process.env.TWILIO_ADDRESS_SID;
 

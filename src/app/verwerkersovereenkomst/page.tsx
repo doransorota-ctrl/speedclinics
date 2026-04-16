@@ -17,7 +17,7 @@ export default function VerwerkersovereenkomstPage() {
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
-          Terug naar speedleads.nl
+          Terug naar clyniq.nl
         </Link>
 
         <h1 className="text-3xl font-bold text-surface-900 mb-8">Verwerkersovereenkomst</h1>
@@ -35,7 +35,7 @@ export default function VerwerkersovereenkomstPage() {
             <h2 className="text-lg font-semibold text-surface-900 mt-8 mb-3">1. Definities</h2>
             <ul className="list-disc pl-5 space-y-1">
               <li><strong>Verwerker:</strong> Clŷniq (Fryno), die persoonsgegevens verwerkt in opdracht van de Verwerkingsverantwoordelijke</li>
-              <li><strong>Verwerkingsverantwoordelijke:</strong> de Klant (de vakman/ondernemer) die bepaalt welke gegevens worden verwerkt en voor welk doel</li>
+              <li><strong>Verwerkingsverantwoordelijke:</strong> de Klant (de kliniek) die bepaalt welke gegevens worden verwerkt en voor welk doel</li>
               <li><strong>Betrokkenen:</strong> de natuurlijke personen (eindklanten/bellers) van wie persoonsgegevens worden verwerkt</li>
               <li><strong>Persoonsgegevens:</strong> alle gegevens die betrekking hebben op een geidentificeerde of identificeerbare natuurlijke persoon</li>
               <li><strong>AVG:</strong> de Algemene Verordening Gegevensbescherming (Verordening (EU) 2016/679)</li>
@@ -193,7 +193,7 @@ export default function VerwerkersovereenkomstPage() {
             </p>
             <p>
               Betrokkenen kunnen zich uitschrijven voor berichten door &ldquo;STOP&rdquo; te sturen via WhatsApp.
-              Voor verwijdering van alle opgeslagen gegevens kan een verzoek worden ingediend via info@speedleads.nl.
+              Voor verwijdering van alle opgeslagen gegevens kan een verzoek worden ingediend via info@clyniq.nl.
             </p>
           </section>
 

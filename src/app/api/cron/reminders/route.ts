@@ -59,12 +59,12 @@ export async function GET(req: Request) {
 
     // Send reminder to customer (business-initiated — use template)
     try {
-      const customerMsg = `Hoi ${customerName}, even een herinnering: morgen om ${apptTime} komt ${biz?.name || "de vakman"} langs. Tot dan!`;
+      const customerMsg = `Hoi ${customerName}, even een herinnering: morgen om ${apptTime} bij ${biz?.name || "uw kliniek"}. Tot dan!`;
       if (TEMPLATES.APPOINTMENT_REMINDER) {
         await sendNamedTemplate(lead.customer_phone, TEMPLATES.APPOINTMENT_REMINDER, {
           "1": customerName,
           "2": apptTime,
-          "3": biz?.name || "de vakman",
+          "3": biz?.name || "uw kliniek",
         }, bizFrom);
       } else {
         await sendWhatsApp(lead.customer_phone, customerMsg, bizFrom);

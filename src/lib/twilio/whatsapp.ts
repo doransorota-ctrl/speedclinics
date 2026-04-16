@@ -3,7 +3,7 @@ import { formatDutchPhone } from "../phone";
 
 const WHATSAPP_NUMBER = process.env.TWILIO_WHATSAPP_NUMBER;
 const WHATSAPP_TEMPLATE_SID = process.env.TWILIO_WHATSAPP_TEMPLATE_SID;
-const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "https://speedleads.nl";
+const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "https://clyniq.nl";
 const STATUS_CALLBACK = `${APP_URL}/api/twilio/status`;
 
 /** Template SIDs from environment — each maps to a pre-approved WhatsApp template */

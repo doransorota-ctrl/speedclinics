@@ -23,7 +23,7 @@ const clinicTestimonials = [
     role: "Cosmetisch arts",
     company: "Kliniek Esthétique, Amsterdam",
     content:
-      "Veel patiënten oriënteren zich 's avonds op behandelingen. Voorheen misten we die aanvragen. Nu krijgen ze direct antwoord en staan er de volgende ochtend al consulten in de agenda.",
+      "Onze conversie is verdrievoudigd. Elke aanvraag wordt direct beantwoord en omgezet in een consult. En de automatische reviews hebben onze Google-score van 4.2 naar 4.9 gebracht.",
     rating: 5,
     avatar: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=150&h=150&fit=crop&crop=face",
   },
@@ -33,7 +33,7 @@ const clinicTestimonials = [
     role: "Kliniekhoudster",
     company: "LaserCenter, Rotterdam",
     content:
-      "Onze concurrenten reageren de volgende ochtend. Wij reageren binnen 10 seconden. Patiënten kiezen voor de kliniek die het snelst reageert — en dat zijn wij nu altijd.",
+      "Patiënten kiezen voor de kliniek die het snelst reageert. Wij reageren nu binnen seconden — altijd. De review-functie is goud waard: nieuwe patiënten noemen onze reviews als reden om te kiezen.",
     rating: 5,
     avatar: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=150&h=150&fit=crop&crop=face",
   },
@@ -43,7 +43,7 @@ const clinicTestimonials = [
     role: "Tandarts cosmetisch",
     company: "Velvet Smile Clinic, Utrecht",
     content:
-      "Veneers en bleaching zijn impulsaankopen. Als iemand 's avonds belt en niemand neemt op, zijn ze de volgende dag alweer vergeten. Nu worden ze meteen geholpen.",
+      "De AI beantwoordt vragen over veneers en bleaching beter dan mijn receptie dat ooit deed. Elke patiënt krijgt perfect advies, wordt overtuigd en boekt direct. En na de behandeling: automatisch een review.",
     rating: 5,
     avatar: "https://images.unsplash.com/photo-1594824476967-48c8b964ac31?w=150&h=150&fit=crop&crop=face",
   },

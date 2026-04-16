@@ -19,7 +19,7 @@ export function FAQ() {
   return (
     <section className="section">
       <div className="section-inner max-w-2xl">
-        <h2 className="text-3xl sm:text-4xl font-bold text-surface-900 text-center">
+        <h2 className="text-3xl sm:text-4xl font-serif italic text-surface-900 text-center">
           {faq.headline}
         </h2>
 

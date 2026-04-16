@@ -208,7 +208,7 @@ export function WhatsAppDemo() {
             <p className="text-sm font-semibold text-brand-600 uppercase tracking-wide mb-2">
               {whatsappDemo.sectionLabel}
             </p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-surface-900 mb-3">
+            <h2 className="text-3xl sm:text-4xl font-serif italic text-surface-900 mb-3">
               {whatsappDemo.headline}
             </h2>
             <p className="text-lg text-surface-500 mb-8">

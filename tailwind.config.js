@@ -63,6 +63,11 @@ module.exports = {
           "Segoe UI",
           "sans-serif",
         ],
+        serif: [
+          "Instrument Serif",
+          "Georgia",
+          "serif",
+        ],
       },
       animation: {
         "fade-in": "fadeIn 0.6s ease-out forwards",

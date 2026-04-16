@@ -6,7 +6,7 @@ export function Stats() {
   return (
     <section className="py-16 sm:py-24">
       <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12">
-        <h2 className="text-2xl sm:text-4xl font-bold text-surface-900 text-center">
+        <h2 className="text-2xl sm:text-4xl font-serif italic text-surface-900 text-center">
           {stats.headline}
         </h2>
 

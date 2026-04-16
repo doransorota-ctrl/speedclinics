@@ -109,7 +109,7 @@ export function AnimatedTestimonials({
                 </div>
               )}
 
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-surface-900">{title}</h2>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif italic text-surface-900">{title}</h2>
 
               <p className="max-w-[600px] text-surface-500 md:text-xl/relaxed">{subtitle}</p>
 

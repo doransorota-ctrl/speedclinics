@@ -10,7 +10,7 @@ export function FinalCTA() {
   return (
     <section className="section bg-surface-800">
       <div className="section-inner text-center">
-        <h2 className="text-3xl sm:text-4xl font-bold text-white">
+        <h2 className="text-3xl sm:text-4xl font-serif italic text-white">
           {finalCta.headline}
         </h2>
         <p className="mt-4 text-lg text-surface-300 max-w-md mx-auto">

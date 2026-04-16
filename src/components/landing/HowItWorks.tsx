@@ -29,7 +29,7 @@ export function HowItWorks() {
   return (
     <section id="hoe-het-werkt" className="section">
       <div className="section-inner">
-        <h2 className="text-3xl sm:text-4xl font-bold text-surface-900 text-center">
+        <h2 className="text-3xl sm:text-4xl font-serif italic text-surface-900 text-center">
           {flow.headline}
         </h2>
 

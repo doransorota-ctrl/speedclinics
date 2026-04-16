@@ -10,7 +10,7 @@ export function MidPageCTA() {
   return (
     <div className="px-6 sm:px-8 lg:px-12 py-16">
       <div className="max-w-2xl mx-auto text-center">
-        <p className="text-xl sm:text-2xl font-bold text-surface-900 leading-snug">
+        <p className="text-xl sm:text-2xl font-serif italic text-surface-900 leading-snug">
           {midCta.headline}
         </p>
         <Link

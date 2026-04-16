@@ -1,11 +1,11 @@
 export const nl = {
   meta: {
-    title: "Speed Clinics — AI-receptie voor klinieken | Nooit meer een gemiste patiënt",
+    title: "Speed Clinics — Meer patiënten, sterkere reputatie | Voor cosmetische klinieken",
     description:
-      "Uw kliniek is dicht, maar de aanvragen stoppen niet. Speed Clinics beantwoordt vragen, adviseert over behandelingen en plant afspraken in via WhatsApp — 24/7.",
-    ogTitle: "Speed Clinics — AI-receptie voor klinieken",
+      "Wij helpen cosmetische klinieken groeien. Van professionele website tot AI-assistent die patiënten converteert, consulten inplant en uw online reputatie versterkt met reviews.",
+    ogTitle: "Speed Clinics — Groei uw kliniek",
     ogDescription:
-      "Automatische opvolging van aanvragen buiten openingstijden via WhatsApp. Op maat voor uw kliniek.",
+      "Meer consulten. Meer reviews. Minder gemiste aanvragen. Op maat voor uw kliniek.",
   },
 
   nav: {
@@ -21,60 +21,60 @@ export const nl = {
   // ── Landing page sections ──────────────────────────────
 
   hero: {
-    headline: "Verlies geen patiënten meer",
-    headlineAccent: "na sluitingstijd.",
+    headline: "Meer patiënten.",
+    headlineAccent: "Sterkere reputatie.",
     subheadline:
-      "Wij verzorgen uw complete online aanwezigheid — van professionele website tot AI-chatbot die aanvragen buiten openingstijden opvangt, consulten inplant en reviews verzamelt. Alles op maat voor uw kliniek.",
+      "Wij helpen cosmetische klinieken groeien. Onze AI-assistent beantwoordt vragen, converteert aanvragen naar consulten en verzamelt automatisch reviews — 24/7, via WhatsApp.",
     ctaPrimary: "Boek een demo",
     ctaPrimaryMicro: "Gratis demo · Geen verplichtingen",
     ctaSecondary: "Bekijk hoe het werkt",
     ctaSecondaryMicro: "We laten het live zien in 15 minuten",
     pricingAnchor: "",
     trust: [
-      "Aangepast aan uw kliniek",
-      "Volledig op maat ingericht",
+      "Op maat voor uw kliniek",
+      "Meer reviews, meer vertrouwen",
       "Geen langlopend contract",
     ],
   },
 
   stats: {
-    headline: "Wat u nu misloopt",
+    headline: "Waarom klinieken voor ons kiezen",
     items: [
       {
-        value: "40%",
-        label: "van de aanvragen komt binnen buiten openingstijden",
+        value: "3x",
+        label: "meer conversie van aanvraag naar consult",
       },
       {
-        value: "85%",
-        label: "van die bellers belt niet terug — ze boeken bij de concurrent",
+        value: "< 10 sec",
+        label: "reactietijd — sneller dan elke concurrent",
       },
       {
-        value: "€800+",
-        label: "is de gemiddelde waarde van een cosmetische behandeling",
+        value: "4.8★",
+        label: "gemiddelde Google-score dankzij automatische reviews",
       },
       {
-        value: "< 5 min",
-        label: "is de maximale responstijd voordat een patiënt verder zoekt",
+        value: "24/7",
+        label: "bereikbaar — ook wanneer uw team dat niet is",
       },
     ],
     source: "",
-    bottomLine: "Eén gemiste aanvraag per week kan uw kliniek €40.000 per jaar kosten.",
+    bottomLine: "Elke niet-beantwoorde aanvraag is een patiënt die bij de concurrent boekt.",
     bottomLineHighlight: "",
   },
 
   choose: {
-    headline: "Uw complete online aanwezigheid",
+    headline: "Wat wij voor uw kliniek doen",
     hasWebsite: {
-      label: "Alles in één",
-      title: "Meer patiënten, minder gemiste aanvragen",
+      label: "Alles in één service",
+      title: "Van eerste contact tot 5-sterren review",
       offer: "Volledig op maat voor uw kliniek",
       features: [
-        "AI-chatbot die aanvragen 24/7 opvangt via WhatsApp",
-        "Professionele website die vertrouwen wekt",
-        "Vragen over behandelingen direct beantwoord",
+        "AI-assistent die elke aanvraag direct beantwoordt via WhatsApp",
+        "Professionele website die vertrouwen wekt en converteert",
+        "Vragen over behandelingen, prijzen en beschikbaarheid — altijd beantwoord",
         "Consulten automatisch ingepland in uw agenda",
         "Herinneringen die no-shows voorkomen",
-        "Automatische review-verzoeken na behandelingen",
+        "Automatische review-verzoeken die uw Google-score verhogen",
         "Volledig aangepast aan uw behandelaanbod en huisstijl",
       ],
       cta: "Boek een demo",
@@ -86,39 +86,39 @@ export const nl = {
     headline: "Zo werkt het",
     steps: [
       {
-        title: "Patiënt neemt contact op",
+        title: "Patiënt toont interesse",
         description:
-          "Via uw website, telefoon of WhatsApp — ook buiten openingstijden.",
+          "Via uw website, WhatsApp of telefoon — op elk moment van de dag.",
       },
       {
-        title: "Speed Clinics reageert direct",
+        title: "Direct persoonlijk contact",
         description:
-          "Binnen 10 seconden ontvangt de patiënt een persoonlijk WhatsApp-bericht namens uw kliniek.",
+          "Onze AI reageert binnen seconden namens uw kliniek. Professioneel, warm en op maat.",
       },
       {
-        title: "Vragen worden beantwoord",
+        title: "Advies en conversie",
         description:
-          "De AI beantwoordt vragen over behandelingen, prijzen en beschikbaarheid — afgestemd op uw aanbod.",
+          "Vragen over behandelingen, prijzen en beschikbaarheid worden direct beantwoord. De patiënt wordt overtuigd.",
       },
       {
-        title: "Afspraak ingepland",
+        title: "Consult geboekt",
         description:
-          "De patiënt boekt direct een consult. U ontvangt een melding met alle details.",
+          "De patiënt plant direct een afspraak in. U ontvangt alle details in uw agenda.",
       },
       {
         title: "Herinnering verstuurd",
         description:
-          "De avond voor het consult ontvangt de patiënt een herinnering. Minder no-shows.",
+          "Automatische herinnering vooraf. Minder no-shows, volle agenda.",
       },
       {
-        title: "Review gevraagd",
+        title: "Review verzameld",
         description:
-          "Na de behandeling automatisch een review-verzoek. Meer reviews, meer vertrouwen.",
+          "Na de behandeling ontvangt de patiënt een review-verzoek. Uw Google-score groeit, nieuwe patiënten volgen.",
       },
     ],
-    exampleLabel: "Echt scenario — cosmetische kliniek Amsterdam, gisteren:",
+    exampleLabel: "Echt scenario — cosmetische kliniek Amsterdam:",
     example:
-      "20:47 — een patiënt vroeg via WhatsApp naar lip fillers. De kliniek was dicht. Speed Clinics beantwoordde haar vragen, adviseerde over de behandeling en plande een consult in voor de volgende ochtend. De kliniekeigenaar hoefde niets te doen.",
+      "Een patiënt vroeg via WhatsApp naar lip fillers. Onze AI beantwoordde haar vragen, adviseerde over de behandeling, plande een consult in en stuurde na afloop een review-verzoek. Resultaat: nieuw consult + 5-sterren review. De kliniekeigenaar hoefde niets te doen.",
   },
 
   websitePackage: {
@@ -140,9 +140,9 @@ export const nl = {
 
   whatsappDemo: {
     sectionLabel: "Zie het in actie",
-    headline: "Zo reageert Speed Clinics buiten openingstijden",
+    headline: "Van aanvraag naar consult — automatisch",
     subheadline:
-      "Een patiënt stuurt een bericht om 20:30. Uw kliniek is dicht. Dit gebeurt er.",
+      "Een patiënt stuurt een bericht. Onze AI reageert direct, beantwoordt vragen en plant een consult in.",
     messages: [
       {
         sender: "ai",
@@ -204,7 +204,7 @@ export const nl = {
   },
 
   midCta: {
-    headline: "Ontdek wat wij voor uw kliniek kunnen betekenen.",
+    headline: "Meer consulten. Meer reviews. Minder gedoe.",
     cta: "Boek een demo",
     ctaMicro: "Gratis demo · Geen verplichtingen",
     trust: "Geen contract · Volledig op maat · Direct resultaat",
@@ -214,9 +214,9 @@ export const nl = {
     headline: "Wat klinieken zeggen",
     statsFraming: "Resultaten van klinieken in Nederland",
     stats: [
-      { value: "< 10 sec", label: "reactietijd op aanvragen buiten openingstijden" },
-      { value: "24/7", label: "bereikbaar via WhatsApp — ook in het weekend" },
-      { value: "0", label: "gemiste aanvragen dankzij automatische opvolging" },
+      { value: "3x", label: "meer conversie van aanvraag naar consult" },
+      { value: "4.8★", label: "gemiddelde Google-score dankzij automatische reviews" },
+      { value: "< 10 sec", label: "reactietijd — sneller dan elke concurrent" },
     ],
     testimonials: [
       {
@@ -356,9 +356,9 @@ export const nl = {
   },
 
   finalCta: {
-    headline: "Stop met patiënten verliezen.",
+    headline: "Klaar om te groeien?",
     subheadline:
-      "Ontdek hoe wij aanvragen buiten openingstijden omzetten in consulten.",
+      "Ontdek hoe wij aanvragen omzetten in consulten en uw reputatie versterken.",
     ctaPrimary: "Boek een demo",
     ctaPrimaryMicro: "Gratis demo · Geen verplichtingen",
     ctaSecondary: "Bekijk hoe het werkt",

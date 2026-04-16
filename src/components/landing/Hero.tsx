@@ -20,7 +20,7 @@ export function Hero() {
           transition={{ delay: 0.3, duration: 0.8, ease: "easeInOut" }}
           className="flex-1 text-center lg:text-left"
         >
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold text-surface-900 leading-[1.08]">
+          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-normal font-serif text-surface-900 leading-[1.05] italic">
             {hero.headline}
             <br />
             <span className="text-brand-500">{hero.headlineAccent}</span>

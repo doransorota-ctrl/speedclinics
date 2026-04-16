@@ -97,7 +97,7 @@ export function AnimatedTestimonials({
           initial="hidden"
           animate={controls}
           variants={containerVariants}
-          className="grid grid-cols-1 gap-16 w-full md:grid-cols-2 lg:gap-24"
+          className="grid grid-cols-1 gap-8 md:gap-16 w-full md:grid-cols-2 lg:gap-24"
         >
           {/* Left side: Heading and navigation */}
           <motion.div variants={itemVariants} className="flex flex-col justify-center">
@@ -129,7 +129,7 @@ export function AnimatedTestimonials({
           </motion.div>
 
           {/* Right side: Testimonial cards */}
-          <motion.div variants={itemVariants} className="relative h-full mr-10 min-h-[300px] md:min-h-[400px]">
+          <motion.div variants={itemVariants} className="relative h-full mr-0 md:mr-10 min-h-[380px] md:min-h-[400px]">
             {testimonials.map((testimonial, index) => (
               <motion.div
                 key={testimonial.id}
@@ -143,9 +143,9 @@ export function AnimatedTestimonials({
                 transition={{ duration: 0.5, ease: "easeInOut" }}
                 style={{ zIndex: activeIndex === index ? 10 : 0 }}
               >
-                <div className="bg-white border border-surface-100 shadow-sm shadow-black/5 rounded-2xl p-8 h-full flex flex-col">
-                  <p className="text-[10px] uppercase tracking-widest text-surface-400 mb-4">Illustratief voorbeeld</p>
-                  <div className="mb-6 flex gap-2">
+                <div className="bg-white border border-surface-100 shadow-sm shadow-black/5 rounded-2xl p-5 md:p-8 h-full flex flex-col">
+                  <p className="text-[10px] uppercase tracking-widest text-surface-400 mb-3 md:mb-4">Illustratief voorbeeld</p>
+                  <div className="mb-4 md:mb-6 flex gap-1.5 md:gap-2">
                     {Array(testimonial.rating)
                       .fill(0)
                       .map((_, i) => (
@@ -153,9 +153,9 @@ export function AnimatedTestimonials({
                       ))}
                   </div>
 
-                  <div className="relative mb-6 flex-1">
-                    <Quote className="absolute -top-2 -left-2 h-8 w-8 text-brand-200 rotate-180" />
-                    <p className="relative z-10 text-lg font-medium leading-relaxed text-surface-800">"{testimonial.content}"</p>
+                  <div className="relative mb-4 md:mb-6 flex-1">
+                    <Quote className="absolute -top-2 -left-2 h-6 w-6 md:h-8 md:w-8 text-brand-200 rotate-180" />
+                    <p className="relative z-10 text-sm md:text-lg font-medium leading-relaxed text-surface-800">"{testimonial.content}"</p>
                   </div>
 
                   <Separator className="my-4 bg-surface-100" />
@@ -176,9 +176,9 @@ export function AnimatedTestimonials({
               </motion.div>
             ))}
 
-            {/* Decorative elements */}
-            <div className="absolute -bottom-6 -left-6 h-24 w-24 rounded-xl bg-brand-100/50"></div>
-            <div className="absolute -top-6 -right-6 h-24 w-24 rounded-xl bg-accent-100/50"></div>
+            {/* Decorative elements — hidden on mobile */}
+            <div className="hidden md:block absolute -bottom-6 -left-6 h-24 w-24 rounded-xl bg-brand-100/50"></div>
+            <div className="hidden md:block absolute -top-6 -right-6 h-24 w-24 rounded-xl bg-accent-100/50"></div>
           </motion.div>
         </motion.div>
 

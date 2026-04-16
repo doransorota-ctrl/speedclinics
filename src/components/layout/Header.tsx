@@ -1,15 +1,29 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { nl } from "@/content/nl";
 import { events } from "@/lib/analytics";
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <header className="fixed top-0 inset-x-0 z-50 bg-surface-50/80 backdrop-blur-lg border-b border-surface-100/60">
+    <header
+      className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? "bg-surface-50/80 backdrop-blur-lg border-b border-surface-100/60"
+          : "bg-transparent border-b border-transparent"
+      }`}
+    >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -77,7 +91,7 @@ export function Header() {
 
         {/* Mobile menu */}
         {menuOpen && (
-          <div className="md:hidden py-3 border-t border-surface-100">
+          <div className="md:hidden py-3 border-t border-surface-100/40">
             <div className="flex flex-col gap-3">
               <a
                 href="#hoe-het-werkt"

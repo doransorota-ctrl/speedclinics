@@ -81,6 +81,7 @@ function TrustBadges() {
 function TestimonialCard({ data }: { data: TestimonialData }) {
   return (
     <div className="bg-white rounded-2xl p-6 shadow-sm shadow-black/5 border border-surface-100">
+      <p className="text-[10px] uppercase tracking-widest text-surface-400 mb-3">Illustratief voorbeeld</p>
       <p className="text-base text-surface-700 leading-relaxed italic">
         &ldquo;{data.quote}&rdquo;
       </p>

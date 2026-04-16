@@ -144,6 +144,7 @@ export function AnimatedTestimonials({
                 style={{ zIndex: activeIndex === index ? 10 : 0 }}
               >
                 <div className="bg-white border border-surface-100 shadow-sm shadow-black/5 rounded-2xl p-8 h-full flex flex-col">
+                  <p className="text-[10px] uppercase tracking-widest text-surface-400 mb-4">Illustratief voorbeeld</p>
                   <div className="mb-6 flex gap-2">
                     {Array(testimonial.rating)
                       .fill(0)

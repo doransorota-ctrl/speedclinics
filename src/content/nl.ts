@@ -241,7 +241,7 @@ export const nl = {
         text: "Veneers en bleaching zijn impulsaankopen. Als iemand 's avonds belt en niemand neemt op, zijn ze de volgende dag alweer vergeten. Nu worden ze meteen geholpen.",
       },
     ],
-    note: "Ervaringen van klinieken die Speed Clinics gebruiken.",
+    note: "Illustratieve voorbeelden op basis van resultaten van klinieken in Nederland.",
   },
 
   pricing: {

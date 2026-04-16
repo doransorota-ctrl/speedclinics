@@ -80,7 +80,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.8, ease: "easeInOut" }}
-            className="flex-shrink-0 w-full max-w-[240px] sm:max-w-none sm:w-auto"
+            className="flex-shrink-0 w-full max-w-[240px] sm:max-w-[280px] lg:max-w-[300px]"
           >
             <HeroAnimation />
           </motion.div>

@@ -3,7 +3,7 @@ import { setWhatsAppProfile } from "@/lib/twilio/whatsapp";
 import { twilioClient } from "./client";
 
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL || process.env.APP_URL || "https://speedleads.nl";
-const SPEED_LEADS_DEFAULT_ABOUT = "Speed Clinics — WhatsApp leadopvolging";
+const SPEED_LEADS_DEFAULT_ABOUT = "clŷniq — WhatsApp leadopvolging";
 
 /**
  * Assign an available pool number to a business, or buy a new one if the pool is empty.
@@ -64,7 +64,7 @@ export async function assignOrBuyNumber(
   console.log("[Pool] No approved numbers available — buying from Twilio");
   try {
     const { buyTwilioNumber } = await import("@/lib/twilio/provision");
-    const result = await buyTwilioNumber(businessName || "Speed Clinics");
+    const result = await buyTwilioNumber(businessName || "clŷniq");
     if (!result) {
       console.error("[Pool] Could not buy a number from Twilio");
       return null;
@@ -94,7 +94,7 @@ export async function assignOrBuyNumber(
 /**
  * Release a business's pool number back to the pool.
  * Clears businesses.twilio_number and resets the pool row to "approved".
- * Also resets the WhatsApp Business Profile to generic Speed Clinics defaults.
+ * Also resets the WhatsApp Business Profile to generic clŷniq defaults.
  */
 export async function releasePoolNumber(businessId: string): Promise<void> {
   const supabase = createServiceRoleClient();

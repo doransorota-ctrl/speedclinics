@@ -76,8 +76,8 @@ function SetupContent() {
           </h1>
           <p className="text-sm text-surface-500">
             {error === "expired"
-              ? "Deze link is verlopen. Open de Speed Clinics app en stuur een nieuwe link."
-              : "Deze link is niet geldig. Open de Speed Clinics app en stuur een nieuwe link."}
+              ? "Deze link is verlopen. Open de clŷniq app en stuur een nieuwe link."
+              : "Deze link is niet geldig. Open de clŷniq app en stuur een nieuwe link."}
           </p>
         </div>
       </div>

@@ -1,15 +1,15 @@
 export const nl = {
   meta: {
-    title: "Speed Clinics — Meer patiënten, sterkere reputatie | Voor cosmetische klinieken",
+    title: "clŷniq — Meer patiënten, sterkere reputatie | Voor cosmetische klinieken",
     description:
       "Wij helpen cosmetische klinieken groeien. Van professionele website tot AI-assistent die patiënten converteert, consulten inplant en uw online reputatie versterkt met reviews.",
-    ogTitle: "Speed Clinics — Groei uw kliniek",
+    ogTitle: "clŷniq — Groei uw kliniek",
     ogDescription:
       "Meer consulten. Meer reviews. Minder gemiste aanvragen. Op maat voor uw kliniek.",
   },
 
   nav: {
-    logo: "Speed Clinics",
+    logo: "clŷniq",
     cta: "Boek een demo",
     links: {
       howItWorks: "Hoe het werkt",
@@ -249,7 +249,7 @@ export const nl = {
     subheadline: "",
     software: {
       label: "",
-      name: "Speed Clinics",
+      name: "clŷniq",
       price: "",
       priceLabel: "",
       description: "",
@@ -279,22 +279,22 @@ export const nl = {
     headline: "Veelgestelde vragen",
     groups: [
       {
-        label: "Over Speed Clinics",
+        label: "Over clŷniq",
         items: [
           {
-            question: "Hoe werkt Speed Clinics precies?",
+            question: "Hoe werkt clŷniq precies?",
             answer:
-              "Wanneer een patiënt contact opneemt buiten openingstijden — via telefoon, WhatsApp of uw website — reageert Speed Clinics automatisch via WhatsApp. Het beantwoordt vragen over behandelingen, adviseert de patiënt en plant indien gewenst een consult in.",
+              "Wanneer een patiënt contact opneemt buiten openingstijden — via telefoon, WhatsApp of uw website — reageert clŷniq automatisch via WhatsApp. Het beantwoordt vragen over behandelingen, adviseert de patiënt en plant indien gewenst een consult in.",
           },
           {
             question: "Wordt het aangepast aan onze kliniek?",
             answer:
-              "Ja. Speed Clinics wordt volledig op maat ingericht: uw behandelaanbod, prijsindicaties, openingstijden en tone-of-voice. Patiënten ervaren het als een verlengstuk van uw kliniek.",
+              "Ja. clŷniq wordt volledig op maat ingericht: uw behandelaanbod, prijsindicaties, openingstijden en tone-of-voice. Patiënten ervaren het als een verlengstuk van uw kliniek.",
           },
           {
             question: "Merken patiënten dat het een AI is?",
             answer:
-              "Speed Clinics communiceert professioneel en persoonlijk in uw kliniek-stijl. Patiënten ervaren een snelle, behulpzame reactie — precies wat ze verwachten van een premium kliniek.",
+              "clŷniq communiceert professioneel en persoonlijk in uw kliniek-stijl. Patiënten ervaren een snelle, behulpzame reactie — precies wat ze verwachten van een premium kliniek.",
           },
           {
             question: "Hoe snel is de reactietijd?",
@@ -309,7 +309,7 @@ export const nl = {
           {
             question: "Kan het afspraken inplannen in onze agenda?",
             answer:
-              "Ja. Speed Clinics koppelt met Google Calendar en plant consulten direct in op beschikbare momenten. U ontvangt een melding met alle patiëntdetails.",
+              "Ja. clŷniq koppelt met Google Calendar en plant consulten direct in op beschikbare momenten. U ontvangt een melding met alle patiëntdetails.",
           },
           {
             question: "Zit ik vast aan een contract?",
@@ -328,12 +328,12 @@ export const nl = {
           {
             question: "Hoe zit het met de privacy van patiëntgegevens?",
             answer:
-              "Speed Clinics verwerkt alleen contactgegevens en behandelinteresse — geen medische dossiers. Alle data wordt verwerkt conform de AVG en wij tekenen een verwerkersovereenkomst.",
+              "clŷniq verwerkt alleen contactgegevens en behandelinteresse — geen medische dossiers. Alle data wordt verwerkt conform de AVG en wij tekenen een verwerkersovereenkomst.",
           },
           {
             question: "Wordt er medisch advies gegeven?",
             answer:
-              "Nee. Speed Clinics geeft algemene informatie over behandelingen en plant consulten in. Het stelt geen diagnoses en vervangt geen medisch advies. De arts blijft altijd de specialist.",
+              "Nee. clŷniq geeft algemene informatie over behandelingen en plant consulten in. Het stelt geen diagnoses en vervangt geen medisch advies. De arts blijft altijd de specialist.",
           },
         ],
       },
@@ -380,13 +380,13 @@ export const nl = {
       dpa: "Verwerkersovereenkomst",
       contact: "Contact",
     },
-    copyright: `© ${new Date().getFullYear()} Speed Clinics. Alle rechten voorbehouden.`,
+    copyright: `© ${new Date().getFullYear()} clŷniq. Alle rechten voorbehouden.`,
   },
 
   // ── Form pages ────────────────────────────
 
   signup: {
-    headline: "Start met Speed Clinics",
+    headline: "Start met clŷniq",
     subheadline:
       "Vul uw gegevens in en wij nemen contact op om alles in te richten.",
     fields: {
@@ -467,7 +467,7 @@ export const nl = {
       options: [
         {
           value: "speed-leads",
-          label: "Speed Clinics",
+          label: "clŷniq",
           price: "Op aanvraag",
           detail: "Prijs op maat — afhankelijk van uw kliniek",
           description: "Uw complete online aanwezigheid: AI-chatbot, website en automatische reviews",
@@ -475,10 +475,10 @@ export const nl = {
       ],
     },
     headlines: {
-      default: "Start met Speed Clinics",
-      "speed-leads": "Start met Speed Clinics",
-      website: "Start met Speed Clinics",
-      compleet: "Start met Speed Clinics",
+      default: "Start met clŷniq",
+      "speed-leads": "Start met clŷniq",
+      website: "Start met clŷniq",
+      compleet: "Start met clŷniq",
     },
     subheadlines: {
       default: "Vul uw gegevens in en wij nemen contact op om alles in te richten.",
@@ -563,9 +563,9 @@ export const nl = {
         expandTitle: "Hoe werkt doorschakelen?",
         expandContent: {
           iphone:
-            "Ga naar Instellingen → Telefoon → Doorschakelen → Schakel 'Bij geen gehoor' in en vul het Speed Clinics nummer in.",
+            "Ga naar Instellingen → Telefoon → Doorschakelen → Schakel 'Bij geen gehoor' in en vul het clŷniq nummer in.",
           android:
-            "Open de Telefoon-app → ⋮ Menu → Instellingen → Oproepen → Doorschakelen → Bij geen gehoor → Vul het Speed Clinics nummer in.",
+            "Open de Telefoon-app → ⋮ Menu → Instellingen → Oproepen → Doorschakelen → Bij geen gehoor → Vul het clŷniq nummer in.",
           note: "U ontvangt het doorschakelnummer van ons via WhatsApp.",
         },
       },
@@ -573,7 +573,7 @@ export const nl = {
         icon: "calendar",
         title: "Systeem wordt ingericht",
         description:
-          "Wij configureren Speed Clinics op maat voor uw kliniek — behandelaanbod, prijzen en tone-of-voice.",
+          "Wij configureren clŷniq op maat voor uw kliniek — behandelaanbod, prijzen en tone-of-voice.",
         done: false,
         calendarTrust: [
           "Alleen toegang tot agenda — niet tot overige data",
@@ -581,13 +581,13 @@ export const nl = {
           "Later los te koppelen",
         ],
         calendarFallback:
-          "Zonder koppeling werkt Speed Clinics als lead-opvang. U plant dan zelf de consulten.",
+          "Zonder koppeling werkt clŷniq als lead-opvang. U plant dan zelf de consulten.",
       },
       {
         icon: "rocket",
         title: "Uw kliniek is live",
         description:
-          "Speed Clinics vangt aanvragen op en plant consulten in. U ontvangt een melding bij elke nieuwe patiënt.",
+          "clŷniq vangt aanvragen op en plant consulten in. U ontvangt een melding bij elke nieuwe patiënt.",
         done: false,
       },
     ],

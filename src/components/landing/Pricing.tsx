@@ -36,7 +36,7 @@ export function Pricing() {
         </p>
 
         <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
-          {/* Card 1: Speed Clinics (Software) */}
+          {/* Card 1: clŷniq (Software) */}
           <div className="bg-white border-2 border-brand-500 rounded-xl p-6 flex flex-col relative">
             <span className="absolute -top-3 left-6 text-xs font-semibold text-white bg-brand-500 px-3 py-1 rounded-full">
               Meest gekozen

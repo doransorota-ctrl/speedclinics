@@ -183,7 +183,7 @@ export default function NieuweKlantPage() {
               onChange={(e) => setPlan(e.target.value)}
               className="input-field"
             >
-              <option value="speed-leads">Speed Clinics</option>
+              <option value="speed-leads">clŷniq</option>
               <option value="website">Website</option>
               <option value="compleet">Compleet</option>
             </select>

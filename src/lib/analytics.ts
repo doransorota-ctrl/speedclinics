@@ -1,5 +1,5 @@
 /**
- * Speed Clinics — Analytics & Tracking
+ * clŷniq — Analytics & Tracking
  *
  * Event naming convention: snake_case
  * Format: {category}_{action}_{target}

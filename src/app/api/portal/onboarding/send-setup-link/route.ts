@@ -31,7 +31,7 @@ export async function POST() {
     }
 
     if (!business.twilio_number) {
-      return Response.json({ error: "Je Speed Clinics nummer is nog niet klaar. Probeer het opnieuw." }, { status: 400 });
+      return Response.json({ error: "Je clŷniq nummer is nog niet klaar. Probeer het opnieuw." }, { status: 400 });
     }
 
     const token = createSetupToken(business.twilio_number);

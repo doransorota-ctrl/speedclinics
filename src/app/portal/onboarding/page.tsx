@@ -245,7 +245,7 @@ export default function OnboardingPage() {
             Klopt dit?
           </h2>
           <p className="text-sm text-surface-500 mb-6">
-            Controleer je bedrijfsgegevens. Speed Clinics gebruikt deze informatie om je klanten te begroeten.
+            Controleer je bedrijfsgegevens. clŷniq gebruikt deze informatie om je klanten te begroeten.
           </p>
           <div className="space-y-4">
             <div>
@@ -296,7 +296,7 @@ export default function OnboardingPage() {
             Stel doorschakelen in
           </h2>
           <p className="text-sm text-surface-500 mb-6">
-            Als je niet opneemt of de rode knop indrukt, vangt Speed Clinics de oproep automatisch op.
+            Als je niet opneemt of de rode knop indrukt, vangt clŷniq de oproep automatisch op.
           </p>
 
           {!forwardNumber ? (
@@ -304,7 +304,7 @@ export default function OnboardingPage() {
               {/* No number assigned yet */}
               <div className="bg-amber-50 border border-amber-200 rounded-xl p-5 mb-4 text-center">
                 <p className="text-sm text-amber-800 mb-3">
-                  {assigningNumber ? "Nummer wordt aangemaakt..." : "Je Speed Clinics nummer wordt klaargezet."}
+                  {assigningNumber ? "Nummer wordt aangemaakt..." : "Je clŷniq nummer wordt klaargezet."}
                 </p>
                 {assignError && (
                   <p className="text-xs text-red-600 mb-3">{assignError}</p>
@@ -405,7 +405,7 @@ export default function OnboardingPage() {
           )}
 
           <p className="text-xs text-surface-400 text-center mb-2">
-            Je kunt dit testen door iemand je te laten bellen. Neem niet op — als het goed is krijg je een WhatsApp van Speed Clinics.
+            Je kunt dit testen door iemand je te laten bellen. Neem niet op — als het goed is krijg je een WhatsApp van clŷniq.
           </p>
 
           {/* Collapsible manual instructions */}
@@ -428,7 +428,7 @@ export default function OnboardingPage() {
                 <ol className="list-decimal list-inside space-y-1 ml-2 text-xs text-surface-600">
                   <li>Open <strong>Instellingen</strong> → <strong>Apps</strong> → <strong>Telefoon</strong></li>
                   <li>Tik op <strong>Doorschakelen</strong> → <strong>Bij geen gehoor</strong></li>
-                  <li>Vul het Speed Clinics nummer in</li>
+                  <li>Vul het clŷniq nummer in</li>
                   <li>Herhaal voor <strong>Bij bezet</strong></li>
                 </ol>
               ) : (
@@ -459,7 +459,7 @@ export default function OnboardingPage() {
             Koppel je agenda (optioneel)
           </h2>
           <p className="text-sm text-surface-500 mb-6">
-            Met een agenda-koppeling plant Speed Clinics afspraken automatisch in.
+            Met een agenda-koppeling plant clŷniq afspraken automatisch in.
             Zonder koppeling ontvang je leads en plan je zelf.
           </p>
 
@@ -604,7 +604,7 @@ export default function OnboardingPage() {
             Bijna klaar!
           </h2>
           <p className="text-sm text-surface-500 mb-6 text-center">
-            Speed Clinics is nu actief. Voeg optioneel je reviewlink en logo toe — beide kun je ook later in je instellingen toevoegen.
+            clŷniq is nu actief. Voeg optioneel je reviewlink en logo toe — beide kun je ook later in je instellingen toevoegen.
           </p>
 
           {/* Logo upload */}

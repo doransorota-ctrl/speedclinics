@@ -113,7 +113,7 @@ export default function LeadsPage() {
         <div>
           <h1 className="text-2xl font-bold text-surface-900">Gesprekken</h1>
           <p className="text-surface-500 mt-1">
-            Alle gesprekken die Speed Clinics voor je heeft opgevangen.
+            Alle gesprekken die clŷniq voor je heeft opgevangen.
           </p>
         </div>
       </div>
@@ -175,7 +175,7 @@ export default function LeadsPage() {
           <p className="text-sm text-surface-500 mt-2 max-w-sm mx-auto leading-relaxed">
             {!business?.forwarding_confirmed
               ? "Nu ontbreekt alleen nog de laatste stap: stel doorschakelen in en begin met het opvangen van klanten."
-              : "Zodra iemand je belt en je neemt niet op, vangt Speed Clinics de klant op via WhatsApp. Het gesprek verschijnt dan hier."}
+              : "Zodra iemand je belt en je neemt niet op, vangt clŷniq de klant op via WhatsApp. Het gesprek verschijnt dan hier."}
           </p>
 
           {!business?.forwarding_confirmed && (
@@ -193,7 +193,7 @@ export default function LeadsPage() {
             <div className="mt-6">
               {business?.twilio_number && (
                 <div className="bg-surface-50 rounded-xl p-4 inline-block mb-4">
-                  <p className="text-xs text-surface-400 mb-1">Je Speed Clinics nummer</p>
+                  <p className="text-xs text-surface-400 mb-1">Je clŷniq nummer</p>
                   <div className="flex items-center gap-2">
                     <span className="text-lg font-mono font-semibold text-surface-900">{business.twilio_number}</span>
                     <button
@@ -208,7 +208,7 @@ export default function LeadsPage() {
               <div className="flex items-center justify-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-brand-500 animate-pulse" />
                 <p className="text-sm font-medium text-brand-700">
-                  Speed Clinics is actief en wacht op je eerste gemiste oproep
+                  clŷniq is actief en wacht op je eerste gemiste oproep
                 </p>
               </div>
             </div>

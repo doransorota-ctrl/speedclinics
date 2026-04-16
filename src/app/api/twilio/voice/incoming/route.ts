@@ -5,7 +5,7 @@ import { verifyTwilioWebhook, formDataToParams } from "@/lib/twilio/verify-webho
 import { formatDutchPhone } from "@/lib/phone";
 
 /**
- * Twilio voice webhook — fires when a call arrives at a Speed Clinics number.
+ * Twilio voice webhook — fires when a call arrives at a clŷniq number.
  * This happens when a customer calls the tradesperson and the call forwards.
  */
 export async function POST(request: Request) {
@@ -72,7 +72,7 @@ export async function POST(request: Request) {
       // Send confirmation WhatsApp to business owner
       sendWhatsApp(
         business.phone,
-        "Je doorschakeling werkt! Gemiste oproepen worden nu automatisch opgevangen door Speed Clinics."
+        "Je doorschakeling werkt! Gemiste oproepen worden nu automatisch opgevangen door clŷniq."
       ).catch((err) => console.error("[Voice] Test confirmation WhatsApp failed:", err));
 
       return new Response(
@@ -98,7 +98,7 @@ export async function POST(request: Request) {
       );
     }
 
-    // Check if Speed Clinics is active
+    // Check if clŷniq is active
     if (!business.speed_leads_active || !business.is_active) {
       return new Response(
         `<?xml version="1.0" encoding="UTF-8"?><Response><Hangup/></Response>`,
@@ -204,7 +204,7 @@ export async function POST(request: Request) {
       } else {
         // Active/qualified lead — conversation still ongoing, just notify owner
         if (business.phone) {
-          sendWhatsApp(business.phone, `📞 Herhaalde oproep van ${from} — er loopt al een gesprek via Speed Clinics.`).catch(() => {});
+          sendWhatsApp(business.phone, `📞 Herhaalde oproep van ${from} — er loopt al een gesprek via clŷniq.`).catch(() => {});
         }
       }
 
@@ -312,7 +312,7 @@ export async function POST(request: Request) {
           `📞 Gemiste oproep opgevangen`,
           ``,
           `Klant: ${from}`,
-          `Speed Clinics stuurt nu een WhatsApp naar deze klant.`,
+          `clŷniq stuurt nu een WhatsApp naar deze klant.`,
           ``,
           `Bekijk het gesprek in je dashboard.`,
         ].join("\n");

@@ -69,7 +69,7 @@ export default function LandingPage() {
         <MidPageCTA />
         <AnimatedTestimonials
           title="Wat klinieken zeggen"
-          subtitle="Ontdek hoe klinieken in Nederland meer patiënten bereiken met Speed Clinics."
+          subtitle="Ontdek hoe klinieken in Nederland meer patiënten bereiken met clŷniq."
           badgeText="Vertrouwd door klinieken"
           testimonials={clinicTestimonials}
           autoRotateInterval={6000}

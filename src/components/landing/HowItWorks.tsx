@@ -65,7 +65,7 @@ export function HowItWorks() {
         {extraSteps.length > 0 && (
           <div className="mt-12">
             <p className="text-xs font-semibold text-surface-400 uppercase tracking-wide text-center mb-5">
-              Daarna regelt Speed Clinics automatisch:
+              Daarna regelt clŷniq automatisch:
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-lg mx-auto">
               {extraSteps.map((step, i) => (

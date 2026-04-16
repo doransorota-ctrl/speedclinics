@@ -1,5 +1,5 @@
 /**
- * Speed Clinics — UTM Parameter Capture & Storage
+ * clŷniq — UTM Parameter Capture & Storage
  *
  * Captures UTM parameters from URL on first visit,
  * stores in sessionStorage, and attaches to form submissions.

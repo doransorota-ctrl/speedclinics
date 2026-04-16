@@ -68,6 +68,11 @@ module.exports = {
           "Georgia",
           "serif",
         ],
+        logo: [
+          "Cormorant Garamond",
+          "Georgia",
+          "serif",
+        ],
       },
       animation: {
         "fade-in": "fadeIn 0.6s ease-out forwards",

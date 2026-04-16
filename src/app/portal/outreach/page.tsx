@@ -520,7 +520,7 @@ export default function OutreachPage() {
                 : "text-surface-500 hover:text-surface-700"
             }`}
           >
-            Speed Clinics
+            clŷniq
           </button>
           <button
             onClick={() => setCampaignType("website")}

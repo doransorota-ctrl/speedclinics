@@ -3,11 +3,11 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Plan een demo",
   description:
-    "Plan een gratis demo van 15 minuten en ontdek hoe Speed Clinics automatisch je gemiste oproepen opvangt via WhatsApp en afspraken inplant.",
+    "Plan een gratis demo van 15 minuten en ontdek hoe clŷniq automatisch je gemiste oproepen opvangt via WhatsApp en afspraken inplant.",
   openGraph: {
-    title: "Plan een demo — Speed Clinics",
+    title: "Plan een demo — clŷniq",
     description:
-      "Plan een gratis demo van 15 minuten en ontdek hoe Speed Clinics automatisch je gemiste oproepen opvangt via WhatsApp en afspraken inplant.",
+      "Plan een gratis demo van 15 minuten en ontdek hoe clŷniq automatisch je gemiste oproepen opvangt via WhatsApp en afspraken inplant.",
   },
 };
 

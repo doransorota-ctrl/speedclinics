@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Verwerkersovereenkomst — Speed Clinics",
+  title: "Verwerkersovereenkomst — clŷniq",
   robots: { index: false, follow: false },
 };
 
@@ -27,14 +27,14 @@ export default function VerwerkersovereenkomstPage() {
 
           <p>
             Deze verwerkersovereenkomst (&ldquo;Overeenkomst&rdquo;) maakt onderdeel uit van de Algemene Voorwaarden
-            tussen Speed Clinics (handelsnaam van Fryno, KvK 98018272) en de Klant, en regelt de verwerking van
-            persoonsgegevens door Speed Clinics als verwerker namens de Klant als verwerkingsverantwoordelijke.
+            tussen clŷniq (handelsnaam van Fryno, KvK 98018272) en de Klant, en regelt de verwerking van
+            persoonsgegevens door clŷniq als verwerker namens de Klant als verwerkingsverantwoordelijke.
           </p>
 
           <section>
             <h2 className="text-lg font-semibold text-surface-900 mt-8 mb-3">1. Definities</h2>
             <ul className="list-disc pl-5 space-y-1">
-              <li><strong>Verwerker:</strong> Speed Clinics (Fryno), die persoonsgegevens verwerkt in opdracht van de Verwerkingsverantwoordelijke</li>
+              <li><strong>Verwerker:</strong> clŷniq (Fryno), die persoonsgegevens verwerkt in opdracht van de Verwerkingsverantwoordelijke</li>
               <li><strong>Verwerkingsverantwoordelijke:</strong> de Klant (de vakman/ondernemer) die bepaalt welke gegevens worden verwerkt en voor welk doel</li>
               <li><strong>Betrokkenen:</strong> de natuurlijke personen (eindklanten/bellers) van wie persoonsgegevens worden verwerkt</li>
               <li><strong>Persoonsgegevens:</strong> alle gegevens die betrekking hebben op een geidentificeerde of identificeerbare natuurlijke persoon</li>
@@ -46,14 +46,14 @@ export default function VerwerkersovereenkomstPage() {
             <h2 className="text-lg font-semibold text-surface-900 mt-8 mb-3">2. Onderwerp en duur</h2>
             <p>
               Deze overeenkomst heeft betrekking op de verwerking van persoonsgegevens van eindklanten (bellers/leads)
-              door Speed Clinics ten behoeve van de dienstverlening aan de Klant. De overeenkomst is van kracht gedurende
+              door clŷniq ten behoeve van de dienstverlening aan de Klant. De overeenkomst is van kracht gedurende
               de looptijd van het abonnement en eindigt wanneer alle persoonsgegevens zijn verwijderd.
             </p>
           </section>
 
           <section>
             <h2 className="text-lg font-semibold text-surface-900 mt-8 mb-3">3. Aard en doel van de verwerking</h2>
-            <p>Speed Clinics verwerkt persoonsgegevens voor de volgende doeleinden:</p>
+            <p>clŷniq verwerkt persoonsgegevens voor de volgende doeleinden:</p>
             <ul className="list-disc pl-5 space-y-1">
               <li>Het automatisch opvangen van gemiste oproepen via WhatsApp</li>
               <li>Het kwalificeren van leads middels AI-gestuurde gesprekken</li>
@@ -86,7 +86,7 @@ export default function VerwerkersovereenkomstPage() {
 
           <section>
             <h2 className="text-lg font-semibold text-surface-900 mt-8 mb-3">6. Verplichtingen van de Verwerker</h2>
-            <p>Speed Clinics verplicht zich om:</p>
+            <p>clŷniq verplicht zich om:</p>
             <ul className="list-disc pl-5 space-y-1">
               <li>Persoonsgegevens uitsluitend te verwerken op basis van schriftelijke instructies van de Klant</li>
               <li>Passende technische en organisatorische maatregelen te treffen ter beveiliging van de gegevens</li>
@@ -100,7 +100,7 @@ export default function VerwerkersovereenkomstPage() {
           <section>
             <h2 className="text-lg font-semibold text-surface-900 mt-8 mb-3">7. Subverwerkers</h2>
             <p>
-              Speed Clinics maakt gebruik van de volgende subverwerkers voor het leveren van de dienst:
+              clŷniq maakt gebruik van de volgende subverwerkers voor het leveren van de dienst:
             </p>
             <div className="overflow-x-auto mt-4">
               <table className="min-w-full text-sm border border-surface-200">
@@ -168,7 +168,7 @@ export default function VerwerkersovereenkomstPage() {
             <h2 className="text-lg font-semibold text-surface-900 mt-8 mb-3">8. Doorgifte buiten de EER</h2>
             <p>
               Voor de doorgifte van persoonsgegevens naar landen buiten de Europese Economische Ruimte (EER) maakt
-              Speed Clinics gebruik van de Standard Contractual Clauses (SCCs) zoals goedgekeurd door de Europese
+              clŷniq gebruik van de Standard Contractual Clauses (SCCs) zoals goedgekeurd door de Europese
               Commissie (Uitvoeringsbesluit 2021/914/EU). Met elke subverwerker buiten de EER is een DPA met SCCs
               overeengekomen.
             </p>
@@ -181,14 +181,14 @@ export default function VerwerkersovereenkomstPage() {
               <li>Ervoor te zorgen dat de verwerking van persoonsgegevens een rechtmatige grondslag heeft</li>
               <li>Betrokkenen (eindklanten) te informeren dat geautomatiseerde WhatsApp-berichten verstuurd kunnen worden na een gemiste oproep</li>
               <li>Te voldoen aan het WhatsApp Business Beleid van Meta</li>
-              <li>Speed Clinics te voorzien van correcte en actuele instructies met betrekking tot de verwerking</li>
+              <li>clŷniq te voorzien van correcte en actuele instructies met betrekking tot de verwerking</li>
             </ul>
           </section>
 
           <section>
             <h2 className="text-lg font-semibold text-surface-900 mt-8 mb-3">10. Rechten van betrokkenen</h2>
             <p>
-              Speed Clinics ondersteunt de Klant bij het afhandelen van verzoeken van betrokkenen op grond van de AVG,
+              clŷniq ondersteunt de Klant bij het afhandelen van verzoeken van betrokkenen op grond van de AVG,
               waaronder het recht op inzage, rectificatie, verwijdering, beperking, dataportabiliteit en bezwaar.
             </p>
             <p>
@@ -199,7 +199,7 @@ export default function VerwerkersovereenkomstPage() {
 
           <section>
             <h2 className="text-lg font-semibold text-surface-900 mt-8 mb-3">11. Beveiliging</h2>
-            <p>Speed Clinics treft de volgende technische en organisatorische maatregelen:</p>
+            <p>clŷniq treft de volgende technische en organisatorische maatregelen:</p>
             <ul className="list-disc pl-5 space-y-1">
               <li>Versleuteling van data in transit (TLS/HTTPS) en opslag</li>
               <li>Toegangscontrole op basis van rollen (Row Level Security)</li>
@@ -214,7 +214,7 @@ export default function VerwerkersovereenkomstPage() {
           <section>
             <h2 className="text-lg font-semibold text-surface-900 mt-8 mb-3">12. Datalekken</h2>
             <p>
-              In het geval van een datalek dat betrekking heeft op persoonsgegevens, stelt Speed Clinics de Klant hiervan
+              In het geval van een datalek dat betrekking heeft op persoonsgegevens, stelt clŷniq de Klant hiervan
               onverwijld en uiterlijk binnen 48 uur op de hoogte. De melding bevat ten minste:
             </p>
             <ul className="list-disc pl-5 space-y-1">
@@ -229,7 +229,7 @@ export default function VerwerkersovereenkomstPage() {
             <h2 className="text-lg font-semibold text-surface-900 mt-8 mb-3">13. Audits</h2>
             <p>
               De Klant heeft het recht om audits uit te (laten) voeren om de naleving van deze overeenkomst te
-              controleren. Speed Clinics zal hieraan redelijke medewerking verlenen. Audits vinden plaats na voorafgaande
+              controleren. clŷniq zal hieraan redelijke medewerking verlenen. Audits vinden plaats na voorafgaande
               schriftelijke kennisgeving van ten minste 30 dagen.
             </p>
           </section>
@@ -237,7 +237,7 @@ export default function VerwerkersovereenkomstPage() {
           <section>
             <h2 className="text-lg font-semibold text-surface-900 mt-8 mb-3">14. Looptijd en beeindiging</h2>
             <p>
-              Deze overeenkomst is van kracht zolang Speed Clinics persoonsgegevens verwerkt namens de Klant. Na
+              Deze overeenkomst is van kracht zolang clŷniq persoonsgegevens verwerkt namens de Klant. Na
               beeindiging van het abonnement worden alle persoonsgegevens binnen 90 dagen verwijderd, tenzij opslag
               wettelijk verplicht is.
             </p>

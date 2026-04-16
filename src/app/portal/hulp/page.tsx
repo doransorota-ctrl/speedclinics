@@ -4,11 +4,11 @@ import { useBusiness } from "@/lib/hooks/useBusiness";
 
 const sections = [
   {
-    title: "Hoe werkt Speed Clinics?",
+    title: "Hoe werkt clŷniq?",
     items: [
       {
         q: "Wat gebeurt er als iemand mij belt?",
-        a: "Als je niet opneemt, stuurt Speed Clinics binnen 5 seconden een WhatsApp naar de beller. De AI voert het gesprek, stelt vragen over het probleem, en plant een afspraak in je agenda.",
+        a: "Als je niet opneemt, stuurt clŷniq binnen 5 seconden een WhatsApp naar de beller. De AI voert het gesprek, stelt vragen over het probleem, en plant een afspraak in je agenda.",
       },
       {
         q: "Wat doet de AI precies?",
@@ -42,11 +42,11 @@ const sections = [
     items: [
       {
         q: "Hoe koppel ik mijn agenda?",
-        a: "Ga naar Instellingen en klik op 'Koppel Google Agenda'. Je logt in met je Google account en geeft toestemming. Speed Clinics kan dan je beschikbaarheid checken en afspraken inplannen.",
+        a: "Ga naar Instellingen en klik op 'Koppel Google Agenda'. Je logt in met je Google account en geeft toestemming. clŷniq kan dan je beschikbaarheid checken en afspraken inplannen.",
       },
       {
-        q: "Kan Speed Clinics mijn afspraken zien?",
-        a: "Speed Clinics checkt alleen wanneer je vrij of bezet bent. We lezen geen details van bestaande afspraken.",
+        q: "Kan clŷniq mijn afspraken zien?",
+        a: "clŷniq checkt alleen wanneer je vrij of bezet bent. We lezen geen details van bestaande afspraken.",
       },
       {
         q: "Wat als ik geen Google Agenda heb?",
@@ -71,7 +71,7 @@ const sections = [
     title: "Abonnement & Betaling",
     items: [
       {
-        q: "Wat kost Speed Clinics?",
+        q: "Wat kost clŷniq?",
         a: "€79/maand excl. BTW. De eerste 14 dagen zijn gratis. Opzeggen kan altijd, zonder opzegtermijn.",
       },
       {
@@ -89,7 +89,7 @@ export default function HulpPage() {
     <div>
       <div className="mb-8">
         <h1 className="text-2xl font-bold text-surface-900">Hulp & Tips</h1>
-        <p className="text-surface-500 mt-1">Alles wat je moet weten over Speed Clinics.</p>
+        <p className="text-surface-500 mt-1">Alles wat je moet weten over clŷniq.</p>
       </div>
 
       {/* Quick info */}
@@ -97,7 +97,7 @@ export default function HulpPage() {
         <div className="bg-white rounded-xl border border-surface-200 p-5 mb-6">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-semibold text-surface-900">Je Speed Clinics nummer</p>
+              <p className="text-sm font-semibold text-surface-900">Je clŷniq nummer</p>
               <p className="text-lg font-mono text-surface-700 mt-0.5">{business.twilio_number}</p>
             </div>
             <button

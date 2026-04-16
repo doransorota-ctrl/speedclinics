@@ -24,7 +24,7 @@ export async function notifyOwnerNewLead(owner: OwnerData, lead: LeadData) {
 
   // WhatsApp notification (primary)
   const whatsappMessage = [
-    `🔔 Nieuwe patiënt via Speed Clinics`,
+    `🔔 Nieuwe patiënt via clŷniq`,
     ``,
     `Klant: ${lead.customerName}`,
     `Probleem: ${lead.problem}`,
@@ -95,7 +95,7 @@ export async function notifyOwnerAppointment(
   appointment: { date: string; time: string }
 ) {
   const msg = [
-    `📅 Consult geboekt via Speed Clinics`,
+    `📅 Consult geboekt via clŷniq`,
     ``,
     `Klant: ${lead.customerName}`,
     `Probleem: ${lead.problem}`,

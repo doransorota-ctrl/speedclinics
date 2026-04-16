@@ -51,11 +51,11 @@ function OwnerNotification() {
 
       <div className="bg-white border border-surface-100 shadow-sm shadow-black/5 rounded-2xl overflow-hidden">
         <div className="bg-accent-50 border-b border-accent-100 px-4 py-2.5 flex items-center gap-2">
-          <div className="w-6 h-6 rounded-full bg-surface-900 flex items-center justify-center">
-            <span className="text-white text-[8px] font-bold">SC</span>
+          <div className="w-6 h-6 rounded-full bg-brand-500 flex items-center justify-center">
+            <span className="text-white text-[7px] font-logo font-light">cŷ</span>
           </div>
           <span className="text-sm font-semibold text-accent-800">
-            Nieuwe patiënt via Speed Clinics
+            Nieuwe patiënt via clŷniq
           </span>
         </div>
 

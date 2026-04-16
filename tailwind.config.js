@@ -70,7 +70,6 @@ module.exports = {
         ],
         logo: [
           "Bodoni Moda",
-          "Didot",
           "Georgia",
           "serif",
         ],

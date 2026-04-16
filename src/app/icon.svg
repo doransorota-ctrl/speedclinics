@@ -4,10 +4,10 @@
     x="16"
     y="22"
     text-anchor="middle"
-    font-family="Georgia, serif"
+    font-family="Georgia, 'Times New Roman', serif"
     font-weight="300"
-    font-size="16"
+    font-size="15"
     fill="white"
     letter-spacing="0.5"
-  >cŷ</text>
+  >Cŷ</text>
 </svg>

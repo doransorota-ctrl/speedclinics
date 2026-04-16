@@ -13,7 +13,7 @@ export const nl = {
     cta: "Boek een demo",
     links: {
       howItWorks: "Hoe het werkt",
-      pricing: "Hoe het werkt",
+      pricing: "Reviews",
       demo: "Boek een demo",
     },
   },

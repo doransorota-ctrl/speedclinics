@@ -130,11 +130,11 @@ export function HeroAnimation() {
           <div
             className="absolute overflow-hidden"
             style={{
-              left: 14,
-              top: 13,
-              width: 252,
-              height: 534,
-              borderRadius: 24,
+              left: 20,
+              top: 18,
+              width: 240,
+              height: 524,
+              borderRadius: 34,
             }}
           >
             {/* Status bar */}

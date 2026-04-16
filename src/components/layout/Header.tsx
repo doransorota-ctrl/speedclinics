@@ -45,7 +45,7 @@ export function Header() {
               {nl.nav.links.howItWorks}
             </a>
             <a
-              href="#hoe-het-werkt"
+              href="#testimonials"
               className="text-sm text-surface-500 hover:text-surface-900 transition-colors"
             >
               {nl.nav.links.pricing}
@@ -101,7 +101,7 @@ export function Header() {
                 {nl.nav.links.howItWorks}
               </a>
               <a
-                href="#hoe-het-werkt"
+                href="#testimonials"
                 className="text-surface-500 hover:text-surface-900 text-sm py-1"
                 onClick={() => setMenuOpen(false)}
               >

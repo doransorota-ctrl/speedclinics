@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
 
-export const alt = "Clŷniq — Meer klanten, minder gedoe";
+export const alt = "Clŷniq — Meer patiënten, sterkere reputatie";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -11,7 +11,7 @@ export default async function Image() {
     (
       <div
         style={{
-          background: "linear-gradient(135deg, #0f172a 0%, #1e293b 100%)",
+          background: "#FDFBF7",
           width: "100%",
           height: "100%",
           display: "flex",
@@ -24,57 +24,43 @@ export default async function Image() {
         {/* Logo */}
         <div
           style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "16px",
-            marginBottom: "40px",
+            fontSize: "72px",
+            fontWeight: 300,
+            color: "#1A1816",
+            letterSpacing: "0.06em",
+            marginBottom: "32px",
+            fontFamily: "Georgia, serif",
           }}
         >
-          <div
-            style={{
-              width: "64px",
-              height: "64px",
-              borderRadius: "16px",
-              background: "#25a867",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <svg
-              width="40"
-              height="40"
-              viewBox="0 0 32 32"
-              fill="none"
-            >
-              <path
-                d="M17.5 4L8 18h7v10l9.5-14H17.5V4z"
-                fill="white"
-              />
-            </svg>
-          </div>
-          <span
-            style={{
-              fontSize: "48px",
-              fontWeight: 800,
-              color: "white",
-            }}
-          >
-            Clŷniq
-          </span>
+          Clŷniq
         </div>
 
         {/* Tagline */}
         <div
           style={{
-            fontSize: "32px",
-            color: "#94a3b8",
+            fontSize: "28px",
+            color: "#C9998A",
             textAlign: "center",
-            maxWidth: "800px",
-            lineHeight: 1.4,
+            maxWidth: "700px",
+            lineHeight: 1.5,
+            fontWeight: 400,
           }}
         >
-          Website + automatische leadopvolging via WhatsApp
+          Meer patiënten. Sterkere reputatie.
+        </div>
+
+        {/* Subtitle */}
+        <div
+          style={{
+            fontSize: "18px",
+            color: "#7A746E",
+            textAlign: "center",
+            maxWidth: "600px",
+            lineHeight: 1.6,
+            marginTop: "20px",
+          }}
+        >
+          AI-assistent voor cosmetische klinieken — converteert aanvragen, plant consulten en verzamelt reviews.
         </div>
 
         {/* Bottom bar */}
@@ -84,13 +70,13 @@ export default async function Image() {
             bottom: "40px",
             display: "flex",
             gap: "32px",
-            color: "#64748b",
-            fontSize: "20px",
+            color: "#A9A29B",
+            fontSize: "16px",
           }}
         >
-          <span>speedleads.nl</span>
-          <span>Vanaf €79/maand</span>
-          <span>14 dagen gratis</span>
+          <span>clyniq.nl</span>
+          <span>Op maat voor uw kliniek</span>
+          <span>Boek een demo</span>
         </div>
       </div>
     ),

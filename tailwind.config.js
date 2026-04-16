@@ -69,7 +69,8 @@ module.exports = {
           "serif",
         ],
         logo: [
-          "Cormorant Garamond",
+          "Bodoni Moda",
+          "Didot",
           "Georgia",
           "serif",
         ],

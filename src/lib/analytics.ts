@@ -1,5 +1,5 @@
 /**
- * clŷniq — Analytics & Tracking
+ * Clŷniq — Analytics & Tracking
  *
  * Event naming convention: snake_case
  * Format: {category}_{action}_{target}

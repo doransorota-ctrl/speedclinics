@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Probeer clŷniq — Klant belt. Jij bent bezig. Wij pakken het op.",
+  title: "Probeer Clŷniq — Klant belt. Jij bent bezig. Wij pakken het op.",
   description: "Bekijk de demo of probeer het zelf — bel het nummer en kijk wat er gebeurt. Gemiste oproep → WhatsApp → Afspraak. Automatisch.",
   openGraph: {
     title: "Klant belt. Jij bent bezig. Wij pakken het op.",

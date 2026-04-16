@@ -84,7 +84,7 @@ export default function UpgradePage() {
             </svg>
           </div>
           <h2 className="text-lg font-semibold text-surface-900">Je hebt al het Compleet pakket</h2>
-          <p className="text-sm text-surface-500 mt-1">Je hebt toegang tot alle functies van clŷniq.</p>
+          <p className="text-sm text-surface-500 mt-1">Je hebt toegang tot alle functies van Clŷniq.</p>
         </div>
       </div>
     );
@@ -158,19 +158,19 @@ export default function UpgradePage() {
     <div>
       <h1 className="text-2xl font-bold text-surface-900">Upgrade je pakket</h1>
       <p className="text-surface-500 mt-1">
-        Je hebt nu het {isSpeedLeads ? "clŷniq" : "Website"} pakket. Kies een upgrade.
+        Je hebt nu het {isSpeedLeads ? "Clŷniq" : "Website"} pakket. Kies een upgrade.
       </p>
 
       {error && <p className="text-sm text-red-600 mt-4">{error}</p>}
 
       <div className={`mt-6 grid grid-cols-1 ${isSpeedLeads || isWebsite ? "md:grid-cols-2" : ""} gap-4`}>
-        {/* clŷniq card — shown to website users */}
+        {/* Clŷniq card — shown to website users */}
         {isWebsite && (
           <div className="bg-white rounded-2xl border-2 border-brand-500 shadow-lg p-6 flex flex-col">
             <span className="inline-block bg-brand-500 text-white text-xs font-bold px-3 py-1 rounded-full w-fit mb-3">
               Populair
             </span>
-            <h3 className="text-lg font-bold text-surface-900">clŷniq</h3>
+            <h3 className="text-lg font-bold text-surface-900">Clŷniq</h3>
             <div className="mt-2">
               <span className="text-3xl font-bold text-surface-900">&euro;79</span>
               <span className="text-surface-500">/maand</span>
@@ -189,7 +189,7 @@ export default function UpgradePage() {
               disabled={upgrading}
               className="btn-primary w-full mt-5"
             >
-              {upgrading ? "Bezig..." : "Voeg clŷniq toe"}
+              {upgrading ? "Bezig..." : "Voeg Clŷniq toe"}
             </button>
           </div>
         )}
@@ -243,7 +243,7 @@ export default function UpgradePage() {
             excl. BTW {isSpeedLeads ? "· eenmalig + maandelijks" : "· vervangt je huidige €39/m"}
           </p>
           <ul className="mt-4 space-y-2 flex-1">
-            {["Alles van clŷniq", "Alles van Website Pakket", "Website + leadopvolging in \u00e9\u00e9n", "E\u00e9n factuur, geen gedoe"].map((f) => (
+            {["Alles van Clŷniq", "Alles van Website Pakket", "Website + leadopvolging in \u00e9\u00e9n", "E\u00e9n factuur, geen gedoe"].map((f) => (
               <li key={f} className="flex items-start gap-2 text-sm text-surface-600">
                 {FEATURE_CHECK}
                 {f}

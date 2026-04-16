@@ -30,7 +30,7 @@ export function leadNotificationHtml(data: LeadNotificationData): string {
 <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 560px; margin: 0 auto; padding: 24px; color: #1e293b;">
   <div style="text-align: center; margin-bottom: 24px;">
     <div style="display: inline-block; background: #25a867; color: white; font-weight: bold; padding: 8px 16px; border-radius: 8px; font-size: 18px;">
-      ⚡ clŷniq
+      ⚡ Clŷniq
     </div>
   </div>
 

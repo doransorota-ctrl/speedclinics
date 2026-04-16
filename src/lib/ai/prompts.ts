@@ -169,7 +169,7 @@ Veldregels:
 - Zet ALTIJD ###INFO### met JSON.`;
 }
 
-/** Sales mode prompt — AI sells clŷniq and books demos. */
+/** Sales mode prompt — AI sells Clŷniq and books demos. */
 export function salesConversationPrompt(
   availableSlots?: string[],
   gatheredInfo?: GatheredInfoContext,
@@ -211,7 +211,7 @@ export function salesConversationPrompt(
   const today = new Date().toLocaleDateString("nl-NL", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
   const todayISO = new Date().toISOString().split("T")[0];
 
-  return `Je bent Doran. Je appt met vakmensen over clŷniq. Doel: een kort belafspraakje inplannen.
+  return `Je bent Doran. Je appt met vakmensen over Clŷniq. Doel: een kort belafspraakje inplannen.
 
 TOON: Je bent een ondernemer die een maat appt, geen verkoper. Je typt snel, kort, op je telefoon.
 - Korte acks: "Top", "Ja klopt", "Helder", "Snap ik". Geen zinnen als "Wat goed dat je interesse hebt!"

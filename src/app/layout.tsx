@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
     default: nl.meta.title,
-    template: "%s — clŷniq",
+    template: "%s — Clŷniq",
   },
   description: nl.meta.description,
   openGraph: {
@@ -19,13 +19,13 @@ export const metadata: Metadata = {
     type: "website",
     locale: "nl_NL",
     url: BASE_URL,
-    siteName: "clŷniq",
+    siteName: "Clŷniq",
     images: [
       {
         url: "https://speedleads.nl/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "clŷniq — AI-receptie voor klinieken",
+        alt: "Clŷniq — AI-receptie voor klinieken",
       },
     ],
   },
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     "WhatsApp automatisering klinieken",
     "patiëntopvolging",
     "automatische afspraken kliniek",
-    "clŷniq",
+    "Clŷniq",
     "cosmetische behandelingen",
     "kliniek receptie AI",
     "Nederland",

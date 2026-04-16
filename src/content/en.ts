@@ -46,7 +46,7 @@ export const en = {
   demo: {
     headline: "Book a demo",
     subheadline:
-      "We'll show you how clŷniq works for your business in 15 minutes.",
+      "We'll show you how Clŷniq works for your business in 15 minutes.",
     cta: "Book my demo",
   },
 } as const;

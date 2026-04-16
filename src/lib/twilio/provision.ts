@@ -54,7 +54,7 @@ export async function buyTwilioNumber(friendlyName: string): Promise<{
 /**
  * Initiate a test call to verify call forwarding is working.
  * Calls the user's personal number — if they don't answer,
- * the call should forward to the shared clŷniq number.
+ * the call should forward to the shared Clŷniq number.
  */
 export async function initiateTestCall(userPhone: string, fromNumber?: string) {
   const caller = fromNumber || VOICE_NUMBER;

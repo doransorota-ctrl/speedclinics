@@ -517,7 +517,7 @@ export default function ProfilePage() {
 
           {/* What you get */}
           <div className="bg-white rounded-2xl border border-surface-100 shadow-sm shadow-black/5 p-6 mb-6">
-            <h3 className="text-sm font-semibold text-surface-900 mb-4">Wat u krijgt met clŷniq</h3>
+            <h3 className="text-sm font-semibold text-surface-900 mb-4">Wat u krijgt met Clŷniq</h3>
             <ul className="space-y-2.5">
               {[
                 "AI-chatbot die aanvragen 24/7 opvangt via WhatsApp",
@@ -594,7 +594,7 @@ export default function ProfilePage() {
               disabled={submitting || !(data.addressLine1.trim() && data.postalCode.trim() && data.city.trim())}
               className="btn-primary w-full mt-6 disabled:opacity-40"
             >
-              {submitting ? "Bezig..." : "Start met clŷniq"}
+              {submitting ? "Bezig..." : "Start met Clŷniq"}
             </button>
           </div>
 

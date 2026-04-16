@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export const metadata = {
   title: "Top, je hoort van ons!",
-  description: "We sturen je binnen een uur een WhatsApp om clŷniq in te stellen.",
+  description: "We sturen je binnen een uur een WhatsApp om Clŷniq in te stellen.",
   robots: { index: false, follow: false },
 };
 

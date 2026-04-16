@@ -44,7 +44,7 @@ function DemoPageInner() {
               Boek een demo
             </h1>
             <p className="mt-2 text-surface-500 max-w-lg">
-              Kies een moment dat u uitkomt. In 15 minuten laten wij zien wat clŷniq voor uw kliniek kan betekenen.
+              Kies een moment dat u uitkomt. In 15 minuten laten wij zien wat Clŷniq voor uw kliniek kan betekenen.
             </p>
           </div>
           <div className="flex flex-wrap gap-4">

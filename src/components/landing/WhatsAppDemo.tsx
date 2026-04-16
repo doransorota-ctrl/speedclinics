@@ -55,7 +55,7 @@ function OwnerNotification() {
             <span className="text-white text-[7px] font-logo font-light">cŷ</span>
           </div>
           <span className="text-sm font-semibold text-accent-800">
-            Nieuwe patiënt via clŷniq
+            Nieuwe patiënt via Clŷniq
           </span>
         </div>
 

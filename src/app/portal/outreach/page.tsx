@@ -520,7 +520,7 @@ export default function OutreachPage() {
                 : "text-surface-500 hover:text-surface-700"
             }`}
           >
-            clŷniq
+            Clŷniq
           </button>
           <button
             onClick={() => setCampaignType("website")}

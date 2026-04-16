@@ -34,7 +34,7 @@ function BetalenPageInner() {
             </h1>
             <p className="text-surface-500 mt-2">
               {status === "expired"
-                ? "Deze link is niet meer geldig. Vraag een nieuwe link aan bij clŷniq."
+                ? "Deze link is niet meer geldig. Vraag een nieuwe link aan bij Clŷniq."
                 : "Er ging iets mis bij het laden van de betaallink. Probeer het opnieuw of neem contact op."}
             </p>
           </div>
@@ -53,7 +53,7 @@ function BetalenPageInner() {
         {!token && !status && (
           <div>
             <h1 className="text-2xl font-bold text-surface-900">Ongeldige link</h1>
-            <p className="text-surface-500 mt-2">Deze link is niet geldig. Neem contact op met clŷniq.</p>
+            <p className="text-surface-500 mt-2">Deze link is niet geldig. Neem contact op met Clŷniq.</p>
           </div>
         )}
 

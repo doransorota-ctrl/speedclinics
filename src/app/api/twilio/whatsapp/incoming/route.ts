@@ -1051,7 +1051,7 @@ export async function POST(request: Request) {
               calToken.calendar_id || "primary",
               {
                 summary: (business as Record<string, unknown>).prompt_mode === "sales"
-                  ? `clŷniq Demo — ${info.customerName || "Klant"}`
+                  ? `Clŷniq Demo — ${info.customerName || "Klant"}`
                   : `${info.customerName || "Klant"} — ${info.problem || "Afspraak"}`,
                 description: ((business as Record<string, unknown>).prompt_mode === "sales"
                   ? [
@@ -1060,7 +1060,7 @@ export async function POST(request: Request) {
                       `Vakgebied: ${info.problem || ""}`,
                       `Gemiste oproepen: ${info.address || ""}`,
                       "",
-                      "clŷniq sales demo",
+                      "Clŷniq sales demo",
                     ]
                   : [
                       `Klant: ${info.customerName || "Onbekend"}`,
@@ -1070,7 +1070,7 @@ export async function POST(request: Request) {
                       info.address ? `Adres: ${info.address}` : "",
                       `Urgentie: ${info.urgency || "onbekend"}`,
                       "",
-                      "Aangemaakt door clŷniq",
+                      "Aangemaakt door Clŷniq",
                     ])
                   .filter(Boolean)
                   .join("\n"),
@@ -1109,7 +1109,7 @@ export async function POST(request: Request) {
       // Notify owner about the booked appointment
       if (business.phone) {
         const ownerMsg = [
-          `✅ Afspraak geboekt via clŷniq!`,
+          `✅ Afspraak geboekt via Clŷniq!`,
           ``,
           `Klant: ${info.customerName || "Onbekend"}`,
           `Telefoon: ${customerPhone}`,
@@ -1195,7 +1195,7 @@ export async function POST(request: Request) {
                 currentLead.google_event_id,
                 {
                   summary: isSales
-                    ? `clŷniq Demo — ${info.customerName}`
+                    ? `Clŷniq Demo — ${info.customerName}`
                     : `${info.customerName} — ${info.problem || "Afspraak"}`,
                 }
               );

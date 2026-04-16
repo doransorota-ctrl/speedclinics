@@ -1,6 +1,6 @@
-# clŷniq
+# Clŷniq
 
-clŷniq is een AI-receptie voor cosmetische klinieken in Nederland. Wanneer een patiënt buiten openingstijden contact opneemt, beantwoordt het systeem automatisch vragen over behandelingen via WhatsApp, adviseert de patiënt en plant consulten in. Op maat ingericht per kliniek.
+Clŷniq is een AI-receptie voor cosmetische klinieken in Nederland. Wanneer een patiënt buiten openingstijden contact opneemt, beantwoordt het systeem automatisch vragen over behandelingen via WhatsApp, adviseert de patiënt en plant consulten in. Op maat ingericht per kliniek.
 
 ## Tech Stack
 
@@ -130,6 +130,6 @@ Zie `.env.example` voor alle variabelen. Minimaal nodig voor development:
 
 Het systeem heeft twee modes (`business.prompt_mode`):
 - **service** — voor eindklanten van vakmensen (gemiste oproepen opvangen)
-- **sales** — voor Doran's eigen outreach (clŷniq verkopen aan vakmensen)
+- **sales** — voor Doran's eigen outreach (Clŷniq verkopen aan vakmensen)
 
 Sales mode heeft extra features: outreach pagina, bulk WhatsApp, lead flagging, handmatige gesprekken.

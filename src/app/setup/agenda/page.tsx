@@ -57,7 +57,7 @@ function AgendaPageInner() {
         {(status === "error" || status === "expired") && (
           <div>
             <h1 className="text-2xl font-bold text-surface-900">Link verlopen</h1>
-            <p className="text-surface-500 mt-2">Deze link is niet meer geldig. Vraag een nieuwe link aan bij clŷniq.</p>
+            <p className="text-surface-500 mt-2">Deze link is niet meer geldig. Vraag een nieuwe link aan bij Clŷniq.</p>
           </div>
         )}
 
@@ -87,7 +87,7 @@ function AgendaPageInner() {
             </div>
             <h1 className="text-2xl font-bold text-surface-900">Koppel je Google Agenda</h1>
             <p className="text-surface-500 mt-2 mb-6">
-              Hiermee kan clŷniq afspraken automatisch inplannen in jouw agenda.
+              Hiermee kan Clŷniq afspraken automatisch inplannen in jouw agenda.
             </p>
             <a
               href={`/api/setup/calendar/connect?t=${token}`}

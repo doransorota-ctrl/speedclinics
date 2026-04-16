@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Algemene Voorwaarden — clŷniq",
+  title: "Algemene Voorwaarden — Clŷniq",
 };
 
 export default function VoorwaardenPage() {
@@ -27,7 +27,7 @@ export default function VoorwaardenPage() {
           <section>
             <h2 className="text-lg font-semibold text-surface-900 mt-8 mb-3">Bedrijfsgegevens</h2>
             <p>
-              clŷniq is een handelsnaam van Fryno<br />
+              Clŷniq is een handelsnaam van Fryno<br />
               KVK-nummer: 98018272<br />
               E-mail: info@speedleads.nl
             </p>
@@ -36,8 +36,8 @@ export default function VoorwaardenPage() {
           <section>
             <h2 className="text-lg font-semibold text-surface-900 mt-8 mb-3">1. Definities</h2>
             <ul className="list-disc pl-5 space-y-1">
-              <li><strong>clŷniq:</strong> de dienstverlener, aanbieder van het clŷniq platform</li>
-              <li><strong>Klant:</strong> de ondernemer/vakman die gebruik maakt van clŷniq</li>
+              <li><strong>Clŷniq:</strong> de dienstverlener, aanbieder van het Clŷniq platform</li>
+              <li><strong>Klant:</strong> de ondernemer/vakman die gebruik maakt van Clŷniq</li>
               <li><strong>Dienst:</strong> het automatisch opvangen van gemiste oproepen via WhatsApp, leadkwalificatie, en agenda-integratie</li>
               <li><strong>Lead:</strong> een potentiële klant die contact opneemt via telefoon of WhatsApp</li>
             </ul>
@@ -46,7 +46,7 @@ export default function VoorwaardenPage() {
           <section>
             <h2 className="text-lg font-semibold text-surface-900 mt-8 mb-3">2. Toepasselijkheid</h2>
             <p>
-              Deze algemene voorwaarden zijn van toepassing op alle diensten van clŷniq. Door je aan te melden ga je akkoord met deze voorwaarden.
+              Deze algemene voorwaarden zijn van toepassing op alle diensten van Clŷniq. Door je aan te melden ga je akkoord met deze voorwaarden.
             </p>
             <p>
               Deze dienst is uitsluitend bedoeld voor ondernemers en bedrijven (handelend in de uitoefening van een beroep of bedrijf). Door je aan te melden verklaar je dat je handelt als ondernemer en niet als consument.
@@ -55,18 +55,18 @@ export default function VoorwaardenPage() {
 
           <section>
             <h2 className="text-lg font-semibold text-surface-900 mt-8 mb-3">3. Dienstverlening</h2>
-            <p>clŷniq biedt de volgende diensten aan:</p>
+            <p>Clŷniq biedt de volgende diensten aan:</p>
             <ul className="list-disc pl-5 space-y-1">
-              <li><strong>clŷniq (€79/maand excl. BTW):</strong> automatische leadopvolging via WhatsApp bij gemiste oproepen, leadkwalificatie, en optionele agenda-integratie</li>
+              <li><strong>Clŷniq (€79/maand excl. BTW):</strong> automatische leadopvolging via WhatsApp bij gemiste oproepen, leadkwalificatie, en optionele agenda-integratie</li>
               <li><strong>Website Pakket (€500 eenmalig + €39/maand excl. BTW):</strong> professionele website inclusief hosting en beheer</li>
-              <li><strong>Compleet Pakket (€500 eenmalig + €118/maand excl. BTW):</strong> website + clŷniq gecombineerd</li>
+              <li><strong>Compleet Pakket (€500 eenmalig + €118/maand excl. BTW):</strong> website + Clŷniq gecombineerd</li>
             </ul>
           </section>
 
           <section>
             <h2 className="text-lg font-semibold text-surface-900 mt-8 mb-3">4. Proefperiode</h2>
             <p>
-              Het clŷniq en Compleet pakket bevatten een gratis proefperiode van 14 dagen. Na afloop wordt het abonnement automatisch verlengd tegen het geldende tarief, tenzij je voor het einde van de proefperiode opzegt.
+              Het Clŷniq en Compleet pakket bevatten een gratis proefperiode van 14 dagen. Na afloop wordt het abonnement automatisch verlengd tegen het geldende tarief, tenzij je voor het einde van de proefperiode opzegt.
             </p>
           </section>
 
@@ -104,7 +104,7 @@ export default function VoorwaardenPage() {
           <section>
             <h2 className="text-lg font-semibold text-surface-900 mt-8 mb-3">9. Aansprakelijkheid</h2>
             <ul className="list-disc pl-5 space-y-1">
-              <li>clŷniq is niet aansprakelijk voor indirecte schade, gevolgschade, of gederfde winst</li>
+              <li>Clŷniq is niet aansprakelijk voor indirecte schade, gevolgschade, of gederfde winst</li>
               <li>Onze aansprakelijkheid is beperkt tot het bedrag dat je in de afgelopen 3 maanden aan ons hebt betaald</li>
               <li>Wij zijn niet aansprakelijk voor het gedrag van de AI-assistent in gesprekken met leads</li>
             </ul>
@@ -113,7 +113,7 @@ export default function VoorwaardenPage() {
           <section>
             <h2 className="text-lg font-semibold text-surface-900 mt-8 mb-3">10. Intellectueel eigendom</h2>
             <p>
-              Alle intellectuele eigendomsrechten op het clŷniq platform, inclusief software, design, en content, berusten bij clŷniq. De website die wij voor je bouwen wordt jouw eigendom na volledige betaling.
+              Alle intellectuele eigendomsrechten op het Clŷniq platform, inclusief software, design, en content, berusten bij Clŷniq. De website die wij voor je bouwen wordt jouw eigendom na volledige betaling.
             </p>
           </section>
 
@@ -131,14 +131,14 @@ export default function VoorwaardenPage() {
           <section>
             <h2 className="text-lg font-semibold text-surface-900 mt-8 mb-3">12. WhatsApp Business Beleid</h2>
             <p>
-              clŷniq verstuurt namens jouw bedrijf automatische WhatsApp-berichten naar bellers. Als klant ben je verantwoordelijk voor het informeren van je eigen klanten dat zij geautomatiseerde berichten kunnen ontvangen na een gemiste oproep. Je dient te voldoen aan het WhatsApp Business Beleid van Meta. Bellers kunnen zich uitschrijven door &ldquo;STOP&rdquo; te sturen.
+              Clŷniq verstuurt namens jouw bedrijf automatische WhatsApp-berichten naar bellers. Als klant ben je verantwoordelijk voor het informeren van je eigen klanten dat zij geautomatiseerde berichten kunnen ontvangen na een gemiste oproep. Je dient te voldoen aan het WhatsApp Business Beleid van Meta. Bellers kunnen zich uitschrijven door &ldquo;STOP&rdquo; te sturen.
             </p>
           </section>
 
           <section>
             <h2 className="text-lg font-semibold text-surface-900 mt-8 mb-3">13. Gegevensverwerking</h2>
             <p>
-              clŷniq verwerkt persoonsgegevens van jouw klanten (leads) namens jou als verwerker. De voorwaarden voor deze verwerking zijn vastgelegd in onze{" "}
+              Clŷniq verwerkt persoonsgegevens van jouw klanten (leads) namens jou als verwerker. De voorwaarden voor deze verwerking zijn vastgelegd in onze{" "}
               <Link href="/verwerkersovereenkomst" className="text-brand-600 hover:text-brand-700 font-medium">
                 verwerkersovereenkomst
               </Link>

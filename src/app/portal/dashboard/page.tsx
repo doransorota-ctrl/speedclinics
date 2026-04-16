@@ -118,7 +118,7 @@ export default function DashboardPage() {
         {greeting()}{firstName ? `, ${firstName}` : ""}
       </h1>
       <p className="text-surface-500 mt-1">
-        {hasSpeedLeads ? "Welkom bij je clŷniq dashboard." : "Welkom bij je portaal."}
+        {hasSpeedLeads ? "Welkom bij je Clŷniq dashboard." : "Welkom bij je portaal."}
       </p>
 
       {/* Call forwarding toggle */}
@@ -379,7 +379,7 @@ export default function DashboardPage() {
         </div>
       )}
 
-      {/* clŷniq stats */}
+      {/* Clŷniq stats */}
       {hasSpeedLeads && (
         <>
           {statsError && (
@@ -431,7 +431,7 @@ export default function DashboardPage() {
         </>
       )}
 
-      {/* Setup checklist (clŷniq only) */}
+      {/* Setup checklist (Clŷniq only) */}
       {hasSpeedLeads && !allDone && (
         <div className="mt-6 bg-white rounded-xl border border-surface-200 overflow-hidden">
           <div className="px-6 py-4 border-b border-surface-100 flex items-center justify-between">
@@ -477,7 +477,7 @@ export default function DashboardPage() {
         <div className="mt-6 bg-brand-50 border border-brand-200 rounded-xl p-5 flex items-center justify-between gap-4 flex-wrap">
           <div>
             <h3 className="text-sm font-semibold text-brand-800">Meer leads opvangen?</h3>
-            <p className="text-xs text-brand-700">Voeg clŷniq toe en mis nooit meer een oproep of WhatsApp-bericht.</p>
+            <p className="text-xs text-brand-700">Voeg Clŷniq toe en mis nooit meer een oproep of WhatsApp-bericht.</p>
           </div>
           <Link href="/portal/upgrade" className="btn-secondary text-sm">
             Bekijk opties →
@@ -488,7 +488,7 @@ export default function DashboardPage() {
         <div className="mt-6 bg-brand-50 border border-brand-200 rounded-xl p-5 flex items-center justify-between gap-4 flex-wrap">
           <div>
             <h3 className="text-sm font-semibold text-brand-800">Professionele website nodig?</h3>
-            <p className="text-xs text-brand-700">Combineer clŷniq met een op maat gemaakte website.</p>
+            <p className="text-xs text-brand-700">Combineer Clŷniq met een op maat gemaakte website.</p>
           </div>
           <Link href="/portal/upgrade" className="btn-secondary text-sm">
             Bekijk opties →

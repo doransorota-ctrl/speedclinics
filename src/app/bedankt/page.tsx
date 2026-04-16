@@ -186,7 +186,7 @@ export default function BedanktPage() {
           <h3 className="font-bold text-brand-800">{thankYou.referral.headline}</h3>
           <p className="text-sm text-brand-700 mt-1">{thankYou.referral.description}</p>
           <a
-            href={`https://wa.me/?text=${encodeURIComponent("Hoi! Ik gebruik clŷniq om mijn klanten automatisch op te vangen via WhatsApp. Werkt top! Kijk even op speedleads.nl")}`}
+            href={`https://wa.me/?text=${encodeURIComponent("Hoi! Ik gebruik Clŷniq om mijn klanten automatisch op te vangen via WhatsApp. Werkt top! Kijk even op speedleads.nl")}`}
             target="_blank"
             rel="noopener noreferrer"
             className="btn-whatsapp mt-4 inline-flex"

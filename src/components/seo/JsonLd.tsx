@@ -2,7 +2,7 @@ export function OrganizationJsonLd() {
   const data = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    name: "clŷniq",
+    name: "Clŷniq",
     url: "https://speedleads.nl",
     description:
       "AI-receptie voor cosmetische klinieken. Automatische patiëntopvolging via WhatsApp, 24/7.",
@@ -11,7 +11,7 @@ export function OrganizationJsonLd() {
     offers: [
       {
         "@type": "Offer",
-        name: "clŷniq",
+        name: "Clŷniq",
         priceCurrency: "EUR",
         description:
           "AI-receptie en automatische patiëntopvolging via WhatsApp voor klinieken.",
@@ -19,7 +19,7 @@ export function OrganizationJsonLd() {
     ],
     provider: {
       "@type": "Organization",
-      name: "clŷniq",
+      name: "Clŷniq",
       url: "https://speedleads.nl",
       logo: "https://speedleads.nl/opengraph-image",
       contactPoint: {
@@ -46,12 +46,12 @@ export function ServiceJsonLd() {
   const data = {
     "@context": "https://schema.org",
     "@type": "Service",
-    name: "clŷniq — AI-receptie voor cosmetische klinieken",
+    name: "Clŷniq — AI-receptie voor cosmetische klinieken",
     description:
-      "clŷniq is een AI-gestuurde receptie die aanvragen buiten openingstijden automatisch opvangt via WhatsApp, vragen over behandelingen beantwoordt en consulten inplant. Op maat voor cosmetische klinieken in Nederland.",
+      "Clŷniq is een AI-gestuurde receptie die aanvragen buiten openingstijden automatisch opvangt via WhatsApp, vragen over behandelingen beantwoordt en consulten inplant. Op maat voor cosmetische klinieken in Nederland.",
     provider: {
       "@type": "Organization",
-      name: "clŷniq",
+      name: "Clŷniq",
     },
     areaServed: {
       "@type": "Country",
@@ -72,7 +72,7 @@ export function HowToJsonLd() {
   const data = {
     "@context": "https://schema.org",
     "@type": "HowTo",
-    name: "Hoe werkt clŷniq?",
+    name: "Hoe werkt Clŷniq?",
     description: "In 4 stappen mist uw kliniek nooit meer een patiënt",
     step: [
       {
@@ -84,7 +84,7 @@ export function HowToJsonLd() {
       {
         "@type": "HowToStep",
         position: 2,
-        name: "clŷniq reageert direct",
+        name: "Clŷniq reageert direct",
         text: "Binnen 10 seconden ontvangt de patiënt een persoonlijk WhatsApp-bericht namens uw kliniek.",
       },
       {

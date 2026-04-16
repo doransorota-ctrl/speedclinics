@@ -15,9 +15,9 @@ type Invoice = {
 };
 
 const PLAN_NAMES: Record<string, string> = {
-  "speed-leads": "clŷniq",
-  website: "clŷniq",
-  compleet: "clŷniq",
+  "speed-leads": "Clŷniq",
+  website: "Clŷniq",
+  compleet: "Clŷniq",
 };
 
 const PLAN_PRICES: Record<string, string> = {
@@ -111,7 +111,7 @@ function BillingContent() {
     );
   }
 
-  const planName = PLAN_NAMES[business?.plan || "speed-leads"] || "clŷniq";
+  const planName = PLAN_NAMES[business?.plan || "speed-leads"] || "Clŷniq";
   const planPrice = PLAN_PRICES[business?.plan || "speed-leads"] || "€79";
   const daysLeft = trialDaysLeft();
   const progress = trialProgress();
@@ -199,7 +199,7 @@ function BillingContent() {
               <div className="mt-5 p-4 bg-amber-50 border border-amber-200 rounded-xl">
                 <p className="text-sm font-medium text-amber-800">Uw proefperiode is verlopen.</p>
                 <p className="text-xs text-amber-700 mt-1">
-                  Activeer uw abonnement om clŷniq te blijven gebruiken.
+                  Activeer uw abonnement om Clŷniq te blijven gebruiken.
                 </p>
               </div>
             )}

@@ -51,7 +51,7 @@ const STEPS = [
       },
       {
         sender: "ai",
-        text: "Uw consult is ingepland voor donderdag 10:00 bij Kliniek Esthétique. U ontvangt nog een bevestiging. Tot dan!",
+        text: "Ingepland! Donderdag 10:00 bij Kliniek Esthétique. U ontvangt morgenavond nog een herinnering. Tot dan!",
       },
     ],
   },

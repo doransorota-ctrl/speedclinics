@@ -176,17 +176,17 @@ export const nl = {
       },
       {
         sender: "ai",
-        text: "Donderdag om 10:00 is beschikbaar. Mag ik uw naam en telefoonnummer noteren voor de bevestiging?",
+        text: "Donderdag om 10:00 is beschikbaar. Mag ik uw naam noteren?",
         time: "20:34",
       },
       {
         sender: "customer",
-        text: "Sophie van den Berg, 06 12345678",
+        text: "Sophie van den Berg",
         time: "20:35",
       },
       {
         sender: "ai",
-        text: "Uw consult is ingepland voor donderdag 10:00 bij Kliniek Esthétique. U ontvangt nog een bevestiging. Tot dan!",
+        text: "Ingepland! Donderdag 10:00 bij Kliniek Esthétique. U ontvangt morgenavond nog een herinnering. Tot dan, Sophie!",
         time: "20:35",
       },
     ],
@@ -194,8 +194,8 @@ export const nl = {
     ownerDetails: [
       { label: "Patiënt", value: "Sophie van den Berg" },
       { label: "Interesse", value: "Lip fillers — hyaluronzuur" },
-      { label: "Telefoon", value: "06 12345678" },
       { label: "Consult", value: "Donderdag 10:00" },
+      { label: "Bron", value: "WhatsApp" },
       { label: "Status", value: "Ingepland" },
     ],
     cta: "Boek een demo",

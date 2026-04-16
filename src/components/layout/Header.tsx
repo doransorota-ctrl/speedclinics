@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { nl } from "@/content/nl";
 import { events } from "@/lib/analytics";
+import { Logo } from "@/components/ui/Logo";
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -27,13 +28,8 @@ export function Header() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-surface-900 flex items-center justify-center">
-              <span className="text-white text-xs font-bold tracking-tight">SC</span>
-            </div>
-            <span className="text-base font-semibold text-surface-900 tracking-tight">
-              {nl.nav.logo}
-            </span>
+          <Link href="/">
+            <Logo size="sm" />
           </Link>
 
           {/* Desktop nav */}

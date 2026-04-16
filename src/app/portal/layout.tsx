@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { OnboardingBanner } from "@/components/portal/OnboardingBanner";
 import { useBusiness } from "@/lib/hooks/useBusiness";
+import { Logo } from "@/components/ui/Logo";
 
 type PlanType = "speed-leads" | "website" | "compleet";
 
@@ -129,11 +130,8 @@ export default function PortalLayout({
           </button>
 
           {/* Logo (mobile) */}
-          <Link href="/portal/dashboard" className="lg:hidden flex items-center gap-2">
-            <div className="w-6 h-6 rounded-md bg-surface-900 flex items-center justify-center">
-              <span className="text-white text-[8px] font-bold tracking-tight">SC</span>
-            </div>
-            <span className="text-sm font-semibold text-surface-900 tracking-tight">Speed Clinics</span>
+          <Link href="/portal/dashboard" className="lg:hidden">
+            <Logo size="sm" />
           </Link>
 
           {/* Right side */}
@@ -167,11 +165,8 @@ export default function PortalLayout({
       <aside className="hidden lg:flex flex-col fixed top-0 left-0 bottom-0 w-60 bg-white border-r border-surface-100 z-50">
         {/* Sidebar logo */}
         <div className="h-14 flex items-center px-5 border-b border-surface-100">
-          <Link href="/portal/dashboard" className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-surface-900 flex items-center justify-center">
-              <span className="text-white text-xs font-bold tracking-tight">SC</span>
-            </div>
-            <span className="text-base font-semibold text-surface-900 tracking-tight">Speed Clinics</span>
+          <Link href="/portal/dashboard">
+            <Logo size="sm" />
           </Link>
         </div>
 
@@ -243,7 +238,7 @@ export default function PortalLayout({
           />
           <aside className="lg:hidden fixed top-0 left-0 bottom-0 w-64 bg-white z-50 shadow-xl">
             <div className="h-14 flex items-center justify-between px-4 border-b border-surface-200">
-              <span className="text-base font-semibold text-surface-900 tracking-tight">Speed Clinics</span>
+              <Logo size="sm" />
               <button onClick={() => setMobileMenuOpen(false)} className="p-2 text-surface-500">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />

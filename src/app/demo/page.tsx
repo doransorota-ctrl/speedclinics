@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useSearchParams, useRouter } from "next/navigation";
 import { events } from "@/lib/analytics";
 import { getTrackingData } from "@/lib/utm";
+import { Logo } from "@/components/ui/Logo";
 
 function DemoPageInner() {
   const searchParams = useSearchParams();
@@ -60,12 +61,7 @@ function DemoPageInner() {
             </svg>
             Terug
           </Link>
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-surface-900 flex items-center justify-center">
-              <span className="text-white text-[9px] font-bold tracking-tight">SC</span>
-            </div>
-            <span className="text-base font-semibold text-surface-900 tracking-tight">Speed Clinics</span>
-          </div>
+          <Logo size="sm" />
         </div>
 
         {/* Title */}

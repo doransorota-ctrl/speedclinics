@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { events } from "@/lib/analytics";
 import { getTrackingData } from "@/lib/utm";
+import { Logo } from "@/components/ui/Logo";
 
 const GUIDE_TOPICS = [
   "Waarom 40% van de patiënten buiten openingstijden contact opneemt",
@@ -66,12 +67,7 @@ export default function GidsPage() {
             </svg>
             Terug
           </Link>
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-surface-900 flex items-center justify-center">
-              <span className="text-white text-[9px] font-bold tracking-tight">SC</span>
-            </div>
-            <span className="text-base font-semibold text-surface-900 tracking-tight">Speed Clinics</span>
-          </div>
+          <Logo size="sm" />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start pb-16">

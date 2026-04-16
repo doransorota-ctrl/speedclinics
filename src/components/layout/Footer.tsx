@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { nl } from "@/content/nl";
+import { Logo } from "@/components/ui/Logo";
 
 export function Footer() {
   return (
@@ -8,11 +9,8 @@ export function Footer() {
         <div className="flex flex-col sm:flex-row justify-between items-start gap-6">
           {/* Brand */}
           <div>
-            <div className="flex items-center gap-2.5 mb-2">
-              <div className="w-7 h-7 rounded-lg bg-white/10 flex items-center justify-center">
-                <span className="text-white text-[9px] font-bold tracking-tight">SC</span>
-              </div>
-              <span className="text-sm font-semibold text-white tracking-tight">Speed Clinics</span>
+            <div className="mb-2">
+              <Logo size="sm" />
             </div>
             <p className="text-surface-400 text-sm">{nl.footer.tagline}</p>
           </div>

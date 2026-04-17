@@ -10,23 +10,23 @@ export function Footer() {
           {/* Brand */}
           <div>
             <div className="mb-2">
-              <Logo size="sm" />
+              <Logo size="sm" className="!text-white" />
             </div>
             <p className="text-surface-400 text-sm">{nl.footer.tagline}</p>
           </div>
 
           {/* Links */}
           <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm">
-            <Link href="/privacy" className="hover:text-white transition-colors">
+            <Link href="/privacy" className="text-surface-400 hover:text-white transition-colors">
               {nl.footer.links.privacy}
             </Link>
-            <Link href="/voorwaarden" className="hover:text-white transition-colors">
+            <Link href="/voorwaarden" className="text-surface-400 hover:text-white transition-colors">
               {nl.footer.links.terms}
             </Link>
-            <Link href="/verwerkersovereenkomst" className="hover:text-white transition-colors">
+            <Link href="/verwerkersovereenkomst" className="text-surface-400 hover:text-white transition-colors">
               {nl.footer.links.dpa}
             </Link>
-            <Link href="/contact" className="hover:text-white transition-colors">
+            <Link href="/contact" className="text-surface-400 hover:text-white transition-colors">
               {nl.footer.links.contact}
             </Link>
           </div>

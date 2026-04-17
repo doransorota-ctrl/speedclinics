@@ -26,8 +26,8 @@ export function Hero() {
             className="flex-1 text-center lg:text-left"
           >
             <h1 className="font-normal font-serif text-surface-900 leading-[1.15] italic">
-              <span className="block text-3xl sm:text-5xl lg:text-7xl">{hero.headline}</span>
-              <span className="block text-3xl sm:text-5xl lg:text-7xl text-brand-500">{hero.headlineAccent}</span>
+              <span className="block text-[1.6rem] sm:text-5xl lg:text-7xl whitespace-nowrap">{hero.headline}</span>
+              <span className="block text-[1.6rem] sm:text-5xl lg:text-7xl text-brand-500 whitespace-nowrap">{hero.headlineAccent}</span>
             </h1>
 
             <p className="mt-4 sm:mt-8 text-base sm:text-xl text-surface-500 max-w-2xl mx-auto lg:mx-0">

@@ -117,7 +117,7 @@ export function HeroAnimation() {
   return (
     <div className="pt-2">
       {/* iPhone 17 Pro frame with live chat content */}
-      <div className="relative mx-auto w-full" style={{ aspectRatio: "200 / 400" }}>
+      <div className="relative mx-auto" style={{ width: "100%", maxWidth: 300, aspectRatio: "200 / 400" }}>
         {/* SVG phone frame — sits on top, scales with container */}
         <Iphone17Pro
           width={200}

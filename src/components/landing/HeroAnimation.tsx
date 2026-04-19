@@ -6,6 +6,7 @@ import { Iphone17Pro } from "@/components/ui/iphone-17-pro";
 const STEPS = [
   {
     label: "Patiënt neemt contact op",
+    duration: 2500,
     messages: [
       {
         sender: "customer",
@@ -15,6 +16,7 @@ const STEPS = [
   },
   {
     label: "AI beantwoordt direct",
+    duration: 5000,
     messages: [
       {
         sender: "customer",
@@ -36,6 +38,7 @@ const STEPS = [
   },
   {
     label: "Consult geboekt",
+    duration: 5000,
     messages: [
       {
         sender: "customer",
@@ -51,12 +54,27 @@ const STEPS = [
       },
       {
         sender: "ai",
-        text: "Ingepland! Donderdag 10:00 bij Kliniek Esthétique. U ontvangt morgenavond nog een herinnering. Tot dan!",
+        text: "Ingepland! Donderdag 10:00 bij Kliniek Esthétique. Tot dan!",
+      },
+    ],
+  },
+  {
+    label: "Herinnering verstuurd",
+    duration: 3000,
+    messages: [
+      {
+        sender: "ai",
+        text: "Goedenavond! Even een herinnering: morgen om 10:00 heeft u een consult bij Kliniek Esthétique. Tot morgen!",
+      },
+      {
+        sender: "customer",
+        text: "Bedankt! Ik ben er klaar voor 😊",
       },
     ],
   },
   {
     label: "Review verzameld",
+    duration: 4000,
     messages: [
       {
         sender: "ai",
@@ -68,11 +86,11 @@ const STEPS = [
       },
       {
         sender: "ai",
-        text: "Wat fijn om te horen! Wilt u uw ervaring delen? Klik hier voor een Google review: g.co/r/esthetique",
+        text: "Wat fijn! Wilt u uw ervaring delen? Klik hier voor een Google review: g.co/r/esthetique",
       },
       {
         sender: "customer",
-        text: "Zeker, gedaan! ⭐⭐⭐⭐⭐",
+        text: "Gedaan! ⭐⭐⭐⭐⭐",
       },
     ],
   },
@@ -84,12 +102,12 @@ export function HeroAnimation() {
   const chatRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const timer = setInterval(() => {
+    const timer = setTimeout(() => {
       setActiveStep((prev) => (prev + 1) % STEPS.length);
       setVisibleMessages(0);
-    }, 5000);
-    return () => clearInterval(timer);
-  }, []);
+    }, STEPS[activeStep].duration);
+    return () => clearTimeout(timer);
+  }, [activeStep]);
 
   useEffect(() => {
     const step = STEPS[activeStep];

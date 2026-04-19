@@ -930,7 +930,7 @@ export async function POST(request: Request) {
     await new Promise((r) => setTimeout(r, typingDelay));
 
     // Send AI reply via WhatsApp (from the business's dedicated pool number)
-    const sentMsg = await sendWhatsApp(customerPhone, reply, business.whatsapp_personal ? business.twilio_number : undefined);
+    const sentMsg = await sendWhatsApp(customerPhone, reply, business.twilio_number || undefined);
 
     // Save AI message with Twilio SID for delivery tracking
     await supabase.from("messages").insert({

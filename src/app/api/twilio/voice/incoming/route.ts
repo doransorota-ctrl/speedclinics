@@ -25,7 +25,7 @@ export async function POST(request: Request) {
 
     const VOICE_NUMBER = process.env.TWILIO_VOICE_NUMBER;
     const supabase = createServiceRoleClient();
-    const selectFields = "id, name, trade, service_area, speed_leads_active, is_active, phone, email, status, subscription_ends_at, prompt_mode";
+    const selectFields = "id, name, trade, service_area, speed_leads_active, is_active, phone, email, status, subscription_ends_at, prompt_mode, twilio_number";
 
     let business = null;
 
@@ -256,13 +256,14 @@ export async function POST(request: Request) {
 
       (async () => {
           const SALES_TEMPLATE = process.env.TEMPLATE_SALES_GREETING;
+          const businessWhatsApp = business.twilio_number || undefined;
           try {
             if (isSalesMode && SALES_TEMPLATE) {
-              await sendNamedTemplate(from, SALES_TEMPLATE, {});
+              await sendNamedTemplate(from, SALES_TEMPLATE, {}, businessWhatsApp);
             } else if (!isSalesMode && TEMPLATES.MISSED_CALL_GREETING) {
-              await sendNamedTemplate(from, TEMPLATES.MISSED_CALL_GREETING, { "1": business.name });
+              await sendNamedTemplate(from, TEMPLATES.MISSED_CALL_GREETING, { "1": business.name }, businessWhatsApp);
             } else {
-              await sendWhatsApp(from, greeting);
+              await sendWhatsApp(from, greeting, businessWhatsApp);
             }
           } catch (err) {
             console.error("[Voice] Failed to send WhatsApp greeting:", err);

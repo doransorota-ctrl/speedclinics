@@ -1,5 +1,7 @@
-import { chat, type ChatMessage } from "./client";
+import { chat, chatWithTools, type ChatMessage } from "./client";
 import { conversationPrompt, greetingPrompt, salesConversationPrompt, salesGreetingPrompt } from "./prompts";
+import { CLINIC_TOOLS } from "./tools";
+import { executeTool } from "./tool-executor";
 
 export type ConversationState =
   | "greeting"
@@ -10,10 +12,10 @@ export type ConversationState =
 
 export interface GatheredInfo {
   customerName?: string;
-  problem?: string;        // behandelinteresse (lip fillers, botox, etc.)
-  problemDetails?: string; // aanvullende details
-  address?: string;        // niet meer actief gevraagd voor klinieken
-  urgency?: "laag" | "gemiddeld" | "hoog" | "spoed"; // niet meer actief gevraagd
+  problem?: string;
+  problemDetails?: string;
+  address?: string;
+  urgency?: "laag" | "gemiddeld" | "hoog" | "spoed";
   appointmentStart?: string;
   appointmentEnd?: string;
   conversationEnded?: boolean;
@@ -28,29 +30,40 @@ interface BusinessContext {
 
 interface ConversationContext {
   business: BusinessContext;
+  businessId: string;
   state: ConversationState;
   messages: ChatMessage[];
   gatheredInfo: GatheredInfo;
   availableSlots?: string[];
   promptMode?: "service" | "sales";
-  treatmentContext?: string; // vector search results from website
+  treatmentContext?: string;
+  customerPhone?: string;
+  conversationSummary?: string;
 }
 
 /**
- * Generate the next AI response.
- * Single AI call returns both the WhatsApp reply and extracted info.
+ * Generate the next AI response using tool calling.
  */
 export async function generateResponse(
   ctx: ConversationContext,
   customerMessage: string
 ): Promise<{ reply: string; newState: ConversationState; info: GatheredInfo }> {
-  // Add customer message to history
   const messages: ChatMessage[] = [
     ...ctx.messages,
     { role: "user", content: customerMessage },
   ];
 
-  const systemPrompt = ctx.promptMode === "sales"
+  // Inject conversation summary if available
+  if (ctx.conversationSummary && messages.length > 2) {
+    messages.unshift({
+      role: "assistant",
+      content: `[Samenvatting eerdere berichten: ${ctx.conversationSummary}]`,
+    });
+  }
+
+  const isSales = ctx.promptMode === "sales";
+
+  const systemPrompt = isSales
     ? salesConversationPrompt(ctx.availableSlots, ctx.gatheredInfo)
     : conversationPrompt(ctx.business, ctx.availableSlots, ctx.gatheredInfo, ctx.treatmentContext);
 
@@ -59,20 +72,31 @@ export async function generateResponse(
     ...messages,
   ];
 
-  const rawReply = await chat(aiMessages, {
-    temperature: 0.4,
-    maxTokens: 400,
-  });
+  let rawReply: string;
 
-  // Parse reply and info from the single response
+  if (isSales) {
+    // Sales mode: no tools, just regular chat
+    rawReply = await chat(aiMessages, { temperature: 0.4, maxTokens: 400 });
+  } else {
+    // Clinic mode: use tool calling
+    rawReply = await chatWithTools(
+      aiMessages,
+      CLINIC_TOOLS,
+      async (name: string, argsJson: string) => {
+        const args = JSON.parse(argsJson);
+        return executeTool(name, args, ctx.businessId, ctx.customerPhone);
+      },
+      { temperature: 0.4, maxTokens: 400 },
+    );
+  }
+
+  // Parse reply and info
   const { reply, info } = parseReplyAndInfo(rawReply, ctx.gatheredInfo);
 
-  // State tracking based on gathered info
+  // State tracking
   let newState: ConversationState = ctx.state;
 
-  // For clinic mode: only need behandelinteresse (problem) to start scheduling
-  // For sales mode: need trade (problem) and interest confirmation (address)
-  const hasEnoughToSchedule = ctx.promptMode === "sales"
+  const hasEnoughToSchedule = isSales
     ? !!(info.problem && info.address)
     : !!info.problem;
 
@@ -82,7 +106,6 @@ export async function generateResponse(
     newState = "scheduling";
   }
 
-  // Confirmed: ONLY when AI explicitly set appointment times in the JSON
   if (
     info.appointmentStart &&
     info.appointmentEnd &&
@@ -91,16 +114,8 @@ export async function generateResponse(
     newState = "confirmed";
   }
 
-  // Ended: check structured field first, text pattern as fallback
   if (newState !== "confirmed") {
-    const replyLower = reply.toLowerCase();
     if (info.conversationEnded === true) {
-      newState = "ended";
-    } else if (
-      replyLower.includes("bieden wij helaas niet aan") ||
-      replyLower.includes("geen probleem") ||
-      replyLower.includes("neem gerust contact op")
-    ) {
       newState = "ended";
     }
   }
@@ -191,4 +206,27 @@ export async function generateGreeting(
   );
 
   return reply.split("###INFO###")[0].trim().replace(/^[""\u201C\u201D]|[""\u201C\u201D]$/g, "");
+}
+
+/** Summarize a conversation to save tokens */
+export async function summarizeConversation(messages: ChatMessage[]): Promise<string> {
+  if (messages.length < 8) return "";
+
+  const conversationText = messages
+    .slice(0, -6) // Keep last 6 messages intact
+    .map((m) => `${m.role === "user" ? "Patiënt" : "Receptie"}: ${m.content}`)
+    .join("\n");
+
+  const summary = await chat(
+    [
+      {
+        role: "system",
+        content: "Vat dit gesprek samen in max 3 zinnen. Bewaar: naam patiënt, behandelinteresse, afspraakstatus, en belangrijke vragen.",
+      },
+      { role: "user", content: conversationText },
+    ],
+    { temperature: 0.2, maxTokens: 150 },
+  );
+
+  return summary.trim();
 }

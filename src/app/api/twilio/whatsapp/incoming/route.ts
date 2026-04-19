@@ -837,12 +837,14 @@ export async function POST(request: Request) {
           trade: business.trade,
           serviceArea: business.service_area ?? undefined,
         },
+        businessId: lead.business_id,
         state,
         messages,
         gatheredInfo: ctx?.gathered_info ?? {},
         availableSlots,
         promptMode,
         treatmentContext,
+        customerPhone,
       },
       combinedBody
     );
@@ -906,11 +908,13 @@ export async function POST(request: Request) {
                   trade: business.trade,
                   serviceArea: business.service_area ?? undefined,
                 },
+                businessId: lead.business_id,
                 state,
                 messages,
                 gatheredInfo: ctx?.gathered_info ?? {},
                 availableSlots: [slotContext],
-                promptMode: (business as Record<string, unknown>).prompt_mode as "service" | "sales" | undefined,
+                promptMode,
+                customerPhone,
               },
               combinedBody
             );

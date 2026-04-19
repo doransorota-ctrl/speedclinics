@@ -5,11 +5,11 @@ function getOpenAI() {
   return new OpenAI({ apiKey: process.env.AI_API_KEY });
 }
 
-/** Search for relevant treatment info from the website chunks using vector similarity */
+/** Search for relevant treatment info using hybrid search (vector + full-text) */
 export async function searchTreatmentInfo(
   businessId: string,
   query: string,
-  limit = 3
+  limit = 5
 ): Promise<string> {
   try {
     // 1. Embed the query
@@ -19,35 +19,55 @@ export async function searchTreatmentInfo(
     });
     const queryEmbedding = embeddingRes.data[0].embedding;
 
-    // 2. Search for similar chunks via Supabase RPC
+    // 2. Hybrid search via Supabase RPC
     const supabase = createServiceRoleClient();
-    const { data, error } = await supabase.rpc("match_website_chunks", {
+    const { data, error } = await supabase.rpc("match_website_chunks_hybrid", {
       query_embedding: JSON.stringify(queryEmbedding),
+      query_text: query,
       p_business_id: businessId,
       match_count: limit,
     });
 
     if (error) {
-      console.error("[Search] RPC error:", error);
-      return "";
+      console.error("[Search] Hybrid RPC error, falling back to vector-only:", error);
+      // Fallback to original vector-only search
+      return vectorOnlySearch(businessId, queryEmbedding, limit);
     }
 
     if (!data || data.length === 0) {
       return "";
     }
 
-    // 3. Format results as context for the AI prompt
-    const results = data
-      .filter((r: { similarity: number }) => r.similarity > 0.3) // Only relevant results
+    // 3. Format results
+    return data
+      .filter((r: { similarity: number }) => r.similarity > 0.01)
       .map((r: { title: string; content: string }) => {
         const title = r.title ? `[${r.title}]` : "";
         return `${title}\n${r.content}`;
       })
       .join("\n\n---\n\n");
-
-    return results;
   } catch (err) {
     console.error("[Search] Error:", err);
     return "";
   }
+}
+
+/** Fallback: vector-only search if hybrid fails */
+async function vectorOnlySearch(businessId: string, embedding: number[], limit: number): Promise<string> {
+  const supabase = createServiceRoleClient();
+  const { data } = await supabase.rpc("match_website_chunks", {
+    query_embedding: JSON.stringify(embedding),
+    p_business_id: businessId,
+    match_count: limit,
+  });
+
+  if (!data || data.length === 0) return "";
+
+  return data
+    .filter((r: { similarity: number }) => r.similarity > 0.3)
+    .map((r: { title: string; content: string }) => {
+      const title = r.title ? `[${r.title}]` : "";
+      return `${title}\n${r.content}`;
+    })
+    .join("\n\n---\n\n");
 }

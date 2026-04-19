@@ -18,12 +18,10 @@ async function fetchPage(url: string): Promise<{ title: string; content: string 
   const html = await res.text();
   const $ = cheerio.load(html);
 
-  // Remove non-content elements
   $("script, style, nav, footer, header, iframe, noscript, svg, [role=navigation]").remove();
 
   const title = $("title").text().trim() || $("h1").first().text().trim() || url;
 
-  // Extract meaningful text
   const content = $("main, article, .content, [role=main], body")
     .first()
     .text()
@@ -37,7 +35,8 @@ async function fetchPage(url: string): Promise<{ title: string; content: string 
 function findInternalLinks(html: string, baseUrl: string): string[] {
   const $ = cheerio.load(html);
   const base = new URL(baseUrl);
-  const links = new Set<string>();
+  const seen: Record<string, boolean> = {};
+  const links: string[] = [];
 
   $("a[href]").each((_, el) => {
     try {
@@ -45,46 +44,70 @@ function findInternalLinks(html: string, baseUrl: string): string[] {
       if (!href) return;
       const resolved = new URL(href, baseUrl);
       if (resolved.hostname === base.hostname && !resolved.hash) {
-        // Clean URL — no query params, no fragments
         resolved.search = "";
-        links.add(resolved.toString());
+        const clean = resolved.toString();
+        if (!seen[clean]) {
+          seen[clean] = true;
+          links.push(clean);
+        }
       }
     } catch {
-      // Invalid URL, skip
+      // Invalid URL
     }
   });
 
-  const arr: string[] = [];
-  links.forEach((l) => arr.push(l));
-  return arr;
+  return links;
 }
 
-/** Split text into chunks of roughly maxChars characters, splitting on sentence boundaries */
-export function chunkText(text: string, maxChars = 500): string[] {
-  if (text.length <= maxChars) return [text];
+/** Detect section type from URL path and content */
+function detectSectionType(url: string, content: string): string {
+  const path = new URL(url).pathname.toLowerCase();
+  if (path.includes("tarieven") || path.includes("prijs") || path.includes("pricing")) return "pricing";
+  if (path.includes("behandeling") || path.includes("treatment")) return "treatment";
+  if (path.includes("faq") || path.includes("veelgestelde")) return "faq";
+  if (path.includes("contact")) return "contact";
+  if (path.includes("team") || path.includes("over-ons") || path.includes("about")) return "about";
+  if (content.includes("€") && content.includes(",-")) return "pricing";
+  return "general";
+}
+
+/** Detect treatment name from URL path */
+function detectTreatmentName(url: string): string | null {
+  const path = new URL(url).pathname.toLowerCase();
+  const treatmentMatch = path.match(/behandelingen?\/([\w-]+)/);
+  if (treatmentMatch) {
+    return treatmentMatch[1].replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+  }
+  return null;
+}
+
+/** Split text into chunks with overlap, splitting on sentence boundaries */
+export function chunkText(text: string, maxChars = 2000, overlapChars = 200): string[] {
+  if (text.length <= maxChars) return text.length > 50 ? [text] : [];
 
   const sentences = text.match(/[^.!?]+[.!?]+/g) || [text];
   const chunks: string[] = [];
   let current = "";
+  let overlapBuffer = "";
 
   for (const sentence of sentences) {
     if (current.length + sentence.length > maxChars && current.length > 0) {
       chunks.push(current.trim());
-      current = "";
+      overlapBuffer = current.slice(-overlapChars);
+      current = overlapBuffer;
     }
     current += sentence;
   }
 
-  if (current.trim()) chunks.push(current.trim());
+  if (current.trim().length > 50) chunks.push(current.trim());
 
-  return chunks.filter((c) => c.length > 30); // Skip tiny fragments
+  return chunks;
 }
 
-/** Generate embeddings for text chunks using OpenAI */
+/** Generate embeddings for text chunks */
 async function embedTexts(texts: string[]): Promise<number[][]> {
   if (texts.length === 0) return [];
 
-  // Batch in groups of 100 (OpenAI limit)
   const embeddings: number[][] = [];
   for (let i = 0; i < texts.length; i += 100) {
     const batch = texts.slice(i, i + 100);
@@ -98,14 +121,13 @@ async function embedTexts(texts: string[]): Promise<number[][]> {
   return embeddings;
 }
 
-/** Scrape a website, chunk the content, embed it, and store in Supabase */
+/** Scrape a website, chunk, embed, and store with metadata */
 export async function indexWebsite(
   businessId: string,
   websiteUrl: string
 ): Promise<{ pages: number; chunks: number }> {
   const supabase = createServiceRoleClient();
 
-  // 1. Fetch the main page to discover links
   const mainRes = await fetch(websiteUrl, {
     headers: { "User-Agent": "ClyniqBot/1.0" },
     signal: AbortSignal.timeout(15000),
@@ -113,11 +135,9 @@ export async function indexWebsite(
   const mainHtml = await mainRes.text();
   const allLinks = findInternalLinks(mainHtml, websiteUrl);
 
-  // Include the main URL + discovered links (max 30 pages)
   const urls = [websiteUrl, ...allLinks].slice(0, 30);
   const uniqueUrls = urls.filter((url, i) => urls.indexOf(url) === i);
 
-  // 2. Fetch all pages
   const pages: { url: string; title: string; content: string }[] = [];
   for (const url of uniqueUrls) {
     try {
@@ -130,16 +150,19 @@ export async function indexWebsite(
     }
   }
 
-  // 3. Chunk all pages
-  const allChunks: { url: string; title: string; content: string; chunkIndex: number }[] = [];
+  const allChunks: { url: string; title: string; content: string; chunkIndex: number; sectionType: string; treatmentName: string | null }[] = [];
   for (const page of pages) {
     const chunks = chunkText(page.content);
+    const sectionType = detectSectionType(page.url, page.content);
+    const treatmentName = detectTreatmentName(page.url);
     chunks.forEach((content, i) => {
       allChunks.push({
         url: page.url,
         title: page.title,
         content,
         chunkIndex: i,
+        sectionType,
+        treatmentName,
       });
     });
   }
@@ -148,16 +171,10 @@ export async function indexWebsite(
     return { pages: 0, chunks: 0 };
   }
 
-  // 4. Generate embeddings
   const embeddings = await embedTexts(allChunks.map((c) => c.content));
 
-  // 5. Delete old chunks for this business
-  await supabase
-    .from("website_chunks")
-    .delete()
-    .eq("business_id", businessId);
+  await supabase.from("website_chunks").delete().eq("business_id", businessId);
 
-  // 6. Insert new chunks with embeddings
   const rows = allChunks.map((chunk, i) => ({
     business_id: businessId,
     url: chunk.url,
@@ -165,9 +182,10 @@ export async function indexWebsite(
     content: chunk.content,
     embedding: JSON.stringify(embeddings[i]),
     chunk_index: chunk.chunkIndex,
+    section_type: chunk.sectionType,
+    treatment_name: chunk.treatmentName,
   }));
 
-  // Insert in batches of 50
   for (let i = 0; i < rows.length; i += 50) {
     const batch = rows.slice(i, i + 50);
     const { error } = await supabase.from("website_chunks").insert(batch);

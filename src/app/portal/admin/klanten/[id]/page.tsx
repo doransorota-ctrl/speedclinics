@@ -72,6 +72,8 @@ export default function KlantDetailPage() {
   const [websiteUrl, setWebsiteUrl] = useState("");
   const [savingUrl, setSavingUrl] = useState(false);
   const [urlSaved, setUrlSaved] = useState(false);
+  const [scraping, setScraping] = useState(false);
+  const [scrapeResult, setScrapeResult] = useState("");
 
   // Number management
   const [assigningNumber, setAssigningNumber] = useState(false);
@@ -499,6 +501,43 @@ export default function KlantDetailPage() {
                   >
                     {urlSaved ? "Opgeslagen!" : savingUrl ? "Opslaan..." : "Opslaan"}
                   </button>
+                </div>
+
+                {/* Scrape button */}
+                <div className="mt-4 pt-4 border-t border-surface-100">
+                  <label className="input-label">AI Kennisbank</label>
+                  <p className="text-xs text-surface-500 mb-2">
+                    Scrape de website zodat de AI behandelingen, prijzen en FAQ kent.
+                  </p>
+                  <button
+                    onClick={async () => {
+                      if (!websiteUrl) return;
+                      setScraping(true);
+                      setScrapeResult("");
+                      try {
+                        const res = await fetch(`/api/admin/klanten/${id}/scrape`, { method: "POST" });
+                        const data = await res.json();
+                        if (data.ok) {
+                          setScrapeResult(`${data.pages} pagina's, ${data.chunks} chunks geïndexeerd`);
+                        } else {
+                          setScrapeResult(`Fout: ${data.error}`);
+                        }
+                      } catch {
+                        setScrapeResult("Netwerkfout");
+                      } finally {
+                        setScraping(false);
+                      }
+                    }}
+                    disabled={scraping || !websiteUrl}
+                    className="btn-secondary text-sm px-4 py-2 disabled:opacity-50"
+                  >
+                    {scraping ? "Scrapen..." : "Website scrapen voor AI"}
+                  </button>
+                  {scrapeResult && (
+                    <p className={`text-xs mt-2 ${scrapeResult.startsWith("Fout") ? "text-red-600" : "text-green-600"}`}>
+                      {scrapeResult}
+                    </p>
+                  )}
                 </div>
               </div>
             </div>

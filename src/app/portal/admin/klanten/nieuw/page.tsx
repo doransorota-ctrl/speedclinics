@@ -5,8 +5,8 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 const TRADE_OPTIONS = [
-  "Loodgieter",
-  "Elektricien",
+  "Cosmetische kliniek",
+  "Huidkliniek",
   "Schilder",
   "Dakdekker",
   "Timmerman",

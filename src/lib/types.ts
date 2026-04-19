@@ -43,6 +43,7 @@ export interface Business {
   google_review_link: string | null;
   whatsapp_profile_picture_handle: string | null;
   demo_followup_message: string | null;
+  treatment_info: string | null;
 
   // Timestamps
   created_at: string;

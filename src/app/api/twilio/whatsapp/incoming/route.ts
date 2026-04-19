@@ -8,6 +8,7 @@ import { createCalendarEvent, deleteCalendarEvent, updateCalendarEvent, refreshA
 import type { ChatMessage } from "@/lib/ai/client";
 import { isRateLimited } from "@/lib/rate-limit";
 import { notifyOwnerManualMessage } from "@/lib/notifications/owner";
+import { searchTreatmentInfo } from "@/lib/ai/search";
 
 /** Detect if a message mentions a specific day. Returns a Date or null. */
 function detectRequestedDay(message: string): Date | null {
@@ -665,7 +666,7 @@ export async function POST(request: Request) {
     // Get business info
     const { data: business } = await supabase
       .from("businesses")
-      .select("name, trade, service_area, phone, email, available_hours, slot_duration_minutes, max_appointments_per_day, status, subscription_ends_at, speed_leads_active, twilio_number, whatsapp_personal, prompt_mode, demo_followup_message")
+      .select("name, trade, service_area, phone, email, available_hours, slot_duration_minutes, max_appointments_per_day, status, subscription_ends_at, speed_leads_active, twilio_number, whatsapp_personal, prompt_mode, demo_followup_message, treatment_info")
       .eq("id", lead.business_id)
       .single();
 
@@ -813,6 +814,21 @@ export async function POST(request: Request) {
       ? pendingMsgs.map((m) => m.body).join("\n")
       : body;
 
+    // Fetch treatment context from vector search (if available)
+    let treatmentContext = "";
+    const promptMode = (business as Record<string, unknown>).prompt_mode as "service" | "sales" | undefined;
+    if (promptMode !== "sales") {
+      try {
+        treatmentContext = await searchTreatmentInfo(lead.business_id, combinedBody);
+      } catch (err) {
+        console.warn("[WhatsApp] Vector search failed, using treatment_info fallback:", err);
+      }
+      // Fallback to treatment_info text field if no vector results
+      if (!treatmentContext && (business as Record<string, unknown>).treatment_info) {
+        treatmentContext = String((business as Record<string, unknown>).treatment_info);
+      }
+    }
+
     // Generate AI response
     let { reply, newState, info } = await generateResponse(
       {
@@ -825,7 +841,8 @@ export async function POST(request: Request) {
         messages,
         gatheredInfo: ctx?.gathered_info ?? {},
         availableSlots,
-        promptMode: (business as Record<string, unknown>).prompt_mode as "service" | "sales" | undefined,
+        promptMode,
+        treatmentContext,
       },
       combinedBody
     );

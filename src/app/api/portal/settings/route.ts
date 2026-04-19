@@ -13,7 +13,7 @@ export async function GET() {
 
     const { data: business, error } = await supabase
       .from("businesses")
-      .select("id, name, trade, service_area, phone, plan, status, calendar_type, onboarding_step, onboarding_completed_at, forwarding_confirmed, speed_leads_active, available_hours, slot_duration_minutes, max_appointments_per_day, google_review_link, twilio_number, whatsapp_profile_picture_handle, website_url")
+      .select("id, name, trade, service_area, phone, plan, status, calendar_type, onboarding_step, onboarding_completed_at, forwarding_confirmed, speed_leads_active, available_hours, slot_duration_minutes, max_appointments_per_day, google_review_link, twilio_number, whatsapp_profile_picture_handle, website_url, treatment_info")
       .eq("owner_id", user.id)
       .single();
 
@@ -41,7 +41,7 @@ export async function PATCH(request: Request) {
     }
 
     const body = await request.json();
-    const allowedFields = ["name", "trade", "service_area", "phone", "available_hours", "slot_duration_minutes", "max_appointments_per_day", "google_review_link", "speed_leads_active"];
+    const allowedFields = ["name", "trade", "service_area", "phone", "available_hours", "slot_duration_minutes", "max_appointments_per_day", "google_review_link", "speed_leads_active", "treatment_info", "website_url"];
     const update: Record<string, unknown> = {};
 
     for (const field of allowedFields) {

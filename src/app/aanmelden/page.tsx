@@ -92,10 +92,10 @@ export default function AanmeldenPage() {
   const mobileProof = (
     <div className="bg-surface-50 rounded-xl p-3 flex items-center gap-3">
       <span className="inline-flex bg-brand-50 text-brand-700 text-xs font-semibold px-2.5 py-0.5 rounded-full whitespace-nowrap">
-        +3 klussen/week
+        +8 consulten/week
       </span>
       <p className="text-sm text-surface-600 leading-snug">
-        &ldquo;Nu krijgen ze meteen een WhatsApp en staan er al afspraken&rdquo; — Marco V., Loodgieter
+        &ldquo;Patiënten krijgen direct antwoord en consulten staan automatisch in de agenda&rdquo; — Dr. Lisa v.d. Berg
       </p>
     </div>
   );

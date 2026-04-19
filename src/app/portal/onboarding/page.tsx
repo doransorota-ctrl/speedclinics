@@ -253,7 +253,7 @@ export default function OnboardingPage() {
               <input
                 type="text"
                 className="input-field"
-                placeholder="Jansen Loodgieters"
+                placeholder="Kliniek Esthétique"
                 value={businessName}
                 onChange={(e) => setBusinessName(e.target.value)}
               />
@@ -263,7 +263,7 @@ export default function OnboardingPage() {
               <input
                 type="text"
                 className="input-field"
-                placeholder="Loodgieter"
+                placeholder="Cosmetische kliniek"
                 value={trade}
                 onChange={(e) => setTrade(e.target.value)}
               />

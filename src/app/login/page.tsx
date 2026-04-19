@@ -103,8 +103,8 @@ function LoginContent() {
       rightPanel={<SocialProofPanel step="auth" />}
       mobileProof={
         <div className="bg-surface-50 rounded-xl p-3 flex items-center gap-3">
-          <span className="inline-flex bg-brand-50 text-brand-700 text-xs font-semibold px-2.5 py-1 rounded-full">+3 klussen/week</span>
-          <p className="text-xs text-surface-600">&#34;Nu krijgen ze meteen een WhatsApp en staan er al afspraken&#34; — Marco V., Loodgieter</p>
+          <span className="inline-flex bg-brand-50 text-brand-700 text-xs font-semibold px-2.5 py-1 rounded-full">+8 consulten/week</span>
+          <p className="text-xs text-surface-600">&#34;Patiënten krijgen direct antwoord en staan er de volgende ochtend al consulten in de agenda&#34; — Dr. Lisa v.d. Berg</p>
         </div>
       }
     >

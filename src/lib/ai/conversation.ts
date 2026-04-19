@@ -10,10 +10,10 @@ export type ConversationState =
 
 export interface GatheredInfo {
   customerName?: string;
-  problem?: string;
-  problemDetails?: string;
-  address?: string;
-  urgency?: "laag" | "gemiddeld" | "hoog" | "spoed";
+  problem?: string;        // behandelinteresse (lip fillers, botox, etc.)
+  problemDetails?: string; // aanvullende details
+  address?: string;        // niet meer actief gevraagd voor klinieken
+  urgency?: "laag" | "gemiddeld" | "hoog" | "spoed"; // niet meer actief gevraagd
   appointmentStart?: string;
   appointmentEnd?: string;
   conversationEnded?: boolean;
@@ -33,6 +33,7 @@ interface ConversationContext {
   gatheredInfo: GatheredInfo;
   availableSlots?: string[];
   promptMode?: "service" | "sales";
+  treatmentContext?: string; // vector search results from website
 }
 
 /**
@@ -51,7 +52,7 @@ export async function generateResponse(
 
   const systemPrompt = ctx.promptMode === "sales"
     ? salesConversationPrompt(ctx.availableSlots, ctx.gatheredInfo)
-    : conversationPrompt(ctx.business, ctx.availableSlots, ctx.gatheredInfo);
+    : conversationPrompt(ctx.business, ctx.availableSlots, ctx.gatheredInfo, ctx.treatmentContext);
 
   const aiMessages: ChatMessage[] = [
     { role: "system", content: systemPrompt },
@@ -68,10 +69,12 @@ export async function generateResponse(
 
   // State tracking based on gathered info
   let newState: ConversationState = ctx.state;
-  // Sales mode doesn't use urgency — only needs trade (problem) and missed calls (address)
+
+  // For clinic mode: only need behandelinteresse (problem) to start scheduling
+  // For sales mode: need trade (problem) and interest confirmation (address)
   const hasEnoughToSchedule = ctx.promptMode === "sales"
     ? !!(info.problem && info.address)
-    : !!(info.problem && info.address && info.urgency);
+    : !!info.problem;
 
   if (ctx.state === "greeting") {
     newState = "qualifying";
@@ -89,16 +92,14 @@ export async function generateResponse(
   }
 
   // Ended: check structured field first, text pattern as fallback
-  // Never override "confirmed" — a fresh appointment booking takes priority
   if (newState !== "confirmed") {
     const replyLower = reply.toLowerCase();
     if (info.conversationEnded === true) {
       newState = "ended";
     } else if (
-      replyLower.includes("buiten wat wij doen") ||
-      replyLower.includes("kunnen we je helaas niet") ||
-      replyLower.includes("geen probleem. mocht je later") ||
-      replyLower.includes("snap ik. mocht het ooit")
+      replyLower.includes("bieden wij helaas niet aan") ||
+      replyLower.includes("geen probleem") ||
+      replyLower.includes("neem gerust contact op")
     ) {
       newState = "ended";
     }
@@ -109,10 +110,6 @@ export async function generateResponse(
 
 /**
  * Parse the AI response to extract the WhatsApp reply and structured info.
- * Expected format:
- *   Some WhatsApp message here
- *   ###INFO###
- *   {"customerName":"...","problem":"...","address":"...","urgency":"..."}
  */
 function parseReplyAndInfo(
   rawReply: string,
@@ -126,7 +123,6 @@ function parseReplyAndInfo(
   const info = { ...existingInfo };
 
   const parts = rawReply.split("###INFO###");
-  // Remove surrounding quotes that the AI sometimes adds (any combo of quote types)
   let reply = parts[0].trim();
   const quoteChars = ['"', '\u201c', '\u201d', "'", '\u2018', '\u2019', '`'];
   while (reply.length > 2 && quoteChars.includes(reply[0]) && quoteChars.includes(reply[reply.length - 1])) {
@@ -142,7 +138,6 @@ function parseReplyAndInfo(
 
       const parsed = JSON.parse(jsonStr);
 
-      // Only update fields that have actual values (non-empty strings)
       if (parsed.customerName) info.customerName = cap(parsed.customerName, 100);
       if (parsed.problem) info.problem = cap(parsed.problem, 500);
       if (parsed.problemDetails) info.problemDetails = parsed.problemDetails;
@@ -150,7 +145,6 @@ function parseReplyAndInfo(
       if (parsed.urgency && ["laag", "gemiddeld", "hoog", "spoed"].includes(parsed.urgency)) {
         info.urgency = parsed.urgency;
       }
-      // Strip Z/timezone suffix — times must be local (Europe/Amsterdam)
       const ISO_RE = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}$/;
       if (parsed.appointmentStart) {
         const stripped = stripTimezone(String(parsed.appointmentStart));
@@ -171,16 +165,11 @@ function parseReplyAndInfo(
   return { reply, info };
 }
 
-/** Strip Z suffix or timezone offset from ISO datetime strings.
- * "2026-03-23T10:00:00Z" → "2026-03-23T10:00:00"
- * "2026-03-23T10:00:00+01:00" → "2026-03-23T10:00:00"
- * "2026-03-23T10:00:00.000Z" → "2026-03-23T10:00:00"
- */
 function stripTimezone(dt: string): string {
   return dt.replace(/(\.\d+)?([Zz]|[+-]\d{2}:\d{2})$/, "");
 }
 
-/** Generate the initial greeting message (no customer input yet). */
+/** Generate the initial greeting message */
 export async function generateGreeting(
   business: BusinessContext,
   promptMode?: "service" | "sales"
@@ -195,7 +184,7 @@ export async function generateGreeting(
       {
         role: "user",
         content:
-          "[De klant heeft gebeld maar kreeg geen gehoor. Stuur een eerste WhatsApp-bericht.]",
+          "[De patiënt heeft contact opgenomen. Stuur een eerste WhatsApp-bericht.]",
       },
     ],
     { temperature: 0.3, maxTokens: 200 }

@@ -929,10 +929,6 @@ export async function POST(request: Request) {
       }
     }
 
-    // ─── Typing delay: simulate human response time ───
-    const typingDelay = Math.max(1500, Math.min(4000, reply.length * 20));
-    await new Promise((r) => setTimeout(r, typingDelay));
-
     // Send AI reply via WhatsApp (from the business's dedicated pool number)
     const sentMsg = await sendWhatsApp(customerPhone, reply, business.twilio_number || undefined);
 

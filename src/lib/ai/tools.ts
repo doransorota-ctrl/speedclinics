@@ -30,11 +30,11 @@ export const CLINIC_TOOLS = [
           description: "Datum in YYYY-MM-DD formaat"
         },
         preferred_time: {
-          type: "string",
-          description: "Gewenste tijd in HH:MM formaat, of 'ochtend', 'middag', 'avond'. Optioneel."
+          type: ["string", "null"],
+          description: "Gewenste tijd in HH:MM formaat, of 'ochtend', 'middag', 'avond'. Null als geen voorkeur."
         },
       },
-      required: ["preferred_date"],
+      required: ["preferred_date", "preferred_time"],
       additionalProperties: false,
     },
     strict: true,
@@ -63,10 +63,10 @@ export const CLINIC_TOOLS = [
     parameters: {
       type: "object",
       properties: {
-        patient_name: { type: "string", description: "Naam van de patiënt" },
+        patient_name: { type: ["string", "null"], description: "Naam van de patiënt. Null als onbekend." },
         patient_phone: { type: "string", description: "Telefoonnummer van de patiënt" },
       },
-      required: ["patient_phone"],
+      required: ["patient_name", "patient_phone"],
       additionalProperties: false,
     },
     strict: true,
@@ -79,9 +79,9 @@ export const CLINIC_TOOLS = [
       type: "object",
       properties: {
         appointment_id: { type: "string", description: "ID van de afspraak" },
-        reason: { type: "string", description: "Reden van annulering" },
+        reason: { type: ["string", "null"], description: "Reden van annulering. Null als geen reden gegeven." },
       },
-      required: ["appointment_id"],
+      required: ["appointment_id", "reason"],
       additionalProperties: false,
     },
     strict: true,

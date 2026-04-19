@@ -7,9 +7,9 @@ export async function GET() {
     (
       <div
         style={{
-          width: 512,
-          height: 512,
-          borderRadius: 128,
+          width: 640,
+          height: 640,
+          borderRadius: 160,
           background: "#C9998A",
           display: "flex",
           alignItems: "center",
@@ -18,7 +18,7 @@ export async function GET() {
       >
         <span
           style={{
-            fontSize: 220,
+            fontSize: 280,
             fontWeight: 300,
             color: "white",
             fontFamily: "Georgia, serif",
@@ -29,6 +29,6 @@ export async function GET() {
         </span>
       </div>
     ),
-    { width: 512, height: 512 }
+    { width: 640, height: 640 }
   );
 }

@@ -1,13 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-  <rect width="32" height="32" rx="8" fill="#C9998A"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="96" fill="#FDFBF7"/>
   <text
-    x="16"
-    y="22"
+    x="256"
+    y="340"
     text-anchor="middle"
-    font-family="Georgia, 'Times New Roman', serif"
-    font-weight="300"
-    font-size="15"
-    fill="white"
-    letter-spacing="0.5"
+    font-family="'Bodoni Moda', 'Didot', 'Bodoni MT', Georgia, serif"
+    font-weight="400"
+    font-size="280"
+    fill="#1A1816"
+    letter-spacing="-5"
   >Cŷ</text>
 </svg>

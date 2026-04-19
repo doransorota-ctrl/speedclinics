@@ -20,9 +20,11 @@ export function Header() {
   return (
     <header
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-surface-50/80 backdrop-blur-lg border-b border-surface-100/60"
-          : "bg-transparent border-b border-transparent"
+        menuOpen
+          ? "bg-surface-50 border-b border-surface-100/60"
+          : scrolled
+            ? "bg-surface-50/80 backdrop-blur-lg border-b border-surface-100/60"
+            : "bg-transparent border-b border-transparent"
       }`}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -116,9 +118,6 @@ export function Header() {
                 onClick={() => setMenuOpen(false)}
               >
                 Inloggen
-              </Link>
-              <Link href="/demo" className="btn-primary text-center text-sm">
-                {nl.nav.cta}
               </Link>
             </div>
           </div>

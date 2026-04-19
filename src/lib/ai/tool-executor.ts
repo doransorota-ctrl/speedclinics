@@ -97,20 +97,49 @@ async function handleCheckAvailability(businessId: string, date: string, timePre
     currentMinutes += duration;
   }
 
-  // Filter by time preference if given
+  const dayName = dateObj.toLocaleDateString("nl-NL", { weekday: "long", day: "numeric", month: "long" });
+
+  // Filter by time preference
   if (timePreference && slots.length > 0) {
-    const pref = timePreference.toLowerCase();
+    const pref = timePreference.toLowerCase().trim();
+
+    // Check for specific time (e.g. "15:00", "14:30")
+    const timeMatch = pref.match(/^(\d{1,2})[:\.]?(\d{2})?$/);
+    if (timeMatch) {
+      const requestedH = parseInt(timeMatch[1]);
+      const requestedM = parseInt(timeMatch[2] || "0");
+      const requestedMinutes = requestedH * 60 + requestedM;
+
+      // Find the exact slot or closest slots around the requested time
+      const nearby = slots.filter((s) => {
+        const slotH = parseInt(s.split(":")[0]);
+        const slotM = parseInt(s.split(":")[1]);
+        const slotMinutes = slotH * 60 + slotM;
+        return Math.abs(slotMinutes - requestedMinutes) <= 90; // Within 1.5 hours
+      });
+
+      if (nearby.length > 0) {
+        return JSON.stringify({ available: true, date: dayName, slots: nearby.slice(0, 4) });
+      }
+      return JSON.stringify({ available: false, date: dayName, message: `Er is helaas geen beschikbaarheid rond ${pref}. De beschikbare tijden zijn: ${slots.slice(0, 4).join(", ")}.` });
+    }
+
+    // Check for period (ochtend/middag/avond)
     let filtered = slots;
-    if (pref === "ochtend") filtered = slots.filter((s) => parseInt(s) < 12);
-    else if (pref === "middag") filtered = slots.filter((s) => parseInt(s) >= 12 && parseInt(s) < 17);
-    else if (pref === "avond") filtered = slots.filter((s) => parseInt(s) >= 17);
+    if (pref.includes("ochtend")) {
+      filtered = slots.filter((s) => parseInt(s) < 12);
+    } else if (pref.includes("middag")) {
+      filtered = slots.filter((s) => parseInt(s) >= 12 && parseInt(s) < 17);
+    } else if (pref.includes("avond") || pref.includes("laat")) {
+      filtered = slots.filter((s) => parseInt(s) >= 17);
+    }
+
     if (filtered.length > 0) {
-      const dayName = dateObj.toLocaleDateString("nl-NL", { weekday: "long", day: "numeric", month: "long" });
       return JSON.stringify({ available: true, date: dayName, slots: filtered.slice(0, 4) });
     }
+    return JSON.stringify({ available: false, date: dayName, message: `Er is helaas geen beschikbaarheid in de ${pref}. De beschikbare tijden zijn: ${slots.slice(0, 4).join(", ")}.` });
   }
 
-  const dayName = dateObj.toLocaleDateString("nl-NL", { weekday: "long", day: "numeric", month: "long" });
   return JSON.stringify({ available: true, date: dayName, slots: slots.slice(0, 4) });
 }
 

@@ -29,7 +29,7 @@ function formatPhone(phone: string): string {
   return phone;
 }
 
-export default function ContactenPage() {
+export default function PatiëntenPage() {
   const [contacts, setContacts] = useState<Contact[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
@@ -102,9 +102,9 @@ export default function ContactenPage() {
   return (
     <div>
       <div className="mb-6">
-        <h1 className="text-2xl font-bold text-surface-900">Contacten</h1>
+        <h1 className="text-2xl font-bold text-surface-900">Patiënten</h1>
         <p className="text-surface-500 mt-1">
-          Alle unieke klanten die contact hebben gehad.
+          Alle patiënten die contact hebben gehad.
         </p>
       </div>
 
@@ -127,9 +127,9 @@ export default function ContactenPage() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
             </svg>
           </div>
-          <h3 className="text-lg font-semibold text-surface-900">Nog geen contacten</h3>
+          <h3 className="text-lg font-semibold text-surface-900">Nog geen patiënten</h3>
           <p className="text-sm text-surface-500 mt-2">
-            Contacten verschijnen hier zodra klanten met je communiceren.
+            Patiënten verschijnen hier zodra patiënten contact opnemen.
           </p>
         </div>
       ) : (
@@ -193,7 +193,7 @@ export default function ContactenPage() {
             </tbody>
           </table>
           {filtered.length === 0 && search && (
-            <p className="text-sm text-surface-500 text-center py-8">Geen contacten gevonden</p>
+            <p className="text-sm text-surface-500 text-center py-8">Geen patiënten gevonden</p>
           )}
         </div>
       )}

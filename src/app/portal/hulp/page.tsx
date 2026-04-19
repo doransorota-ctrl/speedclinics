@@ -55,11 +55,11 @@ const sections = [
     ],
   },
   {
-    title: "Gesprekken & Contacten",
+    title: "Gesprekken & Patiënten",
     items: [
       {
-        q: "Wat is het verschil tussen Gesprekken en Contacten?",
-        a: "Gesprekken toont alle individuele interacties (elke gemiste oproep is een apart gesprek). Contacten toont unieke klanten — als dezelfde klant 3x belt, zie je daar 1 contact met 3 gesprekken.",
+        q: "Wat is het verschil tussen Gesprekken en Patiënten?",
+        a: "Gesprekken toont alle individuele interacties (elke gemiste oproep is een apart gesprek). Patiënten toont unieke patiënten — als dezelfde klant 3x belt, zie je daar 1 patiënt met 3 gesprekken.",
       },
       {
         q: "Kan ik een klant direct bellen of appen?",

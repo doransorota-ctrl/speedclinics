@@ -41,7 +41,7 @@ const NAV_ITEMS: { label: string; href: string; icon: React.ReactNode; plans?: P
     ),
   },
   {
-    label: "Contacten",
+    label: "Patiënten",
     href: "/portal/contacten",
     plans: ["speed-leads", "compleet"],
     icon: (

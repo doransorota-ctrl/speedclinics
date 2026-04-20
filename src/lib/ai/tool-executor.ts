@@ -2,6 +2,7 @@ import { searchTreatmentInfo } from "./search";
 import { createServiceRoleClient } from "@/lib/supabase/server";
 import { getSlotsForDay } from "@/lib/calendar/availability";
 import { refreshAccessToken } from "@/lib/calendar/google";
+import { formatDutchPhone } from "@/lib/phone";
 
 /** Execute a tool call and return the result as a string for the AI */
 export async function executeTool(
@@ -18,15 +19,31 @@ export async function executeTool(
       case "check_availability":
         return await handleCheckAvailability(businessId, args.preferred_date as string, args.preferred_time as string | undefined);
 
-      case "book_appointment":
+      case "book_appointment": {
+        const start = String(args.start_time || "");
+        const end = String(args.end_time || "");
+        const startDate = new Date(start);
+        const endDate = new Date(end);
+
+        if (isNaN(startDate.getTime()) || isNaN(endDate.getTime())) {
+          return JSON.stringify({ error: "Ongeldige datum/tijd." });
+        }
+        if (endDate <= startDate) {
+          return JSON.stringify({ error: "Eindtijd moet na de starttijd zijn." });
+        }
+        if (startDate.getTime() < Date.now() - 5 * 60 * 1000) {
+          return JSON.stringify({ error: "De afspraak kan niet in het verleden liggen." });
+        }
+
         return JSON.stringify({
           action: "book",
           patient_name: args.patient_name,
-          start_time: args.start_time,
-          end_time: args.end_time,
+          start_time: start,
+          end_time: end,
           treatment_type: args.treatment_type,
           status: "pending_confirmation",
         });
+      }
 
       case "find_appointment":
         return await handleFindAppointment(businessId, args.patient_phone as string, args.patient_name as string | undefined);
@@ -56,6 +73,30 @@ async function handleLookup(businessId: string, query: string): Promise<string> 
 async function handleCheckAvailability(businessId: string, date: string, timePreference?: string): Promise<string> {
   const supabase = createServiceRoleClient();
 
+  // Validate date format (YYYY-MM-DD)
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) {
+    return JSON.stringify({ error: "Ongeldig datumformaat. Gebruik YYYY-MM-DD." });
+  }
+
+  const dateObj = new Date(date + "T00:00:00");
+  if (isNaN(dateObj.getTime())) {
+    return JSON.stringify({ error: "Ongeldige datum." });
+  }
+
+  // Reject dates in the past (only compare dates, not times)
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  if (dateObj < today) {
+    return JSON.stringify({ error: "Die datum ligt in het verleden." });
+  }
+
+  // Reject dates more than 6 months out
+  const maxDate = new Date();
+  maxDate.setMonth(maxDate.getMonth() + 6);
+  if (dateObj > maxDate) {
+    return JSON.stringify({ error: "Ik kan alleen afspraken inplannen tot 6 maanden vooruit." });
+  }
+
   const { data: business } = await supabase
     .from("businesses")
     .select("available_hours, slot_duration_minutes, max_appointments_per_day")
@@ -66,7 +107,6 @@ async function handleCheckAvailability(businessId: string, date: string, timePre
     return JSON.stringify({ error: "Kan beschikbaarheid niet ophalen." });
   }
 
-  const dateObj = new Date(date);
   const dayMap: Record<number, string> = { 0: "sun", 1: "mon", 2: "tue", 3: "wed", 4: "thu", 5: "fri", 6: "sat" };
   const dayKey = dayMap[dateObj.getDay()];
   const hours = business.available_hours as Record<string, { start: string; end: string } | null> | null;
@@ -207,26 +247,41 @@ async function handleCheckAvailability(businessId: string, date: string, timePre
 async function handleFindAppointment(businessId: string, phone: string, name?: string): Promise<string> {
   const supabase = createServiceRoleClient();
 
+  // Normalize phone to E.164 so we can match stored numbers regardless of format
+  const normalizedPhone = phone ? formatDutchPhone(phone) : "";
+
   let query = supabase
     .from("leads")
     .select("id, customer_name, appointment_start, appointment_end, problem_summary, status")
     .eq("business_id", businessId)
     .eq("status", "appointment_set")
+    .gt("appointment_start", new Date().toISOString()) // only future appointments
     .order("appointment_start", { ascending: true });
 
-  if (phone) {
-    query = query.eq("customer_phone", phone);
+  if (normalizedPhone) {
+    query = query.eq("customer_phone", normalizedPhone);
   }
 
   const { data: appointments } = await query.limit(5);
 
-  if (!appointments || appointments.length === 0) {
-    return JSON.stringify({ found: false, message: "Geen afspraken gevonden." });
+  // If name provided and multiple matches, filter by name (fuzzy)
+  let filtered = appointments ?? [];
+  if (name && filtered.length > 1) {
+    const nameLower = name.toLowerCase().trim();
+    const exactMatches = filtered.filter(
+      (a) => a.customer_name?.toLowerCase().includes(nameLower)
+    );
+    if (exactMatches.length > 0) filtered = exactMatches;
+  }
+
+  if (filtered.length === 0) {
+    return JSON.stringify({ found: false, message: "Geen toekomstige afspraken gevonden op dit nummer." });
   }
 
   return JSON.stringify({
     found: true,
-    appointments: appointments.map((a) => ({
+    count: filtered.length,
+    appointments: filtered.map((a) => ({
       id: a.id,
       name: a.customer_name,
       start: a.appointment_start,

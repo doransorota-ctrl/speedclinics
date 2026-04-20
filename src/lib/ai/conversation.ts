@@ -126,6 +126,12 @@ export async function generateResponse(
     }
   }
 
+  // Exit path: if state has been "confirmed" and we see more messages without
+  // new appointment data, switch to "ended" so the webhook handles follow-up properly
+  if (ctx.state === "confirmed" && !info.appointmentStart) {
+    newState = "ended";
+  }
+
   // ─── Human escalation: frustration or 20+ messages ───
   const totalMessages = ctx.messages.length + 1; // +1 for current message
   const escalationNeeded = detectEscalation(customerMessage, totalMessages);
@@ -153,8 +159,16 @@ function parseReplyAndInfo(
   const parts = rawReply.split("###INFO###");
   let reply = parts[0].trim();
   const quoteChars = ['"', '\u201c', '\u201d', "'", '\u2018', '\u2019', '`'];
-  while (reply.length > 2 && quoteChars.includes(reply[0]) && quoteChars.includes(reply[reply.length - 1])) {
+  // Cap quote-stripping iterations to prevent runaway loops
+  let quoteIterations = 0;
+  while (
+    reply.length > 2 &&
+    quoteChars.includes(reply[0]) &&
+    quoteChars.includes(reply[reply.length - 1]) &&
+    quoteIterations < 3
+  ) {
     reply = reply.slice(1, -1).trim();
+    quoteIterations++;
   }
 
   if (parts.length > 1) {

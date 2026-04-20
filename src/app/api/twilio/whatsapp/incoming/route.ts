@@ -1088,6 +1088,12 @@ export async function POST(request: Request) {
       return twimlOk();
     }
 
+    // Cap reply at WhatsApp's practical limit (1600 chars is safe; Twilio truncates silently at 2000)
+    if (reply.length > 1600) {
+      console.warn(`[WhatsApp] Reply was ${reply.length} chars, truncating to 1600`);
+      reply = reply.slice(0, 1597) + "...";
+    }
+
     // Send AI reply via WhatsApp (from the business's dedicated pool number)
     const sentMsg = await sendWhatsApp(customerPhone, reply, business.twilio_number || undefined);
 

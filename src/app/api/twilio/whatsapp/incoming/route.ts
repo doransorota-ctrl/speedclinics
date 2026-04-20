@@ -15,21 +15,49 @@ function detectRequestedDay(message: string): Date | null {
   const lower = message.toLowerCase().trim();
   const today = new Date();
 
-  const dayKeywords: Record<string, number> = {
-    "maandag": 1, "dinsdag": 2, "woensdag": 3, "donderdag": 4,
-    "vrijdag": 5, "zaterdag": 6, "zondag": 0,
+  // Dutch month names → 0-indexed month number
+  const months: Record<string, number> = {
+    januari: 0, jan: 0, februari: 1, feb: 1, maart: 2, mrt: 2,
+    april: 3, apr: 3, mei: 4, juni: 5, jun: 5, juli: 6, jul: 6,
+    augustus: 7, aug: 7, september: 8, sep: 8, sept: 8,
+    oktober: 9, okt: 9, november: 10, nov: 10, december: 11, dec: 11,
   };
 
-  if (lower.includes("morgen")) {
-    const d = new Date(today);
-    d.setDate(d.getDate() + 1);
-    return d;
+  // First: try to parse specific dates like "20 mei", "1 juni 2026"
+  const monthNames = Object.keys(months).sort((a, b) => b.length - a.length).join("|");
+  const dateRegex = new RegExp(`\\b(\\d{1,2})\\s+(${monthNames})\\b(?:\\s+(\\d{4}))?`, "i");
+  const dateMatch = lower.match(dateRegex);
+  if (dateMatch) {
+    const day = parseInt(dateMatch[1]);
+    const monthName = dateMatch[2].toLowerCase();
+    const month = months[monthName];
+    const year = dateMatch[3] ? parseInt(dateMatch[3]) : today.getFullYear();
+
+    if (day >= 1 && day <= 31 && month !== undefined) {
+      const parsed = new Date(year, month, day);
+      // If the date is in the past (without explicit year), roll to next year
+      if (!dateMatch[3] && parsed < today) {
+        parsed.setFullYear(year + 1);
+      }
+      return parsed;
+    }
   }
+
   if (lower.includes("overmorgen")) {
     const d = new Date(today);
     d.setDate(d.getDate() + 2);
     return d;
   }
+  if (lower.includes("morgen")) {
+    const d = new Date(today);
+    d.setDate(d.getDate() + 1);
+    return d;
+  }
+
+  const dayKeywords: Record<string, number> = {
+    "maandag": 1, "dinsdag": 2, "woensdag": 3, "donderdag": 4,
+    "vrijdag": 5, "zaterdag": 6, "zondag": 0,
+  };
 
   for (const [name, dow] of Object.entries(dayKeywords)) {
     if (lower.includes(name)) {

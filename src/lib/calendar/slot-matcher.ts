@@ -38,6 +38,33 @@ function normalizeHour(hour: number): number {
   return hour;
 }
 
+/** Dutch month names for stripping dates before time parsing. */
+const DUTCH_MONTHS = [
+  "januari", "februari", "maart", "april", "mei", "juni",
+  "juli", "augustus", "september", "oktober", "november", "december",
+  "jan", "feb", "mrt", "apr", "jun", "jul", "aug", "sep", "sept", "okt", "nov", "dec",
+];
+
+/** Strip date references (e.g. "20 mei", "op 1 juni") so time parsing doesn't pick up day numbers as hours. */
+function stripDateMentions(text: string): string {
+  let result = text;
+  for (const month of DUTCH_MONTHS) {
+    // Match "20 mei", "op 20 mei", "20 mei 2025"
+    const pattern = new RegExp(`\\b\\d{1,2}\\s+${month}\\b(?:\\s+\\d{4})?`, "gi");
+    result = result.replace(pattern, "");
+  }
+  return result;
+}
+
+/** Score a time match to prefer real times (with prefix/minutes/"uur") over loose numbers. */
+function scoreTimeMatch(prefix: string, hasMinutes: boolean, hasUur: boolean): number {
+  let score = 0;
+  if (prefix) score += 3;           // "om 15:00" strongly signals time
+  if (hasMinutes) score += 3;        // "15:00" signals time
+  if (hasUur) score += 2;            // "15 uur" signals time
+  return score;
+}
+
 /** Parse a time preference from a Dutch customer message. */
 export function parseTimePreference(message: string): TimePreference | null {
   const lower = message.toLowerCase().trim();
@@ -74,34 +101,58 @@ export function parseTimePreference(message: string): TimePreference | null {
     };
   }
 
-  // Extract time with prefix
-  const timePattern = /(?:(rond|rondom|circa|na|vanaf|voor|om)\s+)?(\d{1,2})(?:[:.](\d{2}))?\s*(?:uur|u\b)?/;
-  const timeMatch = lower.match(timePattern);
+  // Strip date mentions ("20 mei") so we don't parse day numbers as hours
+  const cleaned = stripDateMentions(lower);
 
-  if (timeMatch) {
-    const prefix = timeMatch[1] || "";
-    const hour = normalizeHour(parseInt(timeMatch[2]));
-    const minute = parseInt(timeMatch[3] || "0");
+  // Find ALL time-like matches and pick the highest-scoring one
+  const timePattern = /(?:(rond|rondom|circa|na|vanaf|voor|om)\s+)?(\d{1,2})(?:[:.](\d{2}))?\s*(uur|u\b)?/g;
+  type Candidate = { prefix: string; hour: number; minute: number; score: number };
+  const candidates: Candidate[] = [];
 
-    if (hour > 23 || minute > 59) return null;
-    if (lower.includes("€") || lower.includes("euro")) return null;
+  let match: RegExpExecArray | null;
+  while ((match = timePattern.exec(cleaned)) !== null) {
+    const prefix = match[1] || "";
+    const hour = normalizeHour(parseInt(match[2]));
+    const minute = parseInt(match[3] || "0");
+    const hasMinutes = !!match[3];
+    const hasUur = !!match[4];
 
-    if (prefix === "rond" || prefix === "rondom" || prefix === "circa") {
-      return { type: "around", hour, minute };
+    if (hour > 23 || minute > 59) continue;
+    if (!prefix && !hasMinutes && !hasUur && hour <= 7) continue;
+
+    const score = scoreTimeMatch(prefix, hasMinutes, hasUur);
+    candidates.push({ prefix, hour, minute, score });
+  }
+
+  if (lower.includes("€") || lower.includes("euro")) {
+    // Price context — skip time parsing
+  } else if (candidates.length > 0) {
+    // Pick highest score; on tie, the first one wins
+    candidates.sort((a, b) => b.score - a.score);
+    const best = candidates[0];
+
+    // If best candidate has zero score (no prefix, no minutes, no "uur") and is just a bare number,
+    // it's probably not a reliable time mention — skip
+    if (best.score === 0 && candidates.length === 1 && best.hour > 7) {
+      // Ambiguous — could be anything. Return it anyway with low confidence.
     }
-    if (prefix === "na" || prefix === "vanaf") {
-      return { type: "after", hour, minute };
+
+    if (best.prefix === "rond" || best.prefix === "rondom" || best.prefix === "circa") {
+      return { type: "around", hour: best.hour, minute: best.minute };
     }
-    if (prefix === "voor") {
-      return { type: "before", hour, minute };
+    if (best.prefix === "na" || best.prefix === "vanaf") {
+      return { type: "after", hour: best.hour, minute: best.minute };
     }
-    return { type: "exact", hour, minute };
+    if (best.prefix === "voor") {
+      return { type: "before", hour: best.hour, minute: best.minute };
+    }
+    return { type: "exact", hour: best.hour, minute: best.minute };
   }
 
   // Dutch number words
   for (const [word, num] of Object.entries(DUTCH_NUMBERS)) {
     const wordPattern = new RegExp(`(?:(rond|na|voor|om)\\s+)?${word}\\s*(?:uur|u\\b)`);
-    const wordMatch = lower.match(wordPattern);
+    const wordMatch = cleaned.match(wordPattern);
     if (wordMatch) {
       const prefix = wordMatch[1] || "";
       const hour = normalizeHour(num);

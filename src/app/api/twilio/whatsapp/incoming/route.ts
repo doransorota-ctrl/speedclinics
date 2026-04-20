@@ -232,7 +232,7 @@ export async function POST(request: Request) {
         .eq("conversation_mode", "choice_pending")
         .order("created_at", { ascending: false })
         .limit(1)
-        .single();
+        .maybeSingle();
 
       if (pendingLead) {
         // Fetch the business WhatsApp number once, used for all customer-facing replies in this block
@@ -244,10 +244,12 @@ export async function POST(request: Request) {
         const pendingBusinessWA = step2Biz?.whatsapp_personal ? step2Biz?.twilio_number : undefined;
 
         const lowerBody = body.toLowerCase().trim();
-        const isBestaand = ["bestaand", "bestaande", "huidige", "afspraak", "verzet", "verplaats", "annul", "cancel", "afzeg"].some(k => lowerBody.includes(k));
-        const isVerzetten = ["verzet", "verplaats", "wijzig", "ander moment", "andere dag", "andere tijd"].some(k => lowerBody.includes(k));
-        const isAnnuleren = ["annul", "cancel", "afzeg", "niet meer", "hoeft niet", "kan niet", "kan niet meer", "gaat niet lukken", "lukt niet", "ziek", "toch niet"].some(k => lowerBody.includes(k));
-        const isNieuw = ["nieuw", "ander probleem", "iets anders", "nieuwe klus"].some(k => lowerBody.includes(k));
+        // Negation check — "niet verplaatsen" shouldn't trigger reschedule
+        const hasNegation = /\b(niet|geen|nee)\s+(\w+\s+)?(annul|cancel|afzeg|verzet|verplaats|wijzig)/.test(lowerBody);
+        const isBestaand = !hasNegation && /\b(bestaand|bestaande|huidig|verzet|verplaats|annul|cancel|afzeg)\b/.test(lowerBody);
+        const isVerzetten = !hasNegation && /\b(verzet|verplaats|wijzig|ander moment|andere dag|andere tijd)\b/.test(lowerBody);
+        const isAnnuleren = !hasNegation && /\b(annul|cancel|afzeg|niet meer|hoeft niet|gaat niet lukken|lukt niet|ziek|toch niet)\b/.test(lowerBody);
+        const isNieuw = /\b(nieuw|ander probleem|iets anders|nieuwe klus)\b/.test(lowerBody);
 
         // Save the customer's choice message
         await supabase.from("messages").insert({
@@ -284,23 +286,44 @@ export async function POST(request: Request) {
         };
 
         if (isVerzetten) {
-          // Direct verzetten match
-          await handleManualRoute(
-            `Wil afspraak verzetten: "${body.slice(0, 100)}"`,
-            `Ik stuur je door naar {naam} om je afspraak te verzetten. Je krijgt zo antwoord.`
-          );
-          // Also send template notification to owner (uses global number — owner-facing)
-          const { data: bizForTemplate } = await supabase
+          // Direct verzetten match — use template if configured, else manual route
+          const { data: bizForReschedule } = await supabase
             .from("businesses")
-            .select("phone")
+            .select("phone, name, twilio_number, whatsapp_personal")
             .eq("id", pendingLead.business_id)
             .single();
-          if (bizForTemplate?.phone && TEMPLATES.OWNER_APPOINTMENT_RESCHEDULED) {
-            sendNamedTemplate(bizForTemplate.phone, TEMPLATES.OWNER_APPOINTMENT_RESCHEDULED, {
-              "1": pendingLead.customer_name || customerPhone,
-              "2": customerPhone,
-            }).catch(() => {});
+
+          await supabase.from("leads").update({
+            conversation_mode: "manual",
+            manual_mode_at: new Date().toISOString(),
+          }).eq("id", pendingLead.id);
+
+          const replyMsg = `Ik stuur u door naar ${bizForReschedule?.name || "ons"} om uw afspraak te verzetten. U krijgt zo antwoord.`;
+          await sendWhatsApp(customerPhone, replyMsg, bizForReschedule?.whatsapp_personal ? bizForReschedule?.twilio_number : undefined);
+          await supabase.from("messages").insert({
+            lead_id: pendingLead.id,
+            business_id: pendingLead.business_id,
+            sender: "ai",
+            body: replyMsg,
+          });
+
+          // Notify owner — prefer template, fall back to notifyOwnerManualMessage
+          if (bizForReschedule?.phone) {
+            if (TEMPLATES.OWNER_APPOINTMENT_RESCHEDULED) {
+              sendNamedTemplate(bizForReschedule.phone, TEMPLATES.OWNER_APPOINTMENT_RESCHEDULED, {
+                "1": pendingLead.customer_name || customerPhone,
+                "2": customerPhone,
+              }).catch((err) => console.error("[WhatsApp] Reschedule template failed:", err));
+            } else {
+              notifyOwnerManualMessage(
+                bizForReschedule.phone,
+                pendingLead.customer_name || customerPhone,
+                `Wil afspraak verzetten: "${body.slice(0, 100)}"`,
+                pendingLead.id
+              );
+            }
           }
+
           console.log(`[WhatsApp] Returning customer: reschedule`);
           return twimlOk();
         } else if (isAnnuleren) {
@@ -423,39 +446,41 @@ export async function POST(request: Request) {
         .gt("appointment_start", new Date().toISOString())
         .order("created_at", { ascending: false })
         .limit(1)
-        .single();
+        .maybeSingle();
 
       if (existingLead) {
         // Fetch business WhatsApp number for customer-facing replies
         const { data: step3Biz } = await supabase
           .from("businesses")
-          .select("twilio_number, whatsapp_personal")
+          .select("twilio_number, whatsapp_personal, name, phone")
           .eq("id", existingLead.business_id)
           .single();
         const existingBusinessWA = step3Biz?.whatsapp_personal ? step3Biz?.twilio_number : undefined;
 
-        // Format appointment date for the message
+        // Format appointment date/time for the message
         const apptDate = existingLead.appointment_start
           ? new Date(existingLead.appointment_start).toLocaleDateString("nl-NL", {
               weekday: "long", day: "numeric", month: "long",
             })
           : "";
-        const apptTime = existingLead.appointment_start
-          ? (new Date(existingLead.appointment_start).getHours() < 12 ? "ochtend" : "middag")
+        const apptTimeFormatted = existingLead.appointment_start
+          ? new Date(existingLead.appointment_start).toLocaleTimeString("nl-NL", {
+              hour: "2-digit", minute: "2-digit", timeZone: "Europe/Amsterdam",
+            })
           : "";
-        const apptInfo = apptDate ? ` (${apptDate} ${apptTime})` : "";
+        const apptInfo = apptDate ? ` (${apptDate} om ${apptTimeFormatted})` : "";
+
+        // Detect explicit intent to skip the menu
+        const hasNegation = /\b(niet|geen|nee)\s+(\w+\s+){0,2}(annul|cancel|afzeg|verzet|verplaats|wijzig)/.test(normalizedBody);
+        const wantsCancel = !hasNegation && /\b(annul|cancel|afzeg|niet meer komen|kan niet meer|gaat niet lukken|toch niet|ziek)\b/.test(normalizedBody);
+        const wantsReschedule = !hasNegation && /\b(verzet|verplaats|wijzig|ander moment|andere dag|andere tijd|verzetten|verplaatsen)\b/.test(normalizedBody);
 
         // If customer is just acknowledging the reminder, reply briefly and skip the menu
         const isAcknowledgement =
           /^(dank|bedankt|dankje|dankjewel|merci|ok|oke|oké|top|prima|goed|fijn|perfect|super|mooi|tot dan|tot morgen|tot zo|we zijn er|klaar voor|genoteerd|begrepen|we zien|zien we|👍|🙏|✅|👋)/.test(normalizedBody)
           || body.trim().length <= 12;
 
-        if (isAcknowledgement) {
-          const apptTimeFormatted = existingLead.appointment_start
-            ? new Date(existingLead.appointment_start).toLocaleTimeString("nl-NL", {
-                hour: "2-digit", minute: "2-digit", timeZone: "Europe/Amsterdam",
-              })
-            : "";
+        if (isAcknowledgement && !wantsCancel && !wantsReschedule) {
           const ackReply = apptTimeFormatted ? `Fijn! Tot ${apptTimeFormatted} 👋` : "Fijn! Tot dan 👋";
           await supabase.from("messages").insert({ lead_id: existingLead.id, business_id: existingLead.business_id, sender: "customer", body });
           await sendWhatsApp(customerPhone, ackReply, existingBusinessWA);
@@ -464,10 +489,53 @@ export async function POST(request: Request) {
           return twimlOk();
         }
 
-        // Simple two-option menu
+        // Direct cancel intent — skip menu, ask for confirmation directly
+        if (wantsCancel) {
+          await supabase.from("leads").update({ conversation_mode: "choice_pending" }).eq("id", existingLead.id);
+          await supabase.from("messages").insert({ lead_id: existingLead.id, business_id: existingLead.business_id, sender: "customer", body });
+
+          const confirmMsg = `U heeft een afspraak staan op ${apptDate} om ${apptTimeFormatted}. Weet u zeker dat u deze wilt annuleren? Stuur "annuleren" om te bevestigen, of "nee" om door te gaan.`;
+          await sendWhatsApp(customerPhone, confirmMsg, existingBusinessWA);
+          await supabase.from("messages").insert({ lead_id: existingLead.id, business_id: existingLead.business_id, sender: "ai", body: confirmMsg });
+          console.log(`[WhatsApp] Direct cancel intent — confirmation requested`);
+          return twimlOk();
+        }
+
+        // Direct reschedule intent — route to manual with template
+        if (wantsReschedule) {
+          await supabase.from("leads").update({
+            conversation_mode: "manual",
+            manual_mode_at: new Date().toISOString(),
+          }).eq("id", existingLead.id);
+          await supabase.from("messages").insert({ lead_id: existingLead.id, business_id: existingLead.business_id, sender: "customer", body });
+
+          const rescheduleMsg = `Ik stuur u door naar ${step3Biz?.name || "ons"} om uw afspraak te verzetten. U krijgt zo antwoord.`;
+          await sendWhatsApp(customerPhone, rescheduleMsg, existingBusinessWA);
+          await supabase.from("messages").insert({ lead_id: existingLead.id, business_id: existingLead.business_id, sender: "ai", body: rescheduleMsg });
+
+          if (step3Biz?.phone) {
+            if (TEMPLATES.OWNER_APPOINTMENT_RESCHEDULED) {
+              sendNamedTemplate(step3Biz.phone, TEMPLATES.OWNER_APPOINTMENT_RESCHEDULED, {
+                "1": existingLead.customer_name || customerPhone,
+                "2": customerPhone,
+              }).catch((err) => console.error("[WhatsApp] Reschedule template failed:", err));
+            } else {
+              notifyOwnerManualMessage(
+                step3Biz.phone,
+                existingLead.customer_name || customerPhone,
+                `Wil afspraak verzetten: "${body.slice(0, 100)}"`,
+                existingLead.id
+              );
+            }
+          }
+          console.log(`[WhatsApp] Direct reschedule intent`);
+          return twimlOk();
+        }
+
+        // Simple two-option menu (fallback for ambiguous messages)
         const name = existingLead.customer_name || "";
         const greeting = name ? `Hoi ${name}!` : `Hoi!`;
-        const menuMsg = `${greeting} Je hebt een afspraak staan${apptInfo}. Gaat dit over je bestaande afspraak of wil je een nieuwe afspraak maken?\n\nStuur "bestaand" of "nieuw".`;
+        const menuMsg = `${greeting} U heeft een afspraak staan${apptInfo}. Gaat dit over uw bestaande afspraak of wilt u een nieuwe afspraak maken?\n\nStuur "bestaand" of "nieuw".`;
 
         await supabase.from("leads").update({ conversation_mode: "choice_pending" }).eq("id", existingLead.id);
 
@@ -667,6 +735,7 @@ export async function POST(request: Request) {
     }
 
     // If conversation is in manual mode, notify owner and don't auto-respond
+    // (rate limited: 1 notification per 5 min per lead to prevent spam)
     if (lead.conversation_mode === "manual") {
       const { data: biz } = await supabase
         .from("businesses")
@@ -681,12 +750,17 @@ export async function POST(request: Request) {
           .eq("id", lead.id)
           .single();
 
-        notifyOwnerManualMessage(
-          biz.phone,
-          leadData?.customer_name || customerPhone,
-          body,
-          lead.id
-        );
+        // In-memory rate limit: 1 notification per lead per 5 min
+        if (!isRateLimited(`owner-notify:${lead.id}`, 1, 5 * 60_000)) {
+          notifyOwnerManualMessage(
+            biz.phone,
+            leadData?.customer_name || customerPhone,
+            body,
+            lead.id
+          );
+        } else {
+          console.log(`[WhatsApp] Manual mode: owner notified recently for lead ${lead.id}, skipping`);
+        }
       }
       return twimlOk();
     }
@@ -1110,6 +1184,19 @@ export async function POST(request: Request) {
           const startDate = new Date(info.appointmentStart);
           if (isNaN(startDate.getTime())) {
             console.error("[WhatsApp] Invalid appointmentStart:", info.appointmentStart);
+          } else if (startDate.getTime() < Date.now() - 5 * 60 * 1000) {
+            // Reject bookings in the past (allow 5 min grace for clock drift)
+            console.warn("[WhatsApp] Rejected past-date booking:", info.appointmentStart);
+            const sorryMsg = "Die datum ligt in het verleden. Kan ik een ander moment voor u zoeken?";
+            await sendWhatsApp(customerPhone, sorryMsg, business.twilio_number || undefined);
+            await supabase.from("messages").insert({
+              lead_id: lead.id,
+              business_id: lead.business_id,
+              sender: "ai",
+              body: sorryMsg,
+            });
+            await supabase.from("ai_contexts").update({ conversation_state: "scheduling" }).eq("lead_id", lead.id);
+            return twimlOk();
           } else {
             // Double-booking check: verify slot is still free
             const { data: overlappingLead } = await supabase
@@ -1125,8 +1212,8 @@ export async function POST(request: Request) {
 
             if (overlappingLead) {
               console.warn("[WhatsApp] Double booking prevented — slot taken");
-              const sorryMsg = "Helaas is dit tijdslot net geboekt door iemand anders. Ik zoek een nieuw moment voor je.";
-              await sendWhatsApp(customerPhone, sorryMsg);
+              const sorryMsg = "Helaas is dit tijdslot net geboekt door iemand anders. Ik zoek een nieuw moment voor u.";
+              await sendWhatsApp(customerPhone, sorryMsg, business.twilio_number || undefined);
               await supabase.from("messages").insert({
                 lead_id: lead.id,
                 business_id: lead.business_id,

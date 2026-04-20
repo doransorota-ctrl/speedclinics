@@ -1,5 +1,7 @@
 import { searchTreatmentInfo } from "./search";
 import { createServiceRoleClient } from "@/lib/supabase/server";
+import { getSlotsForDay } from "@/lib/calendar/availability";
+import { refreshAccessToken } from "@/lib/calendar/google";
 
 /** Execute a tool call and return the result as a string for the AI */
 export async function executeTool(
@@ -64,83 +66,141 @@ async function handleCheckAvailability(businessId: string, date: string, timePre
     return JSON.stringify({ error: "Kan beschikbaarheid niet ophalen." });
   }
 
-  // Map date to day of week
   const dateObj = new Date(date);
   const dayMap: Record<number, string> = { 0: "sun", 1: "mon", 2: "tue", 3: "wed", 4: "thu", 5: "fri", 6: "sat" };
   const dayKey = dayMap[dateObj.getDay()];
   const hours = business.available_hours as Record<string, { start: string; end: string } | null> | null;
   const dayHours = hours?.[dayKey];
+  const dayName = dateObj.toLocaleDateString("nl-NL", { weekday: "long", day: "numeric", month: "long" });
 
   if (!dayHours) {
-    const dayName = dateObj.toLocaleDateString("nl-NL", { weekday: "long" });
     return JSON.stringify({ available: false, message: `De kliniek is op ${dayName} gesloten.` });
   }
 
-  // Generate slots based on business hours
   const duration = business.slot_duration_minutes || 30;
-  const [startH, startM] = dayHours.start.split(":").map(Number);
-  const [endH, endM] = dayHours.end.split(":").map(Number);
-  const slots: string[] = [];
 
-  let currentMinutes = startH * 60 + startM;
-  const endMinutes = endH * 60 + endM;
+  // Try to use Google Calendar for accurate availability
+  const { data: calToken } = await supabase
+    .from("google_calendar_tokens")
+    .select("access_token, refresh_token, token_expiry, calendar_id")
+    .eq("business_id", businessId)
+    .single();
 
-  while (currentMinutes + duration <= endMinutes && slots.length < 8) {
-    const h = Math.floor(currentMinutes / 60);
-    const m = currentMinutes % 60;
-    const slotStart = `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}`;
-    const endMin = currentMinutes + duration;
-    const eh = Math.floor(endMin / 60);
-    const em = endMin % 60;
-    const slotEnd = `${String(eh).padStart(2, "0")}:${String(em).padStart(2, "0")}`;
-    slots.push(`${slotStart} - ${slotEnd}`);
-    currentMinutes += duration;
+  type SlotInfo = { label: string; startMin: number };
+  let slots: SlotInfo[] = [];
+
+  if (calToken) {
+    // Use Google Calendar for real availability
+    try {
+      let accessToken = calToken.access_token;
+      if (new Date(calToken.token_expiry) < new Date()) {
+        const refreshed = await refreshAccessToken(calToken.refresh_token);
+        accessToken = refreshed.accessToken;
+        await supabase
+          .from("google_calendar_tokens")
+          .update({
+            access_token: accessToken,
+            token_expiry: new Date(Date.now() + refreshed.expiresIn * 1000).toISOString(),
+          })
+          .eq("business_id", businessId);
+      }
+
+      const calSlots = await getSlotsForDay(accessToken, calToken.calendar_id || "primary", dateObj, {
+        slotDuration: duration,
+        maxPerDay: business.max_appointments_per_day || 20,
+        bufferMinutes: 0,
+        businessHours: hours ?? undefined,
+      });
+
+      slots = calSlots.map((s) => {
+        const d = new Date(s.start);
+        const e = new Date(s.end);
+        const label = `${String(d.getHours()).padStart(2, "0")}:${String(d.getMinutes()).padStart(2, "0")} - ${String(e.getHours()).padStart(2, "0")}:${String(e.getMinutes()).padStart(2, "0")}`;
+        return { label, startMin: d.getHours() * 60 + d.getMinutes() };
+      });
+    } catch (err) {
+      console.warn("[Tool] Calendar fetch failed, falling back to business hours:", err);
+    }
   }
 
-  const dayName = dateObj.toLocaleDateString("nl-NL", { weekday: "long", day: "numeric", month: "long" });
+  // Fallback: generate slots from business hours only (if no calendar or calendar failed)
+  if (slots.length === 0) {
+    const [startH, startM] = dayHours.start.split(":").map(Number);
+    const [endH, endM] = dayHours.end.split(":").map(Number);
+    let currentMinutes = startH * 60 + startM;
+    const endMinutes = endH * 60 + endM;
+
+    while (currentMinutes + duration <= endMinutes) {
+      const h = Math.floor(currentMinutes / 60);
+      const m = currentMinutes % 60;
+      const endMin = currentMinutes + duration;
+      const eh = Math.floor(endMin / 60);
+      const em = endMin % 60;
+      const label = `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")} - ${String(eh).padStart(2, "0")}:${String(em).padStart(2, "0")}`;
+      slots.push({ label, startMin: currentMinutes });
+      currentMinutes += duration;
+    }
+  }
+
+  if (slots.length === 0) {
+    return JSON.stringify({ available: false, date: dayName, message: `De kliniek is op ${dayName} vol.` });
+  }
 
   // Filter by time preference
-  if (timePreference && slots.length > 0) {
+  if (timePreference) {
     const pref = timePreference.toLowerCase().trim();
 
-    // Check for specific time (e.g. "15:00", "14:30")
+    // Specific time (e.g. "15:00", "14:30")
     const timeMatch = pref.match(/^(\d{1,2})[:\.]?(\d{2})?$/);
     if (timeMatch) {
       const requestedH = parseInt(timeMatch[1]);
       const requestedM = parseInt(timeMatch[2] || "0");
       const requestedMinutes = requestedH * 60 + requestedM;
 
-      // Find the exact slot or closest slots around the requested time
-      const nearby = slots.filter((s) => {
-        const slotH = parseInt(s.split(":")[0]);
-        const slotM = parseInt(s.split(":")[1]);
-        const slotMinutes = slotH * 60 + slotM;
-        return Math.abs(slotMinutes - requestedMinutes) <= 90; // Within 1.5 hours
-      });
+      // Within 1.5 hours of requested time, sorted by proximity
+      const nearby = slots
+        .filter((s) => Math.abs(s.startMin - requestedMinutes) <= 90)
+        .sort((a, b) => Math.abs(a.startMin - requestedMinutes) - Math.abs(b.startMin - requestedMinutes));
 
       if (nearby.length > 0) {
-        return JSON.stringify({ available: true, date: dayName, slots: nearby.slice(0, 4) });
+        return JSON.stringify({ available: true, date: dayName, slots: nearby.slice(0, 4).map((s) => s.label) });
       }
-      return JSON.stringify({ available: false, date: dayName, message: `Er is helaas geen beschikbaarheid rond ${pref}. De beschikbare tijden zijn: ${slots.slice(0, 4).join(", ")}.` });
+
+      // Show alternatives closest to the requested time
+      const closest = slots
+        .slice()
+        .sort((a, b) => Math.abs(a.startMin - requestedMinutes) - Math.abs(b.startMin - requestedMinutes))
+        .slice(0, 4)
+        .map((s) => s.label);
+
+      return JSON.stringify({
+        available: false,
+        date: dayName,
+        message: `Er is helaas geen beschikbaarheid rond ${pref}. Dichtstbijzijnde beschikbare tijden: ${closest.join(", ")}.`,
+      });
     }
 
-    // Check for period (ochtend/middag/avond)
-    let filtered = slots;
+    // Period (ochtend/middag/avond)
+    let filtered: SlotInfo[] = slots;
     if (pref.includes("ochtend")) {
-      filtered = slots.filter((s) => parseInt(s) < 12);
+      filtered = slots.filter((s) => s.startMin < 12 * 60);
     } else if (pref.includes("middag")) {
-      filtered = slots.filter((s) => parseInt(s) >= 12 && parseInt(s) < 17);
+      filtered = slots.filter((s) => s.startMin >= 12 * 60 && s.startMin < 17 * 60);
     } else if (pref.includes("avond") || pref.includes("laat")) {
-      filtered = slots.filter((s) => parseInt(s) >= 17);
+      filtered = slots.filter((s) => s.startMin >= 17 * 60);
     }
 
     if (filtered.length > 0) {
-      return JSON.stringify({ available: true, date: dayName, slots: filtered.slice(0, 4) });
+      return JSON.stringify({ available: true, date: dayName, slots: filtered.slice(0, 4).map((s) => s.label) });
     }
-    return JSON.stringify({ available: false, date: dayName, message: `Er is helaas geen beschikbaarheid in de ${pref}. De beschikbare tijden zijn: ${slots.slice(0, 4).join(", ")}.` });
+    return JSON.stringify({
+      available: false,
+      date: dayName,
+      message: `Er is helaas geen beschikbaarheid in de ${pref}. Wel beschikbaar: ${slots.slice(0, 4).map((s) => s.label).join(", ")}.`,
+    });
   }
 
-  return JSON.stringify({ available: true, date: dayName, slots: slots.slice(0, 4) });
+  return JSON.stringify({ available: true, date: dayName, slots: slots.slice(0, 4).map((s) => s.label) });
 }
 
 /** Find existing appointment by phone number */

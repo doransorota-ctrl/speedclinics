@@ -244,11 +244,28 @@ export async function POST(request: Request) {
         const pendingBusinessWA = step2Biz?.whatsapp_personal ? step2Biz?.twilio_number : undefined;
 
         const lowerBody = body.toLowerCase().trim();
+
+        // Check last AI message for context — if it asked about cancellation,
+        // an affirmative reply ("ja", "yes", "zeker") should confirm the cancel
+        const { data: lastAiMsg } = await supabase
+          .from("messages")
+          .select("body")
+          .eq("lead_id", pendingLead.id)
+          .eq("sender", "ai")
+          .order("created_at", { ascending: false })
+          .limit(1)
+          .maybeSingle();
+        const lastAiBody = (lastAiMsg?.body || "").toLowerCase();
+        const lastAskedAboutCancel = lastAiBody.includes("annuler") && lastAiBody.includes("zeker");
+        const isAffirmative = /^(ja|yes|zeker|bevestig|ok|oke|oké|prima|klopt|jaa|jaaa)\b/.test(lowerBody);
+
         // Negation check — "niet verplaatsen" shouldn't trigger reschedule
         const hasNegation = /\b(niet|geen|nee)\s+(\w+\s+)?(annul|cancel|afzeg|verzet|verplaats|wijzig)/.test(lowerBody);
         const isBestaand = !hasNegation && /\b(bestaand|bestaande|huidig|verzet|verplaats|annul|cancel|afzeg)\b/.test(lowerBody);
         const isVerzetten = !hasNegation && /\b(verzet|verplaats|wijzig|ander moment|andere dag|andere tijd)\b/.test(lowerBody);
-        const isAnnuleren = !hasNegation && /\b(annul|cancel|afzeg|niet meer|hoeft niet|gaat niet lukken|lukt niet|ziek|toch niet)\b/.test(lowerBody);
+        const explicitAnnuleer = !hasNegation && /\b(annul|cancel|afzeg|niet meer|hoeft niet|gaat niet lukken|lukt niet|ziek|toch niet)\b/.test(lowerBody);
+        // Treat "ja" as annuleren confirmation if we just asked about cancelling
+        const isAnnuleren = explicitAnnuleer || (lastAskedAboutCancel && isAffirmative);
         const isNieuw = /\b(nieuw|ander probleem|iets anders|nieuwe klus)\b/.test(lowerBody);
 
         // Save the customer's choice message
@@ -373,8 +390,10 @@ export async function POST(request: Request) {
           }).eq("id", pendingLead.id);
 
           const bizName = biz?.name || "ons";
-          const bizPhone = biz?.phone || "";
-          const cancelMsg = `Je afspraak is geannuleerd. Wil je een nieuwe afspraak inplannen? Stuur "nieuw". Of neem direct contact op met ${bizName}: ${bizPhone}`;
+          const contactLine = biz?.phone
+            ? `Of neem direct contact op met ${bizName}: ${biz.phone}`
+            : `Of neem direct contact op met ${bizName}.`;
+          const cancelMsg = `Uw afspraak is geannuleerd. Wilt u een nieuwe afspraak inplannen? Stuur "nieuw". ${contactLine}`;
 
           await sendWhatsApp(customerPhone, cancelMsg, biz?.whatsapp_personal ? biz?.twilio_number : undefined);
           await supabase.from("messages").insert({

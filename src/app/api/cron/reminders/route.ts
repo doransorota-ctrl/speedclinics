@@ -47,13 +47,46 @@ export async function GET(req: Request) {
   }
 
   let sent = 0;
+  let skipped = 0;
+
+  // Deduplicate: fetch reminders sent in the last 20 hours per lead
+  const dedupWindow = new Date(now.getTime() - 20 * 60 * 60 * 1000).toISOString();
+  const leadIds = (leads || []).map((l) => l.id);
+  const { data: recentReminderMsgs } = leadIds.length > 0
+    ? await supabase
+        .from("messages")
+        .select("lead_id, body")
+        .in("lead_id", leadIds)
+        .eq("sender", "ai")
+        .gte("created_at", dedupWindow)
+        .like("body", "%herinnering%")
+    : { data: [] };
+  const alreadyReminded = new Set((recentReminderMsgs || []).map((m) => m.lead_id));
 
   for (const lead of leads || []) {
+    // Skip if already reminded in the last 20h
+    if (alreadyReminded.has(lead.id)) {
+      skipped++;
+      continue;
+    }
+
+    // Validate appointment_start — skip if malformed
+    if (!lead.appointment_start) {
+      console.warn(`[Cron/Reminders] Lead ${lead.id} has null appointment_start, skipping`);
+      continue;
+    }
+    const apptDate = new Date(lead.appointment_start);
+    if (isNaN(apptDate.getTime())) {
+      console.warn(`[Cron/Reminders] Lead ${lead.id} has invalid appointment_start (${lead.appointment_start}), skipping`);
+      continue;
+    }
+
     const biz = (lead as Record<string, unknown>).businesses as { name: string; phone: string; whatsapp_personal?: boolean; twilio_number?: string } | null;
     const bizFrom = biz?.whatsapp_personal ? biz?.twilio_number : undefined;
-    const apptTime = new Date(lead.appointment_start!).toLocaleTimeString("nl-NL", {
+    const apptTime = apptDate.toLocaleTimeString("nl-NL", {
       hour: "2-digit",
       minute: "2-digit",
+      timeZone: "Europe/Amsterdam",
     });
     const customerName = lead.customer_name || "klant";
 
@@ -101,6 +134,10 @@ export async function GET(req: Request) {
     }
   }
 
-  console.log(`[Cron/Reminders] Sent ${sent} reminders for tomorrow`);
-  return NextResponse.json({ reminders_sent: sent, total_appointments: leads?.length || 0 });
+  console.log(`[Cron/Reminders] Sent ${sent} reminders, skipped ${skipped} duplicates for tomorrow`);
+  return NextResponse.json({
+    reminders_sent: sent,
+    skipped_duplicates: skipped,
+    total_appointments: leads?.length || 0,
+  });
 }

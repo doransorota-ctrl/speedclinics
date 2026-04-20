@@ -29,6 +29,8 @@ export async function GET(req: Request) {
       customer_phone,
       customer_name,
       business_id,
+      appointment_end,
+      status,
       businesses (
         name,
         google_review_link,
@@ -36,9 +38,11 @@ export async function GET(req: Request) {
         twilio_number
       )
     `)
-    .eq("status", "converted")
+    // Include both 'converted' (status auto-updated) and 'appointment_set' (customer never messaged back)
+    .in("status", ["converted", "appointment_set"])
     .gte("appointment_end", threeHoursAgo)
-    .lte("appointment_end", twoHoursAgo);
+    .lte("appointment_end", twoHoursAgo)
+    .not("appointment_end", "is", null);
 
   if (error) {
     console.error("[Cron/Reviews] Error fetching leads:", error);
@@ -65,6 +69,14 @@ export async function GET(req: Request) {
       .maybeSingle();
 
     if (existingReview) continue; // Already sent
+
+    // If still appointment_set, convert it now (customer didn't message back after appointment)
+    if (lead.status === "appointment_set") {
+      await supabase
+        .from("leads")
+        .update({ status: "converted", conversation_mode: "manual" })
+        .eq("id", lead.id);
+    }
 
     const customerName = lead.customer_name || "klant";
 

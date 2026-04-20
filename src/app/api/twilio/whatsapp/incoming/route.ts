@@ -7,7 +7,7 @@ import { parseTimePreference, checkExactTime, buildCheckContext } from "@/lib/ca
 import { createCalendarEvent, deleteCalendarEvent, updateCalendarEvent, refreshAccessToken } from "@/lib/calendar/google";
 import type { ChatMessage } from "@/lib/ai/client";
 import { isRateLimited } from "@/lib/rate-limit";
-import { notifyOwnerManualMessage } from "@/lib/notifications/owner";
+import { notifyOwnerManualMessage, notifyOwnerCalendarBroken } from "@/lib/notifications/owner";
 import { searchTreatmentInfo } from "@/lib/ai/search";
 
 /** Detect if a message mentions a specific day. Returns a Date or null. */
@@ -1235,9 +1235,20 @@ export async function POST(request: Request) {
               try {
                 const refreshed = await refreshAccessToken(calToken.refresh_token);
                 accessToken = refreshed.accessToken;
+                // Persist refreshed token
+                await supabase
+                  .from("google_calendar_tokens")
+                  .update({
+                    access_token: accessToken,
+                    token_expiry: new Date(Date.now() + refreshed.expiresIn * 1000).toISOString(),
+                  })
+                  .eq("business_id", lead.business_id);
               } catch (refreshErr) {
                 console.error("[WhatsApp] Token refresh failed:", refreshErr);
-                // Continue without calendar - AI will handle gracefully
+                if (business.phone) {
+                  await notifyOwnerCalendarBroken(lead.business_id, business.phone, business.name || "uw kliniek");
+                }
+                // Continue without calendar — booking still saved
               }
             }
 

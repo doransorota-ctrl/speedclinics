@@ -1,6 +1,7 @@
 import { sendWhatsApp } from "../twilio/whatsapp";
 import { sendEmail } from "../email/client";
 import { leadNotificationHtml } from "../email/templates/lead-notification";
+import { isRateLimited } from "../rate-limit";
 
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
 
@@ -86,6 +87,28 @@ export async function notifyOwnerManualMessage(
   await sendWhatsApp(ownerPhone, msg).catch((err) => {
     console.error("[Notification] Manual message WhatsApp failed:", err);
   });
+}
+
+/**
+ * Notify owner that their Google Calendar integration is broken.
+ * Rate limited to 1 alert per 24h per business to prevent spam.
+ */
+export async function notifyOwnerCalendarBroken(businessId: string, ownerPhone: string, businessName: string) {
+  if (isRateLimited(`calendar-broken:${businessId}`, 1, 24 * 60 * 60 * 1000)) {
+    return;
+  }
+  const msg = [
+    `⚠️ Clŷniq — Google Calendar koppeling verbroken`,
+    ``,
+    `De koppeling met uw Google Calendar werkt niet meer. Nieuwe afspraken worden nu niet automatisch in uw agenda gezet.`,
+    ``,
+    `Log in op ${APP_URL}/portal/settings en koppel uw Google Calendar opnieuw.`,
+  ].join("\n");
+
+  await sendWhatsApp(ownerPhone, msg).catch((err) => {
+    console.error("[Notification] Calendar broken alert failed:", err);
+  });
+  console.warn(`[Notification] Calendar broken alert sent to ${businessName}`);
 }
 
 /** Notify the owner about a booked appointment. */

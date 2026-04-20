@@ -2,7 +2,7 @@ export const nl = {
   meta: {
     title: "Clŷniq — Meer patiënten, sterkere reputatie | Voor cosmetische klinieken",
     description:
-      "Wij helpen cosmetische klinieken groeien. Van professionele website tot AI-assistent die patiënten converteert, consulten inplant en uw online reputatie versterkt met reviews.",
+      "Clŷniq is de AI-receptie voor cosmetische klinieken in Nederland. Automatische patiëntopvolging via WhatsApp, afspraken inplannen, Google reviews verzamelen — 24/7 bereikbaar. Binnen een week live.",
     ogTitle: "Clŷniq — Groei uw kliniek",
     ogDescription:
       "Meer consulten. Meer reviews. Minder gemiste aanvragen. Op maat voor uw kliniek.",
@@ -38,7 +38,7 @@ export const nl = {
   },
 
   stats: {
-    headline: "Waarom klinieken voor ons kiezen",
+    headline: "Waarom cosmetische klinieken voor Clŷniq kiezen",
     items: [
       {
         value: "3x",
@@ -284,7 +284,7 @@ export const nl = {
           {
             question: "Hoe werkt Clŷniq precies?",
             answer:
-              "Wanneer een patiënt contact opneemt buiten openingstijden — via telefoon, WhatsApp of uw website — reageert Clŷniq automatisch via WhatsApp. Het beantwoordt vragen over behandelingen, adviseert de patiënt en plant indien gewenst een consult in.",
+              'Wanneer een patiënt contact opneemt buiten openingstijden — via telefoon, WhatsApp of uw website — reageert Clŷniq automatisch via WhatsApp. Het beantwoordt vragen over behandelingen, adviseert de patiënt en plant indien gewenst een consult in. <a href="#hoe-het-werkt">Bekijk de stappen</a>.',
           },
           {
             question: "Wordt het aangepast aan onze kliniek?",
@@ -309,7 +309,7 @@ export const nl = {
           {
             question: "Kan het afspraken inplannen in onze agenda?",
             answer:
-              "Ja. Clŷniq koppelt met Google Calendar en plant consulten direct in op beschikbare momenten. U ontvangt een melding met alle patiëntdetails.",
+              'Ja. Clŷniq koppelt met Google Calendar en plant consulten direct in op beschikbare momenten. U ontvangt een melding met alle patiëntdetails. <a href="/demo">Boek een demo</a> en wij laten het live zien.',
           },
           {
             question: "Zit ik vast aan een contract?",
@@ -318,7 +318,7 @@ export const nl = {
           {
             question: "Hoe lang duurt de implementatie?",
             answer:
-              "Wij richten alles voor u in. Gemiddeld is uw kliniek binnen een week live. U hoeft technisch niets te doen.",
+              'Wij richten alles voor u in. Gemiddeld is uw kliniek binnen een week live. U hoeft technisch niets te doen. <a href="/demo">Plan een demo</a> en wij bespreken de mogelijkheden.',
           },
         ],
       },
@@ -373,7 +373,7 @@ export const nl = {
   },
 
   footer: {
-    tagline: "Meer patiënten. Minder gemiste aanvragen.",
+    tagline: "AI-receptie voor cosmetische klinieken. Meer patiënten, sterkere reputatie.",
     links: {
       privacy: "Privacybeleid",
       terms: "Algemene voorwaarden",

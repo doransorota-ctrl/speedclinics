@@ -162,7 +162,7 @@ export function AnimatedTestimonials({
 
                   <div className="flex items-center gap-4">
                     <Avatar className="h-12 w-12 border border-surface-200">
-                      <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
+                      <AvatarImage src={testimonial.avatar} alt={`${testimonial.name} — ${testimonial.role}`} />
                       <AvatarFallback className="bg-brand-100 text-brand-700">{testimonial.name.charAt(0)}</AvatarFallback>
                     </Avatar>
                     <div>

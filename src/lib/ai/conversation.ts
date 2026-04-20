@@ -19,6 +19,7 @@ export interface GatheredInfo {
   appointmentStart?: string;
   appointmentEnd?: string;
   conversationEnded?: boolean;
+  needsHumanEscalation?: boolean;
 }
 
 interface BusinessContext {
@@ -91,7 +92,12 @@ export async function generateResponse(
   }
 
   // Parse reply and info
-  const { reply, info } = parseReplyAndInfo(rawReply, ctx.gatheredInfo);
+  let { reply, info } = parseReplyAndInfo(rawReply, ctx.gatheredInfo);
+
+  // ─── Medical guardrail: block dosage/diagnosis in AI output ───
+  if (!isSales) {
+    reply = applyMedicalGuardrail(reply);
+  }
 
   // State tracking
   let newState: ConversationState = ctx.state;
@@ -118,6 +124,13 @@ export async function generateResponse(
     if (info.conversationEnded === true) {
       newState = "ended";
     }
+  }
+
+  // ─── Human escalation: frustration or 20+ messages ───
+  const totalMessages = ctx.messages.length + 1; // +1 for current message
+  const escalationNeeded = detectEscalation(customerMessage, totalMessages);
+  if (escalationNeeded && newState !== "confirmed") {
+    info.needsHumanEscalation = true;
   }
 
   return { reply, newState, info };
@@ -229,4 +242,50 @@ export async function summarizeConversation(messages: ChatMessage[]): Promise<st
   );
 
   return summary.trim();
+}
+
+/** Medical guardrail: replace reply if AI gives medical advice */
+const MEDICAL_PATTERNS = [
+  /\b\d+\s*mg\b/i,
+  /\b\d+\s*ml\b/i,
+  /\bdosering\b/i,
+  /\bdiagnose\b/i,
+  /\bdiagnostiek\b/i,
+  /\bvoorschrijven\b/i,
+  /\bmedicijn(en)?\b/i,
+  /\bbijwerking(en)?\b/i,
+  /\bcontra[\s-]?indicatie/i,
+  /\ballergische reactie\b/i,
+  /\bbloed(onderzoek|test|waarden)\b/i,
+  /\brecept\b/i,
+];
+
+function applyMedicalGuardrail(reply: string): string {
+  const matched = MEDICAL_PATTERNS.some((p) => p.test(reply));
+  if (matched) {
+    console.warn("[Guardrail] Medical content detected in AI reply, replacing");
+    return "Dat is een vraag die de arts graag met u bespreekt tijdens het consult. Zal ik een afspraak voor u inplannen?";
+  }
+  return reply;
+}
+
+/** Detect if human escalation is needed */
+const FRUSTRATION_PATTERNS = [
+  /\b(mens|medewerker|iemand|persoon)\b.*\b(spreken|praten|bellen)\b/i,
+  /\becht\s+iemand\b/i,
+  /\bgeen\s+(robot|bot|ai|computer)\b/i,
+  /\bkut\b/i,
+  /\bklacht(en)?\b/i,
+  /\bonzin\b/i,
+  /\bwaardeloos\b/i,
+  /\bbelachelijk\b/i,
+  /\bschandalig\b/i,
+];
+
+function detectEscalation(message: string, totalMessages: number): boolean {
+  // Explicit request for human
+  if (FRUSTRATION_PATTERNS.some((p) => p.test(message))) return true;
+  // 20+ messages without resolution
+  if (totalMessages >= 20) return true;
+  return false;
 }

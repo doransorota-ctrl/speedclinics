@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Privacybeleid — Clŷniq",
+  description: "Privacybeleid van Clŷniq. Hoe wij omgaan met patiëntgegevens, AVG-compliance en gegevensverwerking voor cosmetische klinieken.",
 };
 
 export default function PrivacyPage() {

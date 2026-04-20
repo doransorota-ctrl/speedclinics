@@ -1,6 +1,6 @@
 import { createServiceRoleClient } from "@/lib/supabase/server";
 import { sendWhatsApp, sendNamedTemplate, TEMPLATES } from "@/lib/twilio/whatsapp";
-import { generateResponse, type ConversationState } from "@/lib/ai/conversation";
+import { generateResponse, summarizeConversation, type ConversationState } from "@/lib/ai/conversation";
 import { verifyTwilioWebhook, formDataToParams } from "@/lib/twilio/verify-webhook";
 import { getAvailableSlots } from "@/lib/calendar/availability";
 import { parseTimePreference, checkExactTime, buildCheckContext } from "@/lib/calendar/slot-matcher";
@@ -697,11 +697,31 @@ export async function POST(request: Request) {
     // Get AI context
     const { data: ctx } = await supabase
       .from("ai_contexts")
-      .select("lead_id, messages_json, gathered_info, conversation_state")
+      .select("lead_id, messages_json, gathered_info, conversation_state, conversation_summary")
       .eq("lead_id", lead.id)
       .single();
 
     let messages: ChatMessage[] = ctx?.messages_json ?? [];
+    let conversationSummary = (ctx as Record<string, unknown>)?.conversation_summary as string | undefined;
+
+    // Summarize older messages to save tokens (after 8+ messages)
+    if (messages.length >= 8 && !conversationSummary) {
+      try {
+        conversationSummary = await summarizeConversation(messages);
+        if (conversationSummary) {
+          // Keep only last 6 messages, summary covers the rest
+          messages = messages.slice(-6);
+          await supabase
+            .from("ai_contexts")
+            .update({ conversation_summary: conversationSummary, messages_json: messages })
+            .eq("lead_id", lead.id);
+          console.log(`[WhatsApp] Summarized conversation for lead ${lead.id}: "${conversationSummary.slice(0, 80)}..."`);
+        }
+      } catch (err) {
+        console.warn("[WhatsApp] Summarization failed:", err);
+      }
+    }
+
     // Window conversation history to prevent context overflow (keep last 15 messages)
     if (messages.length > 15) {
       messages = messages.slice(-15);
@@ -845,6 +865,7 @@ export async function POST(request: Request) {
         promptMode,
         treatmentContext,
         customerPhone,
+        conversationSummary,
       },
       combinedBody
     );
@@ -927,6 +948,42 @@ export async function POST(request: Request) {
         console.error("[WhatsApp] Day-specific slot fetch failed:", err);
         // Continue with original reply
       }
+    }
+
+    // ─── Human escalation: switch to manual mode ───
+    if (info.needsHumanEscalation) {
+      const escalationReply = `Ik schakel u door naar een medewerker van ${business.name}. U krijgt zo snel mogelijk antwoord.`;
+      await sendWhatsApp(customerPhone, escalationReply, business.twilio_number || undefined);
+      await supabase.from("messages").insert({
+        lead_id: lead.id,
+        business_id: lead.business_id,
+        sender: "ai",
+        body: escalationReply,
+      });
+      await supabase.from("leads").update({
+        conversation_mode: "manual",
+        manual_mode_at: new Date().toISOString(),
+      }).eq("id", lead.id);
+      await supabase.from("ai_contexts").update({
+        conversation_state: "ended",
+      }).eq("lead_id", lead.id);
+
+      // Notify owner
+      if (business.phone) {
+        const { data: escalationLead } = await supabase
+          .from("leads")
+          .select("customer_name")
+          .eq("id", lead.id)
+          .single();
+        notifyOwnerManualMessage(
+          business.phone,
+          escalationLead?.customer_name || customerPhone,
+          `Patiënt wil met een medewerker spreken: "${body.slice(0, 100)}"`,
+          lead.id
+        );
+      }
+      console.log(`[WhatsApp] Human escalation triggered for lead ${lead.id}`);
+      return twimlOk();
     }
 
     // Send AI reply via WhatsApp (from the business's dedicated pool number)

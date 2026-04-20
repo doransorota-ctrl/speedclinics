@@ -62,9 +62,10 @@ export function FAQ() {
                       </button>
                       {openIndex === key && (
                         <div className="pb-4">
-                          <p className="text-sm text-surface-500 leading-relaxed">
-                            {item.answer}
-                          </p>
+                          <p
+                            className="text-sm text-surface-500 leading-relaxed [&_a]:text-brand-600 [&_a]:underline [&_a]:underline-offset-2 hover:[&_a]:text-brand-500"
+                            dangerouslySetInnerHTML={{ __html: item.answer }}
+                          />
                         </div>
                       )}
                     </div>

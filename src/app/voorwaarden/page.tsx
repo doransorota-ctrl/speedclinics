@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Algemene Voorwaarden — Clŷniq",
+  description: "Algemene voorwaarden van Clŷniq. Onze servicevoorwaarden voor cosmetische klinieken in Nederland.",
 };
 
 export default function VoorwaardenPage() {
